@@ -6,7 +6,7 @@ import './App.css';
 function App() {
   const [count, setCount] = useState(0);
 
-  setCount(9);
+  setCount(1);
 
   return (
     <>
