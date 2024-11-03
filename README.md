@@ -2,7 +2,7 @@
 React Phone Catalog
 
 ## Description
-A site designed to sell phone. The site has common features such as:
+A site designed to sell phones. The site has common features such as:
 - Filtering and the ability to share them via URL.
 - A list of favorites.
 - A cart.
