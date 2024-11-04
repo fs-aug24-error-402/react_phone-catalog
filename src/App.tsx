@@ -1,3 +1,4 @@
+
 import './App.scss';
 import { Card } from './componentes/Card';
 
@@ -6,7 +7,7 @@ function App() {
     <>
       <header></header>
       <main>
-        <Card />
+        <Outlet />
       </main>
       <footer></footer>
     </>
