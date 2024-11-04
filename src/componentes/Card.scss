@@ -1,0 +1,122 @@
+.card {
+  padding: 32px;
+  width: 272px;
+  box-sizing: border-box;
+  border: 1px solid #e2e6e9;
+  background-color: #ffffff;
+  border-radius: 8px;
+  color: #333333;
+
+  &__img-link {
+    display: flex;
+    justify-content: center;
+    margin-bottom: 16px;
+  }
+
+  &__img {
+    width: 208px;
+
+    border-radius: 8px;
+  }
+
+  &__model {
+    font-size: 14px;
+    font-weight: 600;
+    color: #333333;
+    line-height: 21px;
+  }
+
+  &__price-container {
+    display: flex;
+    justify-content: left;
+    width: 100%;
+  }
+
+  &__price-current {
+    display: block;
+
+    padding: 8px 0;
+    width: 100%;
+
+    font-size: 22px;
+    font-weight: 800;
+    color: #333333;
+
+    border-bottom: 1px solid #e2e6e9;
+  }
+
+  &__info-container {
+    margin: 16px 0;
+    display: flex;
+    justify-content: space-between;
+    padding: 0 8px;
+  }
+
+  &__info-title-container {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+    font-size: 12px;
+    font-weight: 700;
+    color: #89939a;
+  }
+
+  &__info-param-container {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+    font-size: 12px;
+    font-weight: 700;
+    color: #333333;
+
+    text-align: right;
+  }
+
+  &__buttons-container {
+    display: flex;
+    justify-content: space-between;
+    margin-top: 16px;
+  }
+
+  &__buttons-add {
+    font-family: inherit;
+    padding: 0;
+    height: 40px;
+    width: 160px;
+    font-size: 14px;
+    font-weight: 700;
+    color: #ffffff;
+    background-color: #4219d0;
+    border: none;
+    border-radius: 24px;
+    text-align: center;
+    cursor: pointer;
+    transition: all 0.3s;
+
+    &:hover {
+      background-color: #ffffff;
+      color: #4219d0;
+      border: 1px solid #e2e6e9;
+      box-shadow: 0px 3px 13px 0px #17203166;
+    }
+  }
+
+  &__buttons-favorite {
+    padding: 0;
+    height: 40px;
+    width: 40px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: #0f0f11;
+    border: 1px solid #b4bdc3;
+    border-radius: 50%;
+    background-color: #ffffff;
+    cursor: pointer;
+    transition: all 0.3s;
+
+    &:hover {
+      border: 1px solid #0f0f11;
+    }
+  }
+}

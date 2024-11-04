@@ -1,10 +1,13 @@
-import './App.css';
+import './App.scss';
+import { Card } from './componentes/Card';
 
 function App() {
   return (
     <>
       <header></header>
-      <main></main>
+      <main>
+        <Card />
+      </main>
       <footer></footer>
     </>
   );
