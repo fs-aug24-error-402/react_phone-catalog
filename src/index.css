@@ -1,3 +1,4 @@
 @import './styles/utils/variables.scss';
 @import './styles/utils/normalize.scss';
 @import './styles/utils/reset.scss';
+@import './componentes/Card.scss';
