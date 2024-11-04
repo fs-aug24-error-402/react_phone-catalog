@@ -8,6 +8,7 @@ function App() {
       <header></header>
       <main>
         <Outlet />
+        <Card />
       </main>
       <footer></footer>
     </>
