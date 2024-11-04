@@ -1,10 +1,13 @@
+import { Outlet } from 'react-router-dom';
 import './App.css';
 
 function App() {
   return (
     <>
       <header></header>
-      <main></main>
+      <main>
+        <Outlet />
+      </main>
       <footer></footer>
     </>
   );
