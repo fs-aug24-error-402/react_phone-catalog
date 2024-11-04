@@ -36,6 +36,7 @@ export const Card: React.FC = () => {
           <img
             src="src\images\icons\svg\Favourites (Heart Like).svg"
             className="card__buttons-heart-img"
+            alt="Add to favorite"
           />
         </button>
       </div>
