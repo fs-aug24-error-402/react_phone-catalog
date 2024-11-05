@@ -12,6 +12,7 @@ export default {
     },
 
     spacing: {
+      '0': '0px',
       '8': '8px',
       '13': '13px',
       '16': '16px',
@@ -22,6 +23,9 @@ export default {
       '56': '56px',
       '64': '64px',
       '72': '72px',
+      '96': '96px',
+      '152': '152px',
+
     },
 
     extend: {
@@ -42,6 +46,10 @@ export default {
         sm: '8px',
         lg: '48px',
       },
+
+      boxShadow: {
+        'footer-top': '0px -1px 0px 0px #E2E6E9',
+      }
     },
 
     fontFamily: {
