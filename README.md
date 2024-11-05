@@ -11,9 +11,6 @@ A site designed to sell phones. The site has common features such as:
 ## Installation
 1. Clone this repo
 2. Run ```npm i```
-3. In folder `.husky` you should create a file `pre-commit` with text: `npx lint-staged`
-
-##### Third step adds action which runs Linter and Prettier before each commit. In case of unfixable error it stops commit.
 
 ## Usage
 - To start the project run `npm start`
