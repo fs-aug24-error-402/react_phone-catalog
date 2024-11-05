@@ -1,0 +1,47 @@
+@use 'src/styles/utils/library' as *;
+
+.header {
+  display: flex;
+  justify-content: space-between;
+  background-color: theme('colors.white');
+
+  border-bottom: 1px solid theme('colors.elements');
+  z-index: 2;
+
+  &__left {
+    display: flex;
+    align-items: center;
+  }
+
+  &__right {
+    display: flex;
+    align-items: center;
+  }
+
+  &__icon {
+    padding: $header-icon-padding;
+
+    cursor: pointer;
+    box-shadow: -1px 0 theme('colors.elements');
+
+    transition: background 0.2s ease-in-out;
+  }
+}
+
+.logo {
+  &__img {
+    height: 22px;
+
+    @include on-desktop {
+      height: 28px;
+    }
+  }
+}
+
+.burger-open {
+  background: no-repeat center url(img/icons/png/menu.png);
+}
+
+.burger-close {
+  background: no-repeat center url(img/icons/png/close-menu.png);
+}
