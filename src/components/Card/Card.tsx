@@ -40,7 +40,7 @@ export const Card: React.FC<Props> = ({ product }) => {
         <button className="card__buttons-add">Add to cart</button>
         <button className="card__buttons-favorite">
           <img
-            src="src\images\icons\svg\Favourites (Heart Like).svg"
+            src="public/img/icons/svg/Favourites (Heart Like).svg"
             className="card__buttons-heart-img"
             alt="Add to favorite"
           />
