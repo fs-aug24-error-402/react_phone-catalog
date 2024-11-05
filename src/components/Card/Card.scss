@@ -47,7 +47,6 @@
       -webkit-line-clamp: 3;
       line-clamp: 3;
       -webkit-box-orient: vertical;
-      max-height: 80px;
       overflow: hidden;
     }
   }
@@ -56,19 +55,40 @@
     display: flex;
     justify-content: left;
     width: 100%;
+
+    gap: 8px;
+
+    border-bottom: 1px solid #e2e6e9;
   }
 
   &__price-current {
-    display: block;
-
     padding: 8px 0;
-    width: 100%;
 
     font-size: 22px;
     font-weight: 800;
     color: #333333;
+  }
 
-    border-bottom: 1px solid #e2e6e9;
+  &__price-old {
+    position: relative;
+
+    padding: 8px 0;
+
+    font-size: 22px;
+    font-weight: 600;
+    color: #89939a;
+
+    &::after {
+      content: '';
+      position: absolute;
+      left: 0;
+      top: 55%;
+      width: 100%;
+      height: 2px;
+      background-color: #89939a;
+      transform: translateY(-50%);
+      // mix-blend-mode: color-dodge;
+    }
   }
 
   &__info-container {
@@ -146,6 +166,6 @@
   }
 
   &:hover {
-    scale: 1.1;
+    transform: (scale(1.1));
   }
 }
