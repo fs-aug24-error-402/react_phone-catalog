@@ -8,15 +8,19 @@ interface Props {
 export const Card: React.FC<Props> = ({ product }) => {
   return (
     <article className="card">
-      <a href="#product" className="card__img-link">
-        <img
-          src={`public/${product.image}`}
-          alt={product.name}
-          className="card__img"
-        />
-      </a>
+      <div className="card__head-container">
+        <a href="#product" className="card__img-link">
+          <div>
+            <img
+              src={`public/${product.image}`}
+              alt={product.name}
+              className="card__img"
+            />
+          </div>
+        </a>
 
-      <h3 className="card__model font-main-font">{product.name}</h3>
+        <h3 className="card__model font-main-font">{product.name}</h3>
+      </div>
 
       <div className="card__price-container">
         <span className="card__price-current">${product.price}</span>
