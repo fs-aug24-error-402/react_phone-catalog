@@ -1,0 +1,13 @@
+@use 'tailwindcss/defaultTheme' as *;
+
+@mixin on-tablet {
+  @media (min-width: #{theme('screens.tablet')}) {
+    @content;
+  }
+}
+
+@mixin on-desktop {
+  @media (min-width: #{theme('screens.desktop')}) {
+    @content;
+  }
+}
