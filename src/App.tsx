@@ -13,8 +13,10 @@ function App() {
   const handleToggleAside = () => setIsAsideVisible(prev => !prev);
 
   useEffect(() => {
-    setIsAsideVisible(false);
-  }, [location]);
+    if (isAsideVisible) {
+      setIsAsideVisible(false);
+    }
+  }, [isAsideVisible, location]);
 
   return (
     <div className="app flex flex-col min-h-screen">
