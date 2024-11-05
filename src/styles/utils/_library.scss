@@ -1,0 +1,30 @@
+$header-icon-padding: 32px;
+$header-size: $header-icon-padding * 2;
+
+@mixin on-tablet {
+  @media (min-width: theme('screens.tablet')) {
+    @content;
+  }
+}
+
+@mixin on-desktop {
+  @media (min-width: theme('screens.desktop')) {
+    @content;
+  }
+}
+
+@mixin nav-link-after {
+  content: '';
+
+  position: absolute;
+  bottom: calc(theme('spacing.8') * -1);
+  left: 50%;
+
+  display: block;
+  height: 2px;
+  width: 100%;
+  margin-left: -50%;
+
+  transition: transform 0.3s;
+  transform-origin: left;
+}
