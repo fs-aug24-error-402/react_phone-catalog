@@ -19,9 +19,7 @@ export const Card: React.FC<Props> = ({ product }) => {
           </div>
         </a>
 
-        <h3 className="card__model font-main-font">
-          {product.name} sdfa sdf asdf asdf asdf{' '}
-        </h3>
+        <h3 className="card__model font-main-font">{product.name}</h3>
       </div>
 
       <div className="card__price-container">
