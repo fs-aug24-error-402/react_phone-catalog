@@ -1,6 +1,5 @@
-
+import { Outlet } from 'react-router-dom';
 import './App.scss';
-import { Card } from './componentes/Card';
 
 function App() {
   return (
@@ -8,7 +7,6 @@ function App() {
       <header></header>
       <main>
         <Outlet />
-        <Card />
       </main>
       <footer></footer>
     </>
