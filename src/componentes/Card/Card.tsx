@@ -1,19 +1,25 @@
-export const Card: React.FC = () => {
+import { Product } from '../../types/Product';
+import './Card.scss';
+
+interface Props {
+  product: Product;
+}
+
+export const Card: React.FC<Props> = ({ product }) => {
   return (
     <article className="card">
       <a href="#product" className="card__img-link">
         <img
-          src="public/img/phones/apple-iphone-14-pro/gold/00.webp"
-          alt="Apple iPhone 14 Pro"
+          src={`public/${product.image}`}
+          alt={product.name}
           className="card__img"
         />
       </a>
 
-      <h3 className="card__model">Apple iPhone 14 Pro 128GB Gold (MQ083)</h3>
+      <h3 className="card__model font-main-font">{product.name}</h3>
 
       <div className="card__price-container">
-        <span className="card__price-current">$999</span>
-        {/* <span className="card__price-old">$999</span> */}
+        <span className="card__price-current">${product.price}</span>
       </div>
 
       <div className="card__info-container">
@@ -24,9 +30,9 @@ export const Card: React.FC = () => {
         </div>
 
         <div className="card__info-param-container">
-          <span className="card__info-param">6.1” OLED</span>
-          <span className="card__info-param">128 GB</span>
-          <span className="card__info-param">6 GB</span>
+          <span className="card__info-param">{product.screen}</span>
+          <span className="card__info-param">{product.capacity}</span>
+          <span className="card__info-param">{product.ram}</span>
         </div>
       </div>
 

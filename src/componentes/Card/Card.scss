@@ -8,14 +8,14 @@
   color: #333333;
 
   &__img-link {
+    width: 208px;
+    height: 198px;
     display: flex;
     justify-content: center;
     margin-bottom: 16px;
   }
 
   &__img {
-    width: 208px;
-
     border-radius: 8px;
   }
 
