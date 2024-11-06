@@ -16,7 +16,8 @@ function App() {
     if (isAsideVisible) {
       setIsAsideVisible(false);
     }
-  }, [isAsideVisible, location]);
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [location]);
 
   return (
     <div className="app flex flex-col min-h-screen">
