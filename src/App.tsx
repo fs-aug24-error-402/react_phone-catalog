@@ -5,6 +5,7 @@ import { AnimatePresence } from 'framer-motion';
 import { Footer } from './components/Footer/Footer';
 import { Header } from './components/Header';
 import { BurgerMenu } from './components/BurgerMenu';
+import { CartItem } from './components/CartItem/CartItem';
 
 function App() {
   const [isAsideVisible, setIsAsideVisible] = useState(false);
@@ -43,6 +44,7 @@ function App() {
 
       <main className="flex-1">
         <Outlet />
+        <CartItem />
       </main>
 
       <Footer />
