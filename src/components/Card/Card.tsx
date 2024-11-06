@@ -9,11 +9,7 @@ interface Props {
 export const Card: React.FC<Props> = ({ product }) => {
   return (
     <article className="card tablet:h-508 mobile:h-440">
-      <img
-        src={`public/${product.image}`}
-        alt={product.name}
-        className="card__img"
-      />
+      <img src={`${product.image}`} alt={product.name} className="card__img" />
 
       <h3 className="card__model font-main-font" title={product.name}>
         {product.name}
@@ -43,7 +39,7 @@ export const Card: React.FC<Props> = ({ product }) => {
 
         <button className="card__buttons-favorite">
           <img
-            src="public/img/icons/svg/Favourites (Heart Like).svg"
+            src="img/icons/svg/Favourites (Heart Like).svg"
             className="card__buttons-heart-img"
             alt="Add to favorite"
           />

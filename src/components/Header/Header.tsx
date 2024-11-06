@@ -34,7 +34,7 @@ export const Header: FC<Props> = ({
           >
             <Link to={'/'}>
               <img
-                src="img/logo.png"
+                src="img/logo.svg"
                 alt="Nice Gadgets Logo"
                 className={cn(styles.logo__img, 'px-16 desktop:px-24')}
               />
