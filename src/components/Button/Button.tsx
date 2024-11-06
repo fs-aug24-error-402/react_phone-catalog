@@ -17,7 +17,7 @@ export const Button: FC<Props> = ({
   return (
     <button
       onClick={onClick}
-      className={`button ${
+      className={`${styles.button} ${
         selected
           ? 'text-accent border border-elements bg-white'
           : 'text-white bg-accent'
