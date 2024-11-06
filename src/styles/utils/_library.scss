@@ -13,11 +13,10 @@ $header-size: $header-icon-padding * 2;
   }
 }
 
-@mixin nav-link-after {
+@mixin after-underscore-base {
   content: '';
-
   position: absolute;
-  bottom: calc(theme('spacing.8') * -1);
+
   left: 50%;
 
   display: block;
@@ -27,4 +26,24 @@ $header-size: $header-icon-padding * 2;
 
   transition: transform 0.3s;
   transform-origin: left;
+
+  @include on-tablet {
+    height: 3px;
+  }
+}
+
+@mixin nav-link-after {
+  @include after-underscore-base;
+
+  bottom: calc(theme('spacing.8') * -1);
+
+  @include on-tablet {
+    bottom: -130%;
+  }
+}
+
+@mixin header-icon-after {
+  @include after-underscore-base;
+
+  bottom: 0;
 }

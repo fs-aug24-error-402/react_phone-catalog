@@ -9,6 +9,15 @@
     justify-content: center;
     gap: theme('spacing.16');
     text-align: center;
+
+    @include on-tablet {
+      flex-direction: row;
+      gap: theme('spacing.32');
+    }
+
+    @include on-desktop {
+      gap: theme('spacing.64');
+    }
   }
 
   &__items {
@@ -29,14 +38,14 @@
     &:hover::after {
       transform: scale(1);
     }
-  }
-}
 
-.is-active-link {
-  &::after {
-    @include nav-link-after;
+    &--active {
+      &::after {
+        @include nav-link-after;
 
-    background-color: theme('colors.primary');
-    transform: scale(1);
+        background-color: theme('colors.primary');
+        transform: scale(1);
+      }
+    }
   }
 }

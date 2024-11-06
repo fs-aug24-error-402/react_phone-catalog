@@ -4,7 +4,7 @@ import styles from './Navbar.module.scss';
 
 const getLinkClass = ({ isActive }: { isActive: boolean }) =>
   cn(styles.nav__link, 'text-uppercase', {
-    [styles['is-active-link']]: isActive,
+    [styles['nav__link--active']]: isActive,
     'text-primary': isActive,
     'text-secondary': !isActive,
   });

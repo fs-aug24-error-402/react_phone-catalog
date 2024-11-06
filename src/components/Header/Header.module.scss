@@ -33,6 +33,40 @@
     &--close {
       background: no-repeat center url(img/icons/png/close-menu.png);
     }
+
+    &--fav {
+      background: no-repeat center
+        url('img/icons/png/Favourites (Heart Like).png');
+    }
+
+    &--cart {
+      background: no-repeat center url('img/icons/png/shopping-bag-(cart).png');
+    }
+
+    &--fav,
+    &--cart {
+      position: relative;
+
+      &::after {
+        @include header-icon-after;
+
+        background-color: theme('colors.primary');
+        transform: scale(0);
+      }
+
+      &:hover::after {
+        transform: scale(1);
+      }
+    }
+
+    &--active {
+      &::after {
+        @include header-icon-after;
+
+        background-color: theme('colors.primary');
+        transform: scale(1);
+      }
+    }
   }
 }
 
