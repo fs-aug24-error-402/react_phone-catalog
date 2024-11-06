@@ -7,7 +7,9 @@ export const PhonesPage = () => {
   const [phones, setPhones] = useState<Product[]>([]);
 
   useEffect(() => {
-    getDevices().then(setPhones);
+    getDevices().then(res =>
+      setPhones(res.filter(device => device.category === 'phones')),
+    );
   }, []);
 
   return <Catalog gadgets={phones} />;
