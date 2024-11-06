@@ -7,7 +7,7 @@ export const Footer = () => {
 
   return (
     <footer
-      className="flex fixed bottom-0 flex-col gap-y-32 w-full px-16 py-32
+      className="flex bottom-0 flex-col gap-y-32 w-full px-16 py-32
         text-small text-secondary shadow-footer-top
         tablet:grid tablet:grid-cols-3 tablet:h-96 tablet:px-32 desktop:px-152"
     >
