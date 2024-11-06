@@ -1,0 +1,49 @@
+$header-icon-padding: 32px;
+$header-size: $header-icon-padding * 2;
+
+@mixin on-tablet {
+  @media (min-width: theme('screens.tablet')) {
+    @content;
+  }
+}
+
+@mixin on-desktop {
+  @media (min-width: theme('screens.desktop')) {
+    @content;
+  }
+}
+
+@mixin after-underscore-base {
+  content: '';
+  position: absolute;
+
+  left: 50%;
+
+  display: block;
+  height: 2px;
+  width: 100%;
+  margin-left: -50%;
+
+  transition: transform 0.3s;
+  transform-origin: left;
+
+  @include on-tablet {
+    height: 3px;
+  }
+}
+
+@mixin nav-link-after {
+  @include after-underscore-base;
+
+  bottom: calc(theme('spacing.8') * -1);
+
+  @include on-tablet {
+    bottom: -130%;
+  }
+}
+
+@mixin header-icon-after {
+  @include after-underscore-base;
+
+  bottom: 0;
+}

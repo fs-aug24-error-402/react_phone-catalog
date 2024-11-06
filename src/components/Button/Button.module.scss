@@ -2,7 +2,7 @@
   height: 40px;
 
   border-radius: theme('borderRadius.lg');
-  transition: box-shadow .3s ease-in-out;
+  transition: box-shadow 0.3s ease-in-out;
 
   &:hover {
     box-shadow: 0 3px 13px rgba(23, 32, 49, 40%);
