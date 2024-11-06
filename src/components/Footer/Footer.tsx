@@ -7,7 +7,7 @@ export const Footer = () => {
 
   return (
     <footer
-      className="flex bottom-0 flex-col gap-y-32 w-full px-16 py-32
+      className="flex bottom-0 flex-col gap-y-32 w-full px-16 py-32 bg-white
         text-small text-secondary shadow-footer-top
         tablet:grid tablet:grid-cols-3 tablet:h-96 tablet:px-32 desktop:px-152"
     >
@@ -48,11 +48,7 @@ export const Footer = () => {
         onClick={handleScrollToTop}
       >
         <span className="mr-8 font-semibold">Back to top</span>
-        <img
-          src="public/img/icons/svg/icon-arrow-top.svg"
-          alt="icon arrow top"
-          className="p-4 border border-secondary rounded-full transition-colors duration-200 group-hover:border-primary group-hover:scale-110"
-        />
+        <div className="h-32 w-32 bg-arrow-top bg-no-repeat bg-center border border-elements rounded-full transition-colors duration-200 group-hover:border-primary group-hover:scale-110" />
       </button>
     </footer>
   );

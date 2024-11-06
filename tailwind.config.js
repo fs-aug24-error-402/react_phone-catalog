@@ -24,7 +24,9 @@ export default {
       '40': '40px',
       '56': '56px',
       '64': '64px',
+      '66' : '66px',
       '72': '72px',
+      '80': '80px',
       '96': '96px',
       '152': '152px',
       '440': '440px',
@@ -53,7 +55,14 @@ export default {
 
       boxShadow: {
         'footer-top': '0px -1px 0px 0px #E2E6E9',
-      }
+      },
+
+      backgroundImage: {
+        close: "url(public/img/icons/svg/icon-close.svg)",
+        plus: "url(public/img/icons/svg/icon-plus.svg)",
+        minus: "url(public/img/icons/svg/icon-minus.svg)",
+        'arrow-top': "url(public/img/icons/svg/icon-arrow-top.svg)",
+      },
     },
 
     fontFamily: {
@@ -67,6 +76,15 @@ export default {
           lineHeight: '15px',
           letterSpacing: '0',
           fontWeight: '600',
+        },
+      ],
+
+      price: [
+        '22px',
+        {
+          lineHeight: '30.8px',
+          letterSpacing: '0',
+          fontWeight: '800',
         },
       ],
 
