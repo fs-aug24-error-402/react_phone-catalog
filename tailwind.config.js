@@ -57,6 +57,7 @@ export default {
         close: "url(public/img/icons/svg/icon-close.svg)",
         plus: "url(public/img/icons/svg/icon-plus.svg)",
         minus: "url(public/img/icons/svg/icon-minus.svg)",
+        'arrow-top': "url(public/img/icons/svg/icon-arrow-top.svg)",
       },
     },
 
