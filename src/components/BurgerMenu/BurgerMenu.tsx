@@ -1,8 +1,9 @@
 import { NavLink } from 'react-router-dom';
-import { Navbar } from '../Navbar';
-import styles from './BurgerMenu.module.scss';
-import cn from 'classnames';
 import { motion } from 'framer-motion';
+import cn from 'classnames';
+
+import styles from './BurgerMenu.module.scss';
+import { Navbar } from '../Navbar';
 
 const getLinkClass = ({ isActive }: { isActive: boolean }) =>
   cn(styles['fav-cart__item'], { 'border-b-2 border-b-primary': isActive });
