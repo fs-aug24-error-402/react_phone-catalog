@@ -34,7 +34,7 @@ export const Header: FC<Props> = ({ isAsideVisible, onToggleAside }) => {
           <div
             className={cn(
               styles.header__icon,
-              `${isAsideVisible ? styles['burger-close'] : styles['burger-open']}`,
+              `${isAsideVisible ? styles['header__icon--close'] : styles['header__icon--open']}`,
             )}
             onClick={onToggleAside}
           />

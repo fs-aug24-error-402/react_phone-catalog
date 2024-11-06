@@ -25,6 +25,14 @@
     box-shadow: -1px 0 theme('colors.elements');
 
     transition: background 0.2s ease-in-out;
+
+    &--open {
+      background: no-repeat center url(img/icons/png/menu.png);
+    }
+
+    &--close {
+      background: no-repeat center url(img/icons/png/close-menu.png);
+    }
   }
 }
 
@@ -36,12 +44,4 @@
       height: 28px;
     }
   }
-}
-
-.burger-open {
-  background: no-repeat center url(img/icons/png/menu.png);
-}
-
-.burger-close {
-  background: no-repeat center url(img/icons/png/close-menu.png);
 }
