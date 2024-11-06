@@ -1,0 +1,31 @@
+@use 'src/styles/utils/library' as *;
+
+.burger-menu {
+  position: absolute;
+  top: $header-size;
+  bottom: 0;
+
+  padding-top: 24px;
+
+  background-color: theme('colors.white');
+  z-index: 1;
+}
+
+.fav-cart {
+  display: flex;
+  width: 100%;
+
+  border-top: 1px solid theme('colors.elements');
+
+  &__item {
+    display: flex;
+    justify-content: center;
+    width: 50%;
+
+    box-shadow: -1px 0 theme('colors.elements');
+  }
+
+  &__icon {
+    padding-block: theme('spacing.24');
+  }
+}

@@ -1,5 +1,5 @@
 import { FC, ReactNode } from 'react';
-import './Button.scss';
+import styles from './Button.module.scss';
 
 interface Props {
   children: ReactNode;
@@ -17,7 +17,7 @@ export const Button: FC<Props> = ({
   return (
     <button
       onClick={onClick}
-      className={`button ${selected ? 'text-accent border border-elements bg-white' : 'text-white bg-accent'} ${className}`}
+      className={`${styles.button} ${selected ? 'text-accent border border-elements bg-white' : 'text-white bg-accent'} ${className}`}
     >
       {children}
     </button>
