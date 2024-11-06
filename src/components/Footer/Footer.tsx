@@ -12,7 +12,7 @@ export const Footer = () => {
         tablet:grid tablet:grid-cols-3 tablet:h-96 tablet:px-32 desktop:px-152"
     >
       <div className="">
-        <img src="public/img/logo.svg" alt="Nice Gadgets Logo" />
+        <img src="img/logo.svg" alt="Nice Gadgets Logo" />
       </div>
 
       <ul
