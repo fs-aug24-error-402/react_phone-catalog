@@ -24,7 +24,7 @@ export default {
       '40': '40px',
       '56': '56px',
       '64': '64px',
-      '66' : '66px',
+      '66': '66px',
       '72': '72px',
       '80': '80px',
       '96': '96px',
@@ -59,8 +59,10 @@ export default {
 
       backgroundImage: {
         close: "url(public/img/icons/svg/icon-close.svg)",
+        'close-active': "url(public/img/icons/svg/icon-close-active.svg)",
         plus: "url(public/img/icons/svg/icon-plus.svg)",
         minus: "url(public/img/icons/svg/icon-minus.svg)",
+        'minus-active': "url(public/img/icons/svg/icon-minus-active.svg)",
         'arrow-top': "url(public/img/icons/svg/icon-arrow-top.svg)",
       },
     },
