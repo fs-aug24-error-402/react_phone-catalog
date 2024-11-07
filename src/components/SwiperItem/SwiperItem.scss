@@ -1,9 +1,8 @@
 @mixin on-tablet {
-  @media (min-width: 639px) {
+  @media (min-width: 640px) and (max-width: 1023px) {
     @content;
   }
 }
-
 @mixin on-desktop {
   @media (min-width: 1024px) {
     @content;
@@ -11,18 +10,18 @@
 }
 
 .swiper {
-  min-height: 352px;
+  min-height: 360px;
   min-width: 320px;
 
   @include on-tablet {
-    min-height: 221px;
+    min-height: 229px;
     max-width: 592px;
   }
 
   @include on-desktop {
     max-width: 1136px;
     min-width: 1136px;
-    min-height: 432px;
+    min-height: 440px;
   }
 }
 
@@ -36,7 +35,7 @@
 
   min-height: 320px;
 
-  height: 90%;
+  height: 93%;
   width: 100%;
   box-shadow: 0px 3px 13px 0px #17203166;
 
@@ -52,6 +51,8 @@
     max-width: 1040px;
     max-height: 400px;
     border-radius: 8px;
+
+    height: 100%;
   }
 }
 
@@ -116,18 +117,51 @@
   content: '';
 }
 
+.swiper-pagination {
+  display: flex !important;
+  justify-content: center;
+  align-items: center;
+}
+
 .swiper-pagination-bullet {
+  background-color: transparent;
+  width: 24px;
+  height: 24px;
+  position: relative;
+  border-radius: 0;
+
+  margin-inline: 4px !important;
+}
+
+.swiper-pagination-bullet::after {
+  content: '';
+  position: absolute;
+  top: 50%; /* Center vertically */
+  left: 50%; /* Center horizontally */
+  transform: translate(-50%, -50%); /* Adjust position to center */
   background-color: #b4bdc3;
   width: 14px;
   height: 4px;
-  border-radius: 0;
 
-  box-shadow: 0px 3px 13px 0px #17203166;
+  box-shadow: 0px 1px 4px 0px #17203166;
 }
 
 .swiper-pagination-bullet-active {
-  background-color: #0f0f11;
+  background-color: transparent; /* Make the original item transparent */
+  width: 24px;
+  height: 24px;
+  position: relative;
+}
+
+.swiper-pagination-bullet-active::after {
+  content: '';
+  position: absolute;
+  top: 50%; /* Center vertically */
+  left: 50%; /* Center horizontally */
+  transform: translate(-50%, -50%); /* Adjust position to center */
+  background-color: #0f0f11; /* Change color for active state */
   width: 14px;
   height: 4px;
-  margin-inline: 10px !important;
+
+  box-shadow: 0px 1px 4px 0px #17203166;
 }
