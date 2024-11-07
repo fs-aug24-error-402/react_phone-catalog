@@ -1,4 +1,5 @@
 import { Swiper, SwiperSlide } from 'swiper/react';
+
 import 'swiper/css';
 import 'swiper/css/pagination';
 import 'swiper/css/navigation';
@@ -46,7 +47,7 @@ export default function SwiperItem() {
       <SwiperSlide>
         <a href="#">
           <img
-            src="public/img/iphone14banner.png"
+            src="public\img\mobilebanner.png"
             className="slide"
             alt="iPhone 14 Pro"
           />

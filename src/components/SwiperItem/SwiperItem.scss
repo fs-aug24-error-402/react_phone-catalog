@@ -1,7 +1,29 @@
+@mixin on-tablet {
+  @media (min-width: 639px) {
+    @content;
+  }
+}
+
+@mixin on-desktop {
+  @media (min-width: 1024px) {
+    @content;
+  }
+}
+
 .swiper {
-  max-width: 1136px;
-  min-height: 432px;
-  height: 100%;
+  min-height: 352px;
+  min-width: 320px;
+
+  @include on-tablet {
+    min-height: 221px;
+    max-width: 592px;
+  }
+
+  @include on-desktop {
+    max-width: 1136px;
+    min-width: 1136px;
+    min-height: 432px;
+  }
 }
 
 .swiper-slide {
@@ -10,11 +32,27 @@
 }
 
 .slide {
-  max-width: 1040px;
-  max-height: 400px;
+  min-width: 320px;
 
-  border-radius: 8px;
+  min-height: 320px;
+
+  height: 90%;
+  width: 100%;
   box-shadow: 0px 3px 13px 0px #17203166;
+
+  @include on-tablet {
+    max-width: 490px;
+    min-height: 189px;
+    max-height: 189px;
+
+    border-radius: 8px;
+  }
+
+  @include on-desktop {
+    max-width: 1040px;
+    max-height: 400px;
+    border-radius: 8px;
+  }
 }
 
 .swiper-button-next {
@@ -31,10 +69,21 @@
   top: 0;
 
   box-shadow: 0px 1px 4px 0px #17203166;
+
+  visibility: hidden;
+
+  @include on-tablet {
+    visibility: visible;
+    max-height: 189px;
+  }
+
+  @include on-desktop {
+    visibility: visible;
+    max-height: 400px;
+  }
 }
 
 .swiper-button-prev {
-  max-height: 400px;
   height: 100%;
   width: 32px;
 
@@ -48,6 +97,18 @@
   left: 0;
 
   box-shadow: 0px 1px 4px 0px #17203166;
+
+  visibility: hidden;
+
+  @include on-tablet {
+    visibility: visible;
+    max-height: 189px;
+  }
+
+  @include on-desktop {
+    visibility: visible;
+    max-height: 400px;
+  }
 }
 
 .swiper-button-next::after,
@@ -68,5 +129,5 @@
   background-color: #0f0f11;
   width: 14px;
   height: 4px;
-  margin-inline: 8px !important;
+  margin-inline: 10px !important;
 }
