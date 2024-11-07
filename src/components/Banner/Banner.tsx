@@ -3,11 +3,11 @@ import { Swiper, SwiperSlide } from 'swiper/react';
 import 'swiper/css';
 import 'swiper/css/pagination';
 import 'swiper/css/navigation';
-import './SwiperItem.scss';
+import './Banner.scss';
 
 import { Autoplay, Pagination, Navigation } from 'swiper/modules';
 
-export default function SwiperItem() {
+export default function Banner() {
   return (
     <Swiper
       spaceBetween={100}
