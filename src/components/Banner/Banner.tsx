@@ -10,6 +10,7 @@ import { Autoplay, Pagination, Navigation } from 'swiper/modules';
 export default function Banner() {
   return (
     <Swiper
+      slidesPerView={1}
       spaceBetween={100}
       updateOnWindowResize={true}
       simulateTouch={true}
