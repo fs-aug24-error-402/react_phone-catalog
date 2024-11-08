@@ -10,7 +10,6 @@ import { Autoplay, Pagination, Navigation } from 'swiper/modules';
 export default function Banner() {
   return (
     <Swiper
-      slidesPerView={1}
       spaceBetween={100}
       updateOnWindowResize={true}
       simulateTouch={true}
@@ -27,35 +26,33 @@ export default function Banner() {
       modules={[Autoplay, Pagination, Navigation]}
       className="mySwiper"
     >
-      <div className="swiper-container">
-        <SwiperSlide>
-          <a href="#">
-            <img
-              src="public/img/iphone14banner.png"
-              className="slide"
-              alt="iPhone 14 Pro"
-            />
-          </a>
-        </SwiperSlide>
-        <SwiperSlide>
-          <a href="#">
-            <img
-              src="public/img/iphone14banner.png"
-              className="slide"
-              alt="iPhone 14 Pro"
-            />
-          </a>
-        </SwiperSlide>
-        <SwiperSlide>
-          <a href="#">
-            <img
-              src="public\img\mobilebanner.png"
-              className="slide"
-              alt="iPhone 14 Pro"
-            />
-          </a>
-        </SwiperSlide>
-      </div>
+      <SwiperSlide>
+        <a href="#">
+          <img
+            src="public/img/iphone14banner.png"
+            className="slide"
+            alt="iPhone 14 Pro"
+          />
+        </a>
+      </SwiperSlide>
+      <SwiperSlide>
+        <a href="#">
+          <img
+            src="public/img/iphone14banner.png"
+            className="slide"
+            alt="iPhone 14 Pro"
+          />
+        </a>
+      </SwiperSlide>
+      <SwiperSlide>
+        <a href="#">
+          <img
+            src="public\img\mobilebanner.png"
+            className="slide"
+            alt="iPhone 14 Pro"
+          />
+        </a>
+      </SwiperSlide>
     </Swiper>
   );
 }

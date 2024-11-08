@@ -57,7 +57,7 @@ export const PhonesSlider: React.FC<Props> = ({ title, data }) => {
           }}
           slidesPerView={'auto'}
           spaceBetween={16}
-          className="mySwiper"
+          simulateTouch={false}
         >
           {data.map(device => (
             <SwiperSlide key={device.id}>

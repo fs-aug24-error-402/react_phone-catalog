@@ -1,0 +1,51 @@
+@use 'src/styles/utils/library' as *;
+
+.nav {
+  flex: 1 1 0%;
+
+  &__list {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    gap: theme('spacing.16');
+    text-align: center;
+
+    @include on-tablet {
+      flex-direction: row;
+      gap: theme('spacing.32');
+    }
+
+    @include on-desktop {
+      gap: theme('spacing.64');
+    }
+  }
+
+  &__items {
+    padding-block: 8px;
+  }
+
+  &__link {
+    position: relative;
+    text-transform: uppercase;
+
+    &::after {
+      @include nav-link-after;
+
+      background-color: theme('colors.secondary');
+      transform: scale(0);
+    }
+
+    &:hover::after {
+      transform: scale(1);
+    }
+
+    &--active {
+      &::after {
+        @include nav-link-after;
+
+        background-color: theme('colors.primary');
+        transform: scale(1);
+      }
+    }
+  }
+}

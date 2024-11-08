@@ -1,4 +1,6 @@
 import { Product } from '../../types/Product';
+import { Button } from '../Button';
+
 import './Card.scss';
 
 interface Props {
@@ -7,20 +9,18 @@ interface Props {
 
 export const Card: React.FC<Props> = ({ product }) => {
   return (
-    <article className="card">
-      <div className="card__head-container">
-        <a href="#product" className="card__img-link">
-          <div>
-            <img
-              src={`public/${product.image}`}
-              alt={product.name}
-              className="card__img"
-            />
-          </div>
-        </a>
+    <article className="card tablet:h-508 mobile:h-440">
+      <a className="img_url">
+        <img
+          src={`${product.image}`}
+          alt={product.name}
+          className="card__img"
+        />
+      </a>
 
-        <h3 className="card__model font-main-font">{product.name}</h3>
-      </div>
+      <h3 className="card__model font-main-font" title={product.name}>
+        {product.name}
+      </h3>
 
       <div className="card__price-container">
         <span className="card__price-current">${product.price}</span>
@@ -42,10 +42,11 @@ export const Card: React.FC<Props> = ({ product }) => {
       </div>
 
       <div className="card__buttons-container">
-        <button className="card__buttons-add">Add to cart</button>
+        <Button className="w-[100%]">Add to cart</Button>
+
         <button className="card__buttons-favorite">
           <img
-            src="public\img\icons\svg\Favourites (Heart Like).svg"
+            src="img/icons/svg/Favourites (Heart Like).svg"
             className="card__buttons-heart-img"
             alt="Add to favorite"
           />
