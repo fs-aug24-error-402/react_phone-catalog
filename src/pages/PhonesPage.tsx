@@ -1,13 +1,13 @@
 import { useEffect, useState } from 'react';
 import { Product } from '../types/Product';
-import { getDevices } from '../../public/api/api';
 import { Catalog } from '../components/Catalog/Catalog';
+import { getProducts } from '../api';
 
 export const PhonesPage = () => {
   const [phones, setPhones] = useState<Product[]>([]);
 
   useEffect(() => {
-    getDevices().then(res =>
+    getProducts().then(res =>
       setPhones(res.filter(device => device.category === 'phones')),
     );
   }, []);

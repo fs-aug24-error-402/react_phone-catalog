@@ -1,17 +1,49 @@
 import { useLocation, Link } from 'react-router-dom';
+import { useEffect, useState } from 'react';
 import cn from 'classnames';
 
 import styles from './ProductPage.module.scss';
 import helper from '/src/styles/helpers/container.module.scss';
 
+import { getPhoneById, getProductById } from '../../api';
 import { getProductColor, addSpaceBetweenNumAndText } from '../../utils';
+import { MobileDevice } from '../../types';
+
 import { BackNavLink } from '../../components/BackNavLink';
 import { Breadcrumbs } from '../../components/Breadcrumbs';
 import { Button } from '../../components/Button';
+import { ProductNotFound } from '../ProductNotFound';
+import { Loader } from '../../components/Loader';
 
 export const ProductPage = () => {
+  const [device, setDevice] = useState<MobileDevice | null>(null);
+  const [hasError, setHasError] = useState(false);
   const pathname = useLocation().pathname.split('/');
   const productId = pathname[pathname.length - 1];
+
+  useEffect(() => {
+    setDevice(null);
+    setHasError(false);
+
+    getProductById(+productId)
+      .then(product => {
+        if (product.category === 'phones') {
+          getPhoneById(product.itemId)
+            .then(setDevice)
+            .catch(() => setHasError(true));
+        } else {
+          setHasError(true);
+        }
+      })
+      .catch(() => setHasError(true));
+  }, [productId]);
+
+  //temp loader
+  if (!device) {
+    return hasError ? <ProductNotFound /> : <Loader />;
+  }
+
+  const { name, priceDiscount, priceRegular } = device;
 
   const isInFavourites = false;
 
@@ -19,14 +51,14 @@ export const ProductPage = () => {
     <>
       <div className={cn(helper.container, styles.page)}>
         <div className="col-span-full mb-24 tablet:mb-40">
-          <Breadcrumbs />
+          <Breadcrumbs lastItem={name} />
         </div>
 
         <div className="col-span-full mb-16">
           <BackNavLink />
         </div>
 
-        <h2 className="col-span-full mb-32 tablet:mb-40">Name</h2>
+        <h2 className="col-span-full mb-32 tablet:mb-40">{name}</h2>
 
         <section className={cn('col-span-full', styles.page__section)}>
           <div className={cn(styles.main, 'relative')}>
@@ -97,9 +129,11 @@ export const ProductPage = () => {
 
               <div className={cn(styles.controls__buy, styles.buy, 'mb-32')}>
                 <div className="flex items-center gap-8 mb-16">
-                  <span className="text-h2-lg">$999</span>
+                  <span className="text-h2-lg">{`$${priceDiscount}`}</span>
 
-                  <span className={styles['buy__price-regular']}>$1000</span>
+                  <span
+                    className={styles['buy__price-regular']}
+                  >{`$${priceRegular}`}</span>
                 </div>
 
                 <div className="flex gap-8">
