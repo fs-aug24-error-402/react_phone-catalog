@@ -47,3 +47,34 @@ $header-size: $header-icon-padding * 2;
 
   bottom: 0;
 }
+
+@mixin padding-inline {
+  padding-inline: theme('spacing.16');
+
+  @include on-tablet {
+    padding-inline: theme('spacing.24');
+  }
+
+  @include on-desktop {
+    padding-inline: theme('spacing.32');
+    max-width: theme('screens.desktop');
+    margin-inline: auto;
+  }
+}
+
+
+@mixin page-grid {
+  --columns: 4;
+
+  display: grid;
+  column-gap: 16px;
+  grid-template-columns: repeat(var(--columns), 1fr);
+
+  @include on-tablet {
+    --columns: 12;
+  }
+
+  @include on-desktop {
+    --columns: 24;
+  }
+}
