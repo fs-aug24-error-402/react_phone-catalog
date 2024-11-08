@@ -1,10 +1,11 @@
 import React from 'react';
 import { Product } from '../../types/Product';
 import cn from 'classnames';
+import { KeyType } from '../../types/KeyType';
 
 interface Props {
   addedProduct: Product & { count: number };
-  onRemove: (id: number) => void;
+  onRemove: (key: KeyType, productId: number) => void;
   onUpdate: (updatedProduct: Product & { count: number }) => void;
 }
 
@@ -14,7 +15,7 @@ export const CartItem: React.FC<Props> = ({
   onUpdate,
 }) => {
   const handleIncreaseCount = () => {
-    onUpdate({ ...addedProduct, count: addedProduct.count + 1 });
+    onUpdate({ ...addedProduct, count: (addedProduct.count || 1) + 1 });
   };
 
   const handleDecreaseCount = () => {
@@ -22,6 +23,9 @@ export const CartItem: React.FC<Props> = ({
       onUpdate({ ...addedProduct, count: addedProduct.count - 1 });
     }
   };
+
+  const itemCount = addedProduct.count || 1;
+  const itemPrice = addedProduct.price || 0;
 
   return (
     <article
@@ -31,7 +35,7 @@ export const CartItem: React.FC<Props> = ({
       <section className="flex gap-16 items-center">
         <div>
           <button
-            onClick={() => onRemove(addedProduct.id)}
+            onClick={() => onRemove('cart', addedProduct.id)}
             className="h-16 w-16 bg-close bg-center hover:bg-close-active"
           />
         </div>
@@ -54,14 +58,12 @@ export const CartItem: React.FC<Props> = ({
             className={cn(
               'h-32 w-32 bg-minus bg-no-repeat bg-center border border-elements rounded-full',
               {
-                'bg-minus-active': addedProduct.count > 1,
-                'hover:border-primary': addedProduct.count > 1,
+                'bg-minus-active': itemCount > 1,
+                'hover:border-primary': itemCount > 1,
               },
             )}
           />
-          <span className="h-32 w-32 text-center leading-8">
-            {addedProduct.count}
-          </span>
+          <span className="h-32 w-32 text-center leading-8">{itemCount}</span>
           <button
             onClick={handleIncreaseCount}
             className="h-32 w-32 bg-plus bg-no-repeat bg-center border border-elements rounded-full hover:border-primary"
@@ -69,7 +71,7 @@ export const CartItem: React.FC<Props> = ({
         </div>
 
         <div className="text-price tablet:flex tablet:w-80 tablet:justify-end">
-          ${addedProduct.price * addedProduct.count}
+          ${itemPrice * itemCount}
         </div>
       </section>
     </article>

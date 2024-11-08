@@ -4,7 +4,8 @@ import cn from 'classnames';
 
 import styles from './Header.module.scss';
 import { Navbar } from '../Navbar';
-
+import { ProductCounter } from '../ProductCounter/ProductCounter';
+import { useLocalStorage } from '../../hooks/useLocalStorage';
 const getLinkClass = (isActive: boolean) =>
   cn(styles.header__icon, {
     [styles['header__icon--active']]: isActive,
@@ -21,6 +22,8 @@ export const Header: FC<Props> = ({
   isAsideVisible,
   onToggleAside,
 }) => {
+  const { totalCount, addedProducts } = useLocalStorage();
+
   return (
     <>
       <header className={styles.header}>
@@ -62,7 +65,11 @@ export const Header: FC<Props> = ({
                 className={({ isActive }) =>
                   cn(getLinkClass(isActive), styles['header__icon--fav'])
                 }
-              />
+              >
+                {!!addedProducts.favorites.length && (
+                  <ProductCounter count={addedProducts.favorites.length} />
+                )}
+              </NavLink>
 
               <NavLink
                 to={'cart'}
@@ -70,13 +77,9 @@ export const Header: FC<Props> = ({
                   cn(getLinkClass(isActive), styles['header__icon--cart'])
                 }
               >
-                <div
-                  className="absolute top-16 right-16 flex items-center justify-center w-16 h-16
-                    text-white text-center text-[9px] font-bold
-                    bg-accent border border-solid border-white rounded-full"
-                >
-                  1
-                </div>
+                {!!totalCount.item && (
+                  <ProductCounter count={totalCount.item} />
+                )}
               </NavLink>
             </>
           )}
