@@ -5,22 +5,14 @@ import { AnimatePresence } from 'framer-motion';
 import { Footer } from './components/Footer/Footer';
 import { Header } from './components/Header';
 import { BurgerMenu } from './components/BurgerMenu';
+import { useWindowWidth } from './app/hooks';
 
 function App() {
+  const { isMobile } = useWindowWidth();
   const [isAsideVisible, setIsAsideVisible] = useState(false);
-  const [width, setWidth] = useState(window.innerWidth);
-  const isMobile = width < 640;
   const location = useLocation();
 
   const handleToggleAside = () => setIsAsideVisible(prev => !prev);
-
-  useEffect(() => {
-    const handleResize = () => setWidth(window.innerWidth);
-
-    window.addEventListener('resize', handleResize);
-
-    return () => window.removeEventListener('resize', handleResize);
-  }, []);
 
   useEffect(() => {
     if (isAsideVisible) {

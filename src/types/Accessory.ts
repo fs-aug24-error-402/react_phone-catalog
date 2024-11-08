@@ -9,6 +9,9 @@ export interface Accessory {
   capacity: string;
   priceRegular: number;
   priceDiscount: number;
+  colorsAvailable: string[];
+  color: string;
+  images: string[];
   description: Description[];
   screen: string;
   resolution: string;

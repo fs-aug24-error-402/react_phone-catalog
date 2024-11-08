@@ -3,10 +3,11 @@ import cn from 'classnames';
 import { FC } from 'react';
 
 interface Props {
+  className?: string;
   lastItem?: string;
 }
 
-export const Breadcrumbs: FC<Props> = ({ lastItem }) => {
+export const Breadcrumbs: FC<Props> = ({ className, lastItem }) => {
   const pathname = useLocation().pathname;
   const names = pathname.split('/').filter(item => item.length > 0);
 
@@ -15,7 +16,7 @@ export const Breadcrumbs: FC<Props> = ({ lastItem }) => {
   }
 
   return (
-    <nav>
+    <nav className={className}>
       <ul className="inline-flex items-center gap-8">
         <li>
           <Link to="/">
@@ -41,7 +42,7 @@ export const Breadcrumbs: FC<Props> = ({ lastItem }) => {
                 'text-small leading-2 capitalize hover:text-primary',
                 {
                   'text-secondary': index !== 0,
-                  'overflow-hidden whitespace-nowrap text-ellipsis':
+                  'overflow-hidden whitespace-nowrap text-ellipsis pointer-events-none':
                     index === names.length - 1,
                 },
               )}

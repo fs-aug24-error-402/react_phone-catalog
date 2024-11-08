@@ -1,7 +1,12 @@
 import { NavLink, useNavigate } from 'react-router-dom';
-import { MouseEvent } from 'react';
+import { FC, MouseEvent } from 'react';
+import cn from 'classnames';
 
-export const BackNavLink = () => {
+interface Props {
+  className?: string;
+}
+
+export const BackNavLink: FC<Props> = ({ className }) => {
   const navigate = useNavigate();
 
   const handleBack = (
@@ -12,7 +17,11 @@ export const BackNavLink = () => {
   };
 
   return (
-    <NavLink to="#" onClick={handleBack} className="flex items-center gap-4">
+    <NavLink
+      to="#"
+      onClick={handleBack}
+      className={cn('flex items-center gap-4', className)}
+    >
       <img
         src="img/icons/svg/icon-arrow-left.svg"
         alt="Back icon"
