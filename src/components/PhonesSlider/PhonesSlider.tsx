@@ -1,8 +1,10 @@
 import { Swiper, SwiperSlide } from 'swiper/react';
-import React, { useRef } from 'react';
+import React, { useRef, useState } from 'react';
 import { Swiper as SwiperType } from 'swiper';
 import { Card } from '../Card';
 import { Product } from '../../types/Product';
+
+import cn from 'classnames';
 
 import 'swiper/css';
 import 'swiper/css/pagination';
@@ -10,27 +12,14 @@ import 'swiper/css/navigation';
 
 import './PhonesSlider.scss';
 
-const product: Product = {
-  id: 1,
-  category: 'phones',
-  itemId: 'apple-iphone-7-32gb-black',
-  name: 'Apple iPhone 7 32GB Black',
-  fullPrice: 400,
-  price: 375,
-  screen: "4.7' IPS",
-  capacity: '32GB',
-  color: 'black',
-  ram: '2GB',
-  year: 2016,
-  image: 'img/phones/apple-iphone-7/black/00.webp',
-};
-
 interface Props {
   title: string;
+  data: Product[];
 }
 
-export const PhonesSlider: React.FC<Props> = ({ title }) => {
+export const PhonesSlider: React.FC<Props> = ({ title, data }) => {
   const swiperRef = useRef<SwiperType | null>(null);
+  const [currentIndex, setCurrentIndex] = useState(0);
 
   return (
     <>
@@ -39,12 +28,26 @@ export const PhonesSlider: React.FC<Props> = ({ title }) => {
           <div className="title">{title}</div>
           <div className="buttons-container">
             <button
-              onClick={() => swiperRef.current?.slidePrev()}
-              className="button-prev"
+              onClick={() => {
+                swiperRef.current?.slidePrev();
+                setCurrentIndex(current => current - 1);
+              }}
+              className={cn('button-prev', {
+                'disabled-left': currentIndex === 0,
+                'is-active-left': currentIndex > 0,
+              })}
+              disabled={currentIndex === 0}
             ></button>
             <button
-              onClick={() => swiperRef.current?.slideNext()}
-              className="button-next"
+              onClick={() => {
+                swiperRef.current?.slideNext();
+                setCurrentIndex(current => current + 1);
+              }}
+              className={cn('button-next ', {
+                'disabled-right': currentIndex === data.length - 3,
+                'is-active-right': currentIndex < data.length - 3,
+              })}
+              disabled={currentIndex === data.length - 3}
             ></button>
           </div>
         </div>
@@ -52,38 +55,15 @@ export const PhonesSlider: React.FC<Props> = ({ title }) => {
           onSwiper={swiper => {
             swiperRef.current = swiper;
           }}
-          slidesPerView={2}
+          slidesPerView={'auto'}
           spaceBetween={16}
-          breakpoints={{
-            640: {
-              slidesPerView: 3,
-              spaceBetween: 16,
-            },
-            1200: {
-              slidesPerView: 4,
-              spaceBetween: 16,
-            },
-          }}
           className="mySwiper"
         >
-          <SwiperSlide>
-            <Card product={product} />
-          </SwiperSlide>
-          <SwiperSlide>
-            <Card product={product} />
-          </SwiperSlide>
-          <SwiperSlide>
-            <Card product={product} />
-          </SwiperSlide>
-          <SwiperSlide>
-            <Card product={product} />
-          </SwiperSlide>
-          <SwiperSlide>
-            <Card product={product} />
-          </SwiperSlide>
-          <SwiperSlide>
-            <Card product={product} />
-          </SwiperSlide>
+          {data.map(device => (
+            <SwiperSlide key={device.id}>
+              <Card product={device} />
+            </SwiperSlide>
+          ))}
         </Swiper>
       </div>
     </>

@@ -23,8 +23,8 @@ export const Card: React.FC<Props> = ({ product }) => {
       </div>
 
       <div className="card__price-container">
-        <span className="card__price-current">${product.fullPrice}</span>
-        <span className="card__price-old">${product.price}</span>
+        <span className="card__price-current">${product.price}</span>
+        <span className="card__price-old">${product.fullPrice}</span>
       </div>
 
       <div className="card__info-container">

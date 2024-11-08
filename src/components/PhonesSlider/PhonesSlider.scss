@@ -1,18 +1,48 @@
-// .container {
-//   display: flex;
-//   flex-direction: column;
-// }
+@mixin on-tablet {
+  @media (min-width: 640px) and (max-width: 1200px) {
+    @content;
+  }
+}
+@mixin on-desktop {
+  @media (min-width: 1200px) {
+    @content;
+  }
+}
 
-// .swiper-container {
-//   display: flex;
-//   flex-direction: row;
-// }
+.container {
+  display: flex;
+  justify-content: center;
+  flex-direction: column;
+
+  max-width: 560px !important;
+  min-width: 272px;
+
+  @include on-tablet {
+    max-width: 848px !important;
+  }
+
+  @include on-desktop {
+    max-width: 1136px !important;
+  }
+}
 
 .swiper {
-  // height: 530px;
+  justify-content: center;
+  flex-direction: row;
+  margin: 0 !important;
 }
 
 .swiper-slide {
+  width: 272px !important;
+
+  // @include on-tablet {
+  //   width: 237px !important;
+  //   height: 512px;
+  // }
+
+  // @include on-desktop {
+  //   width: 272px !important;
+  // }
 }
 
 .top-container {
@@ -20,6 +50,7 @@
   justify-content: space-between;
   align-items: center;
   margin-bottom: 24px;
+  max-width: 1136px;
 }
 
 .title {
@@ -43,13 +74,21 @@
 
   height: 32px;
   width: 32px;
-
-  background: center no-repeat url('public/img/icons/svg/icon-arrow-left.svg');
-  border: 1px solid #b4bdc3;
   border-radius: 48px;
   background-color: #fff;
 
   box-shadow: 0px 1px 4px 0px #17203166;
+}
+
+.disabled-left {
+  border: 1px solid #e2e6e9;
+  background: center no-repeat
+    url('public/img/icons/svg/arrow-left-disabled.svg');
+}
+
+.is-active-left {
+  border: 1px solid #b4bdc3;
+  background: center no-repeat url('public/img/icons/svg/icon-arrow-left.svg');
 }
 
 .button-next {
@@ -58,10 +97,18 @@
   height: 32px;
   width: 32px;
 
-  background: center no-repeat url('public/img/icons/svg/icon-arrow-right.svg');
-  border: 1px solid #b4bdc3;
   border-radius: 48px;
   background-color: #fff;
-
   box-shadow: 0px 1px 4px 0px #17203166;
+}
+
+.disabled-right {
+  border: 1px solid #e2e6e9;
+  background: center no-repeat
+    url('public/img/icons/svg/arrow-right-disabled.svg');
+}
+
+.is-active-right {
+  border: 1px solid #b4bdc3;
+  background: center no-repeat url('public/img/icons/svg/icon-arrow-right.svg');
 }

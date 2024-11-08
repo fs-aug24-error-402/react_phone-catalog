@@ -1,10 +1,10 @@
 @mixin on-tablet {
-  @media (min-width: 640px) and (max-width: 1023px) {
+  @media (min-width: 640px) and (max-width: 1200px) {
     @content;
   }
 }
 @mixin on-desktop {
-  @media (min-width: 1024px) {
+  @media (min-width: 1200px) {
     @content;
   }
 }
@@ -138,9 +138,9 @@
 .swiper-pagination-bullet::after {
   content: '';
   position: absolute;
-  top: 50%; /* Center vertically */
-  left: 50%; /* Center horizontally */
-  transform: translate(-50%, -50%); /* Adjust position to center */
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
   background-color: #b4bdc3;
   width: 14px;
   height: 4px;
@@ -149,7 +149,7 @@
 }
 
 .swiper-pagination-bullet-active {
-  background-color: transparent; /* Make the original item transparent */
+  background-color: transparent;
   width: 24px;
   height: 24px;
   position: relative;
@@ -158,10 +158,10 @@
 .swiper-pagination-bullet-active::after {
   content: '';
   position: absolute;
-  top: 50%; /* Center vertically */
-  left: 50%; /* Center horizontally */
-  transform: translate(-50%, -50%); /* Adjust position to center */
-  background-color: #0f0f11; /* Change color for active state */
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  background-color: #0f0f11;
   width: 14px;
   height: 4px;
 

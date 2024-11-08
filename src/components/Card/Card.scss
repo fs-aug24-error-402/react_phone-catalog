@@ -1,3 +1,14 @@
+@mixin on-tablet {
+  @media (min-width: 640px) and (max-width: 1200px) {
+    @content;
+  }
+}
+@mixin on-desktop {
+  @media (min-width: 1200px) {
+    @content;
+  }
+}
+
 .card {
   padding: 32px;
   width: 272px;
@@ -6,8 +17,17 @@
   border: 1px solid #e2e6e9;
   background-color: #ffffff;
   border-radius: 8px;
-  color: #333333;
-  transition: all 0.3s;
+
+  @include on-tablet {
+    min-height: 229px;
+    max-width: 592px;
+  }
+
+  @include on-desktop {
+    max-width: 1136px;
+    min-width: 1136px;
+    min-height: 440px;
+  }
 
   &__head-container {
     width: 208px;
@@ -168,7 +188,7 @@
     }
   }
 
-  &:hover {
-    transform: (scale(1.1));
-  }
+  // &:hover {
+  //   transform: (scale(1.1));
+  // }
 }

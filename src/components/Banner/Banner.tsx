@@ -27,33 +27,35 @@ export default function Banner() {
       modules={[Autoplay, Pagination, Navigation]}
       className="mySwiper"
     >
-      <SwiperSlide>
-        <a href="#">
-          <img
-            src="public/img/iphone14banner.png"
-            className="slide"
-            alt="iPhone 14 Pro"
-          />
-        </a>
-      </SwiperSlide>
-      <SwiperSlide>
-        <a href="#">
-          <img
-            src="public/img/iphone14banner.png"
-            className="slide"
-            alt="iPhone 14 Pro"
-          />
-        </a>
-      </SwiperSlide>
-      <SwiperSlide>
-        <a href="#">
-          <img
-            src="public\img\mobilebanner.png"
-            className="slide"
-            alt="iPhone 14 Pro"
-          />
-        </a>
-      </SwiperSlide>
+      <div className="swiper-container">
+        <SwiperSlide>
+          <a href="#">
+            <img
+              src="public/img/iphone14banner.png"
+              className="slide"
+              alt="iPhone 14 Pro"
+            />
+          </a>
+        </SwiperSlide>
+        <SwiperSlide>
+          <a href="#">
+            <img
+              src="public/img/iphone14banner.png"
+              className="slide"
+              alt="iPhone 14 Pro"
+            />
+          </a>
+        </SwiperSlide>
+        <SwiperSlide>
+          <a href="#">
+            <img
+              src="public\img\mobilebanner.png"
+              className="slide"
+              alt="iPhone 14 Pro"
+            />
+          </a>
+        </SwiperSlide>
+      </div>
     </Swiper>
   );
 }
