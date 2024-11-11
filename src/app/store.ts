@@ -1,7 +1,8 @@
 import { combineSlices, configureStore } from '@reduxjs/toolkit';
-import { productsSlice } from '../features/productsSlice';
+import { productsSlice } from '../features/products';
+import { windowWidthSlice } from '../features/windowWidth';
 
-const rootReducer = combineSlices(productsSlice);
+const rootReducer = combineSlices(productsSlice, windowWidthSlice);
 
 export const store = configureStore({
   reducer: rootReducer,

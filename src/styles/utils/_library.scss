@@ -33,9 +33,9 @@ $header-size: $header-icon-padding * 2;
 }
 
 @mixin nav-link-after {
-  @include after-underscore-base;
-
   bottom: calc(theme('spacing.8') * -1);
+
+  @include after-underscore-base;
 
   @include on-tablet {
     bottom: -130%;
@@ -43,7 +43,37 @@ $header-size: $header-icon-padding * 2;
 }
 
 @mixin header-icon-after {
-  @include after-underscore-base;
-
   bottom: 0;
+
+  @include after-underscore-base;
+}
+
+@mixin padding-inline {
+  padding-inline: theme('spacing.16');
+
+  @include on-tablet {
+    padding-inline: theme('spacing.24');
+  }
+
+  @include on-desktop {
+    padding-inline: theme('spacing.32');
+    max-width: theme('screens.desktop');
+    margin-inline: auto;
+  }
+}
+
+@mixin page-grid {
+  --columns: 4;
+
+  display: grid;
+  column-gap: 16px;
+  grid-template-columns: repeat(var(--columns), 1fr);
+
+  @include on-tablet {
+    --columns: 12;
+  }
+
+  @include on-desktop {
+    --columns: 24;
+  }
 }

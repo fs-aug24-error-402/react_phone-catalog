@@ -1,16 +1,15 @@
 import { useEffect, useState } from 'react';
 import { Product } from '../types/Product';
-import { getDevices } from '../../public/api/api';
 import { Catalog } from '../components/Catalog/Catalog';
+import { useProducts } from '../app/hooks';
 
 export const PhonesPage = () => {
+  const { products } = useProducts();
   const [phones, setPhones] = useState<Product[]>([]);
 
   useEffect(() => {
-    getDevices().then(res =>
-      setPhones(res.filter(device => device.category === 'phones')),
-    );
-  }, []);
+    setPhones(products.filter(device => device.category === 'phones'));
+  }, [products]);
 
   return <Catalog gadgets={phones} />;
 };
