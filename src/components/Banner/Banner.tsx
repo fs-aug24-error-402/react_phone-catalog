@@ -6,13 +6,14 @@ import 'swiper/css/navigation';
 import './Banner.scss';
 
 import { Autoplay, Pagination, Navigation } from 'swiper/modules';
+import { Link } from 'react-router-dom';
 
 export default function Banner() {
   return (
     <Swiper
+      slidesPerView={1}
       spaceBetween={100}
       updateOnWindowResize={true}
-      simulateTouch={true}
       loop={true}
       speed={800}
       autoplay={{
@@ -24,34 +25,34 @@ export default function Banner() {
       }}
       navigation={true}
       modules={[Autoplay, Pagination, Navigation]}
-      className="mySwiper"
+      className="swiper-banner"
     >
       <SwiperSlide>
-        <a href="#">
+        <Link to="#">
           <img
-            src="public/img/iphone14banner.png"
+            src="public\img\banner.png"
             className="slide"
             alt="iPhone 14 Pro"
           />
-        </a>
+        </Link>
       </SwiperSlide>
       <SwiperSlide>
-        <a href="#">
+        <Link to="#">
           <img
-            src="public/img/iphone14banner.png"
+            src="public\img\banner.png"
             className="slide"
             alt="iPhone 14 Pro"
           />
-        </a>
+        </Link>
       </SwiperSlide>
       <SwiperSlide>
-        <a href="#">
+        <Link to="#">
           <img
-            src="public\img\mobilebanner.png"
+            src="public\img\banner.png"
             className="slide"
             alt="iPhone 14 Pro"
           />
-        </a>
+        </Link>
       </SwiperSlide>
     </Swiper>
   );

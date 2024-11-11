@@ -11,6 +11,7 @@ import 'swiper/css/pagination';
 import 'swiper/css/navigation';
 
 import './PhonesSlider.scss';
+import { FreeMode } from 'swiper/modules';
 
 interface Props {
   title: string;
@@ -19,35 +20,35 @@ interface Props {
 
 export const PhonesSlider: React.FC<Props> = ({ title, data }) => {
   const swiperRef = useRef<SwiperType | null>(null);
-  const [currentIndex, setCurrentIndex] = useState(0);
+  const [reachFirst, setReachFirst] = useState(true);
+  const [reachLast, setReachLast] = useState(false);
 
   return (
     <>
       <div className="container">
         <div className="top-container">
-          <div className="title">{title}</div>
+          <h2 className="title">{title}</h2>
+
           <div className="buttons-container">
             <button
               onClick={() => {
                 swiperRef.current?.slidePrev();
-                setCurrentIndex(current => current - 1);
               }}
               className={cn('button-prev', {
-                'disabled-left': currentIndex === 0,
-                'is-active-left': currentIndex > 0,
+                'disabled-left': reachFirst,
+                'is-active-left': !reachFirst,
               })}
-              disabled={currentIndex === 0}
+              disabled={reachFirst}
             ></button>
             <button
               onClick={() => {
                 swiperRef.current?.slideNext();
-                setCurrentIndex(current => current + 1);
               }}
-              className={cn('button-next ', {
-                'disabled-right': currentIndex === data.length - 3,
-                'is-active-right': currentIndex < data.length - 3,
+              className={cn('button-next', {
+                'disabled-right': reachLast,
+                'is-active-right': !reachLast,
               })}
-              disabled={currentIndex === data.length - 3}
+              disabled={reachLast}
             ></button>
           </div>
         </div>
@@ -57,7 +58,15 @@ export const PhonesSlider: React.FC<Props> = ({ title, data }) => {
           }}
           slidesPerView={'auto'}
           spaceBetween={16}
-          simulateTouch={false}
+          freeMode={false}
+          onReachBeginning={() => setReachFirst(true)}
+          onReachEnd={() => setReachLast(true)}
+          onFromEdge={() => {
+            setReachLast(false);
+            setReachFirst(false);
+          }}
+          modules={[FreeMode]}
+          className="swiper-phones-slider"
         >
           {data.map(device => (
             <SwiperSlide key={device.id}>

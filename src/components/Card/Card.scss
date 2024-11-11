@@ -24,7 +24,6 @@
   display: block;
   min-height: 100px;
   max-height: 196px;
-  object-fit: scale-down;
   flex-grow: 100%;
   margin: 0 auto;
 }
@@ -79,7 +78,7 @@
   height: 2px;
   background-color: #89939a;
   transform: translateY(-50%);
-  mix-blend-mode: color-dodge;
+  // mix-blend-mode: color-dodge;
 }
 
 .card__info-container {
