@@ -22,7 +22,9 @@ export const Header: FC<Props> = ({
   isAsideVisible,
   onToggleAside,
 }) => {
-  const { addedProducts, totalCount } = useAppSelector(state => state.products);
+  const { addedProducts, totalCount } = useAppSelector(
+    state => state.addedProducts,
+  );
 
   return (
     <>

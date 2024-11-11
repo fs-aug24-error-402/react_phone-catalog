@@ -10,7 +10,7 @@ export const Checkout: React.FC<Props> = ({ totalItem, totalPrice }) => {
   return (
     <article className="flex flex-col p-24 w- h-max border border-solid border-elements rounded-sm desktop:col-span-1">
       <div className="flex flex-col text-center">
-        <span className="text-price">${totalPrice}</span>
+        <span className="text-h3-lg">${totalPrice}</span>
         <span className="font-medium text-secondary">
           Total for {totalItem} items
         </span>

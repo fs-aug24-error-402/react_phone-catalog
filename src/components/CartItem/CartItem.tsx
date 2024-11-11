@@ -70,7 +70,7 @@ export const CartItem: React.FC<Props> = ({
           />
         </div>
 
-        <div className="text-price tablet:flex tablet:w-80 tablet:justify-end">
+        <div className="text-h3-lg tablet:flex tablet:w-80 tablet:justify-end">
           ${itemPrice * itemCount}
         </div>
       </section>

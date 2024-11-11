@@ -20,8 +20,8 @@ const initialState: ProductsState = {
   totalCount: { price: 0, item: 0 },
 };
 
-export const productsSlice = createSlice({
-  name: 'products',
+export const addedProductsSlice = createSlice({
+  name: 'addedProducts',
   initialState,
   reducers: {
     toggleProduct: (
@@ -59,7 +59,7 @@ export const productsSlice = createSlice({
       state.addedProducts.cart = state.addedProducts.cart.map(product =>
         product.id === updatedProduct.id ? updatedProduct : product,
       );
-      productsSlice.caseReducers.calculateTotalInCart(state);
+      addedProductsSlice.caseReducers.calculateTotalInCart(state);
     },
 
     calculateTotalInCart: state => {
@@ -87,5 +87,5 @@ export const {
   removeProduct,
   updateProductCount,
   calculateTotalInCart,
-} = productsSlice.actions;
-export default productsSlice.reducer;
+} = addedProductsSlice.actions;
+export default addedProductsSlice.reducer;

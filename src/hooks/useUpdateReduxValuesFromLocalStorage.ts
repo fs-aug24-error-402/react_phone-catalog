@@ -8,11 +8,13 @@ import {
   removeProduct,
   toggleProduct,
   updateProductCount,
-} from '../features/productsSlice';
+} from '../features/addedProducts';
 
 export const useUpdateReduxValuesFromLocalStorage = () => {
   const dispatch = useDispatch();
-  const { addedProducts, totalCount } = useAppSelector(state => state.products);
+  const { addedProducts, totalCount } = useAppSelector(
+    state => state.addedProducts,
+  );
 
   useEffect(() => {
     localStorage.setItem('cart', JSON.stringify(addedProducts.cart));
