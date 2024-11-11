@@ -33,9 +33,9 @@ $header-size: $header-icon-padding * 2;
 }
 
 @mixin nav-link-after {
-  @include after-underscore-base;
-
   bottom: calc(theme('spacing.8') * -1);
+
+  @include after-underscore-base;
 
   @include on-tablet {
     bottom: -130%;
@@ -43,9 +43,9 @@ $header-size: $header-icon-padding * 2;
 }
 
 @mixin header-icon-after {
-  @include after-underscore-base;
-
   bottom: 0;
+
+  @include after-underscore-base;
 }
 
 @mixin padding-inline {
@@ -61,7 +61,6 @@ $header-size: $header-icon-padding * 2;
     margin-inline: auto;
   }
 }
-
 
 @mixin page-grid {
   --columns: 4;
