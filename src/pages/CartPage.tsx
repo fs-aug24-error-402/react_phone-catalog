@@ -1,10 +1,10 @@
 import { CartItem } from '../components/CartItem/CartItem';
 import { Checkout } from '../components/Checkout/Checkout';
-import { useLocalStorage } from '../hooks/useLocalStorage';
+import { useUpdateReduxValuesFromLocalStorage } from '../hooks/useUpdateReduxValuesFromLocalStorage';
 
 export const CartPage = () => {
-  const { addedProducts, remove, updateProductCount, totalCount } =
-    useLocalStorage();
+  const { addedProducts, removeProduct, updateProductCount, totalCount } =
+    useUpdateReduxValuesFromLocalStorage();
 
   return (
     <div className="px-16 tablet:px-24 desktop:px-32">
@@ -22,7 +22,7 @@ export const CartPage = () => {
               <CartItem
                 key={product.id}
                 addedProduct={product}
-                onRemove={remove}
+                onRemove={removeProduct}
                 onUpdate={updateProductCount}
               />
             ))}

@@ -8,22 +8,26 @@ import { TabletsPage } from './pages/TabletsPage';
 import { AccessoriesPage } from './pages/AccessoriesPage';
 import { FavouritesPage } from './pages/FavouritesPage';
 import { CartPage } from './pages/CartPage';
+import { Provider } from 'react-redux';
+import { store } from './app/store';
 
 export const Root = () => {
   return (
-    <Router>
-      <Routes>
-        <Route path="/" element={<App />}>
-          <Route index element={<HomePage />} />
-          <Route path="phones" element={<PhonesPage />} />
-          <Route path="tablets" element={<TabletsPage />} />
-          <Route path="accessories" element={<AccessoriesPage />} />
-          <Route path="favourites" element={<FavouritesPage />} />
-          <Route path="cart" element={<CartPage />} />
-        </Route>
+    <Provider store={store}>
+      <Router>
+        <Routes>
+          <Route path="/" element={<App />}>
+            <Route index element={<HomePage />} />
+            <Route path="phones" element={<PhonesPage />} />
+            <Route path="tablets" element={<TabletsPage />} />
+            <Route path="accessories" element={<AccessoriesPage />} />
+            <Route path="favourites" element={<FavouritesPage />} />
+            <Route path="cart" element={<CartPage />} />
+          </Route>
 
-        <Route path="*" element={<NotFoundPage />} />
-      </Routes>
-    </Router>
+          <Route path="*" element={<NotFoundPage />} />
+        </Routes>
+      </Router>
+    </Provider>
   );
 };

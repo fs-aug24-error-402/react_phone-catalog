@@ -5,7 +5,7 @@ import cn from 'classnames';
 import styles from './Header.module.scss';
 import { Navbar } from '../Navbar';
 import { ProductCounter } from '../ProductCounter/ProductCounter';
-import { useLocalStorage } from '../../hooks/useLocalStorage';
+import { useAppSelector } from '../../hooks/useAppSelector';
 const getLinkClass = (isActive: boolean) =>
   cn(styles.header__icon, {
     [styles['header__icon--active']]: isActive,
@@ -22,7 +22,7 @@ export const Header: FC<Props> = ({
   isAsideVisible,
   onToggleAside,
 }) => {
-  const { totalCount, addedProducts } = useLocalStorage();
+  const { addedProducts, totalCount } = useAppSelector(state => state.products);
 
   return (
     <>
