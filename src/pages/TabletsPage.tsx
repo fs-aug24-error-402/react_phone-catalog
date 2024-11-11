@@ -1,7 +1,7 @@
 import { useEffect, useState } from 'react';
 import { useSearchParams } from 'react-router-dom';
 
-import { getDevices } from '../../public/api/api';
+import { getProducts } from '../api.ts';
 import { Catalog } from '../components/Catalog/Catalog';
 import { Product } from '../types/Product';
 import { getFilteredDevices } from '../utils/utils';
@@ -18,7 +18,7 @@ export const TabletsPage = () => {
   const filteredItems = getFilteredDevices(tablets, query, sortBy);
 
   useEffect(() => {
-    getDevices().then(res =>
+    getProducts().then(res =>
       setTablets(res.filter(device => device.category === 'tablets')),
     );
   }, []);

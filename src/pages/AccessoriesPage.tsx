@@ -2,7 +2,7 @@ import { useEffect, useState } from 'react';
 import { useSearchParams } from 'react-router-dom';
 
 import { Product } from '../types/Product';
-import { getDevices } from '../../public/api/api';
+import { getProducts } from '../api.ts';
 import { Catalog } from '../components/Catalog/Catalog';
 import { getFilteredDevices } from '../utils/utils';
 import { Filters } from '../components/Filters/Filters';
@@ -18,7 +18,7 @@ export const AccessoriesPage = () => {
   const filteredItems = getFilteredDevices(accessories, query, sortBy);
 
   useEffect(() => {
-    getDevices().then(res =>
+    getProducts().then(res =>
       setAccessories(res.filter(device => device.category === 'accessories')),
     );
   }, []);

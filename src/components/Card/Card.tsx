@@ -1,3 +1,4 @@
+// eslint-disable-next-line max-len
 import { useUpdateReduxValuesFromLocalStorage } from '../../hooks/useUpdateReduxValuesFromLocalStorage';
 import { Product } from '../../types/Product';
 import { Button } from '../Button';

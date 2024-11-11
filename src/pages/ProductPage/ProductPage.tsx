@@ -1,3 +1,4 @@
+/* eslint-disable max-len */
 import { Link, useParams } from 'react-router-dom';
 import { useCallback, useEffect, useMemo, useRef, useState } from 'react';
 import cn from 'classnames';

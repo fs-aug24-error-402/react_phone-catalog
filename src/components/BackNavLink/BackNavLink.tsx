@@ -1,3 +1,4 @@
+/* eslint-disable max-len */
 import { NavLink, useNavigate } from 'react-router-dom';
 import { FC, MouseEvent } from 'react';
 import cn from 'classnames';

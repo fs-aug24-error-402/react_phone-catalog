@@ -3,6 +3,7 @@ import { useSearchParams } from 'react-router-dom';
 
 import { Product } from '../types/Product';
 import { Catalog } from '../components/Catalog/Catalog';
+import { getProducts } from '../api.ts';
 import { getFilteredDevices } from '../utils/utils';
 import { PaginatedItems } from '../components/Pagination/Pagiation';
 import { Filters } from '../components/Filters/Filters';
@@ -19,7 +20,9 @@ export const PhonesPage = () => {
   const filteredItems = getFilteredDevices(phones, query, sortBy);
 
   useEffect(() => {
-    setPhones(products.filter(device => device.category === 'phones'));
+    getProducts().then(res =>
+      setPhones(res.filter(device => device.category === 'phones')),
+    );
   }, [products]);
 
   return (

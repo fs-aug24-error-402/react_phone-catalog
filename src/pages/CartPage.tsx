@@ -1,3 +1,4 @@
+/* eslint-disable max-len */
 import { Breadcrumbs } from '../components/Breadcrumbs';
 import { CartItem } from '../components/CartItem/CartItem';
 import { Checkout } from '../components/Checkout/Checkout';
