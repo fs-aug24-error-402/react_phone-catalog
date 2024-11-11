@@ -9,35 +9,39 @@ import { AccessoriesPage } from './pages/AccessoriesPage';
 import { FavouritesPage } from './pages/FavouritesPage';
 import { CartPage } from './pages/CartPage';
 import { ProductPage } from './pages/ProductPage';
+import { Provider } from 'react-redux';
+import { store } from './app/store';
 
 export const Root = () => {
   return (
-    <Router>
-      <Routes>
-        <Route path="/" element={<App />}>
-          <Route index element={<HomePage />} />
+    <Provider store={store}>
+      <Router>
+        <Routes>
+          <Route path="/" element={<App />}>
+            <Route index element={<HomePage />} />
 
-          <Route path="phones">
-            <Route index element={<PhonesPage />} />
-            <Route path=":phoneId" element={<ProductPage />} />
+            <Route path="phones">
+              <Route index element={<PhonesPage />} />
+              <Route path=":phoneId" element={<ProductPage />} />
+            </Route>
+
+            <Route path="tablets">
+              <Route index element={<TabletsPage />} />
+              <Route path=":tabletId" element={<ProductPage />} />
+            </Route>
+
+            <Route path="accessories">
+              <Route index element={<AccessoriesPage />} />
+              <Route path=":accessoryId" element={<ProductPage />} />
+            </Route>
+
+            <Route path="favourites" element={<FavouritesPage />} />
+            <Route path="cart" element={<CartPage />} />
           </Route>
 
-          <Route path="tablets">
-            <Route index element={<TabletsPage />} />
-            <Route path=":tabletId" element={<ProductPage />} />
-          </Route>
-
-          <Route path="accessories">
-            <Route index element={<AccessoriesPage />} />
-            <Route path=":accessoryId" element={<ProductPage />} />
-          </Route>
-
-          <Route path="favourites" element={<FavouritesPage />} />
-          <Route path="cart" element={<CartPage />} />
-        </Route>
-
-        <Route path="*" element={<NotFoundPage />} />
-      </Routes>
-    </Router>
+          <Route path="*" element={<NotFoundPage />} />
+        </Routes>
+      </Router>
+    </Provider>
   );
 };

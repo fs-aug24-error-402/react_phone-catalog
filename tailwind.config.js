@@ -25,6 +25,7 @@ export default {
       '48': '48px',
       '56': '56px',
       '64': '64px',
+      '66': '66px',
       '72': '72px',
       '96': '96px',
       '152': '152px',
@@ -74,6 +75,15 @@ export default {
         'footer-top': '0px -1px 0px 0px #E2E6E9',
       },
 
+      backgroundImage: {
+        close: "url(public/img/icons/svg/icon-close.svg)",
+        'close-active': "url(public/img/icons/svg/icon-close-active.svg)",
+        plus: "url(public/img/icons/svg/icon-plus.svg)",
+        minus: "url(public/img/icons/svg/icon-minus.svg)",
+        'minus-active': "url(public/img/icons/svg/icon-minus-active.svg)",
+        'arrow-top': "url(public/img/icons/svg/icon-arrow-top.svg)",
+      },
+      
       gridColumnStart: {
         '13': '13',
         '14': '14',
