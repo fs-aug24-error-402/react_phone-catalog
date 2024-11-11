@@ -24,7 +24,7 @@ export const BurgerMenu = () => {
       <div className={cn(styles['burger-menu__bottom'], styles['fav-cart'])}>
         <NavLink to={'favourites'} className={getLinkClass}>
           <img
-            src="img/icons/png/Favourites (Heart Like).png"
+            src="img/icons/svg/icon-favourites.svg"
             alt="Link to page with favourites products"
             className={styles['fav-cart__icon']}
           />
@@ -32,7 +32,7 @@ export const BurgerMenu = () => {
 
         <NavLink to={'cart'} className={getLinkClass}>
           <img
-            src="img/icons/png/shopping-bag-(cart).png"
+            src="img/icons/svg/icon-shoping-cart.svg"
             alt="Link to cart page"
             className={styles['fav-cart__icon']}
           />

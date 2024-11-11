@@ -30,6 +30,7 @@ export default tseslint.config(
       ],
       semi: ['error', 'always'],
       eqeqeq: ['error', 'always'],
+      "max-len": ["error", { "code": 80 }],
       'no-param-reassign': [2, { props: true }],
       'padding-line-between-statements': [
         2,

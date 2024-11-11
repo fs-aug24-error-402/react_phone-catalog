@@ -9,9 +9,15 @@ interface Props {
 export const Card: React.FC<Props> = ({ product }) => {
   return (
     <article className="card tablet:h-508 mobile:h-440">
-      <img src={`${product.image}`} alt={product.name} className="card__img" />
+      <a className="img_url" href="#">
+        <img
+          src={`${product.image}`}
+          alt={product.name}
+          className="card__img"
+        />
+      </a>
 
-      <h3 className="card__model font-main-font" title={product.name}>
+      <h3 className="card__model font-main-font" title={product.name.trim()}>
         {product.name}
       </h3>
 
@@ -29,8 +35,12 @@ export const Card: React.FC<Props> = ({ product }) => {
 
         <div className="card__info-param-container">
           <span className="card__info-param">{product.screen}</span>
-          <span className="card__info-param">{product.capacity}</span>
-          <span className="card__info-param">{product.ram}</span>
+          <span className="card__info-param">
+            {product.capacity.replace(/[G,M]/, ' G')}
+          </span>
+          <span className="card__info-param">
+            {product.ram.replace(/[G]/, ` G`)}
+          </span>
         </div>
       </div>
 
@@ -39,7 +49,7 @@ export const Card: React.FC<Props> = ({ product }) => {
 
         <button className="card__buttons-favorite">
           <img
-            src="img/icons/svg/Favourites (Heart Like).svg"
+            src="img/icons/svg/icon-favourites.svg"
             className="card__buttons-heart-img"
             alt="Add to favorite"
           />

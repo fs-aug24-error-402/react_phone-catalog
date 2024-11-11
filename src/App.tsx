@@ -41,7 +41,7 @@ function App() {
         {isAsideVisible && isMobile && <BurgerMenu />}
       </AnimatePresence>
 
-      <main className="flex-1">
+      <main className="flex-1 mobile:p-16 tablet:p24 desktop:p-32">
         <Outlet />
       </main>
 

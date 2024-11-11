@@ -15,6 +15,7 @@ export default {
     spacing: {
       '0': '0px',
       '8': '8px',
+      '12': '12px',
       '13': '13px',
       '16': '16px',
       '18': '18px',
@@ -24,11 +25,12 @@ export default {
       '40': '40px',
       '56': '56px',
       '64': '64px',
-      '66' : '66px',
+      '66': '66px',
       '72': '72px',
       '80': '80px',
       '96': '96px',
       '152': '152px',
+      '176': '176px',
       '440': '440px',
       '508': '508px',
 
@@ -58,10 +60,11 @@ export default {
       },
 
       backgroundImage: {
-        close: "url(public/img/icons/svg/icon-close.svg)",
-        plus: "url(public/img/icons/svg/icon-plus.svg)",
-        minus: "url(public/img/icons/svg/icon-minus.svg)",
-        'arrow-top': "url(public/img/icons/svg/icon-arrow-top.svg)",
+        close: "url(img/icons/svg/icon-close.svg)",
+        plus: "url(img/icons/svg/icon-plus.svg)",
+        minus: "url(img/icons/svg/icon-minus.svg)",
+        'arrow-top': "url(img/icons/svg/icon-arrow-top.svg)",
+        'not-found-img': "url(img/icons/svg/cat-revenge-animation-404-page.gif)",
       },
     },
 
