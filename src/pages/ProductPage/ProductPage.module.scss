@@ -1,0 +1,62 @@
+@use 'src/styles/utils/library' as *;
+
+.page {
+  @include page-grid;
+
+  &__section {
+    margin-bottom: 56px;
+
+    @include on-tablet {
+      margin-bottom: 64px;
+    }
+
+    @include on-desktop {
+      margin-bottom: 80px;
+    }
+  }
+
+  &__section-title {
+    padding-bottom: 16px;
+    margin-bottom: 32px;
+
+    border-bottom: 1px solid theme('colors.elements');
+  }
+}
+
+.main {
+  @include page-grid;
+}
+
+.buy {
+  &__price-regular {
+    $line-width: 105%;
+
+    isolation: isolate;
+    position: relative;
+
+    font-size: 22px;
+    color: theme('colors.secondary');
+
+    &::after {
+      content: '';
+      position: absolute;
+      top: 50%;
+      left: calc(($line-width - 100%) / 2 * -1);
+
+      height: 2px;
+      width: $line-width;
+
+      background-color: theme('colors.secondary');
+      mix-blend-mode: color-dodge;
+      transform: translateY(-100%);
+    }
+  }
+}
+
+.like {
+  &__slider {
+    @include on-desktop {
+      @include padding-inline;
+    }
+  }
+}
