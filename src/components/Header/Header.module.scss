@@ -48,10 +48,10 @@
       position: relative;
 
       &::after {
-        @include header-icon-after;
-
         background-color: theme('colors.primary');
         transform: scale(0);
+
+        @include header-icon-after;
       }
 
       &:hover::after {
@@ -61,10 +61,10 @@
 
     &--active {
       &::after {
-        @include header-icon-after;
-
         background-color: theme('colors.primary');
         transform: scale(1);
+
+        @include header-icon-after;
       }
     }
   }

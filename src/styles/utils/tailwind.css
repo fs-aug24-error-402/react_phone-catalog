@@ -3,63 +3,69 @@
 @import 'tailwindcss/utilities';
 
 @layer base {
+  @font-face {
+    font-family: 'Mont';
+    font-style: normal;
+    font-weight: 400;
+    font-display: swap;
+    src: url(/fonts/Mont-Regular.otf) format('otf');
+  }
+
+  @font-face {
+    font-family: 'Mont';
+    font-style: normal;
+    font-weight: 600;
+    font-display: swap;
+    src: url(/fonts/Mont-SemiBold.otf) format('otf');
+  }
+
+  @font-face {
+    font-family: 'Mont';
+    font-style: normal;
+    font-weight: 700;
+    font-display: swap;
+    src: url(/fonts/Mont-Bold.otf) format('otf');
+  }
+
   :root {
     color: theme('colors.primary');
-    font-size: 14px;
-    line-height: 21px;
-    letter-spacing: 0;
-    font-weight: 400;
+
+    @apply text-body;
   }
 
   h1 {
-    font-size: 32px;
-    line-height: 41px;
-    letter-spacing: -0.01em;
-    font-weight: 700;
+    @apply text-h1;
 
     @screen tablet {
-      font-size: 48px;
-      line-height: 56px;
+      @apply text-h1-lg;
     }
   }
 
   h2 {
-    font-size: 22px;
-    line-height: 31px;
-    font-weight: 700;
+    @apply text-h2;
 
     @screen tablet {
-      font-size: 32px;
-      line-height: 41px;
-      letter-spacing: -0.01em;
+      @apply text-h2-lg;
     }
   }
 
   h3 {
-    font-size: 20px;
-    line-height: 26px;
-    font-weight: 700;
+    @apply text-h3;
 
     @screen tablet {
-      font-size: 22px;
-      line-height: 31px;
+      @apply text-h3-lg;
     }
   }
 
   h4 {
-    font-size: 16px;
-    line-height: 20px;
-    font-weight: 600;
+    @apply text-h4;
 
     @screen tablet {
-      font-size: 20px;
-      line-height: 26px;
+      @apply text-h4-lg;
     }
   }
 
   button {
-    font-size: 14px;
-    line-height: 21px;
-    font-weight: 600;
+    @apply text-buttons;
   }
 }

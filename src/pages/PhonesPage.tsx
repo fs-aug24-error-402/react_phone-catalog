@@ -2,13 +2,14 @@ import { useEffect, useState } from 'react';
 import { useSearchParams } from 'react-router-dom';
 
 import { Product } from '../types/Product';
-import { getDevices } from '../../public/api/api';
 import { Catalog } from '../components/Catalog/Catalog';
 import { getFilteredDevices } from '../utils/utils';
 import { PaginatedItems } from '../components/Pagination/Pagiation';
 import { Filters } from '../components/Filters/Filters';
+import { useProducts } from '../app/hooks';
 
 export const PhonesPage = () => {
+  const { products } = useProducts();
   const [phones, setPhones] = useState<Product[]>([]);
   const [searchParams] = useSearchParams();
 
@@ -18,10 +19,8 @@ export const PhonesPage = () => {
   const filteredItems = getFilteredDevices(phones, query, sortBy);
 
   useEffect(() => {
-    getDevices().then(res =>
-      setPhones(res.filter(device => device.category === 'phones')),
-    );
-  }, []);
+    setPhones(products.filter(device => device.category === 'phones'));
+  }, [products]);
 
   return (
     <>

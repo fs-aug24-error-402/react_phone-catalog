@@ -29,10 +29,10 @@
     text-transform: uppercase;
 
     &::after {
-      @include nav-link-after;
-
       background-color: theme('colors.secondary');
       transform: scale(0);
+
+      @include nav-link-after;
     }
 
     &:hover::after {
@@ -41,10 +41,10 @@
 
     &--active {
       &::after {
-        @include nav-link-after;
-
         background-color: theme('colors.primary');
         transform: scale(1);
+
+        @include nav-link-after;
       }
     }
   }

@@ -4,7 +4,8 @@ import cn from 'classnames';
 
 import styles from './Header.module.scss';
 import { Navbar } from '../Navbar';
-
+import { ProductCounter } from '../ProductCounter/ProductCounter';
+import { useAppSelector } from '../../hooks/useAppSelector';
 const getLinkClass = (isActive: boolean) =>
   cn(styles.header__icon, {
     [styles['header__icon--active']]: isActive,
@@ -21,6 +22,10 @@ export const Header: FC<Props> = ({
   isAsideVisible,
   onToggleAside,
 }) => {
+  const { addedProducts, totalCount } = useAppSelector(
+    state => state.addedProducts,
+  );
+
   return (
     <>
       <header className={styles.header}>
@@ -62,14 +67,22 @@ export const Header: FC<Props> = ({
                 className={({ isActive }) =>
                   cn(getLinkClass(isActive), styles['header__icon--fav'])
                 }
-              />
+              >
+                {!!addedProducts.favorites.length && (
+                  <ProductCounter count={addedProducts.favorites.length} />
+                )}
+              </NavLink>
 
               <NavLink
                 to={'cart'}
                 className={({ isActive }) =>
                   cn(getLinkClass(isActive), styles['header__icon--cart'])
                 }
-              />
+              >
+                {!!totalCount.item && (
+                  <ProductCounter count={totalCount.item} />
+                )}
+              </NavLink>
             </>
           )}
         </div>
