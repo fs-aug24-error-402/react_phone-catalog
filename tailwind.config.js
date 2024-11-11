@@ -82,7 +82,8 @@ export default {
         minus: "url(public/img/icons/svg/icon-minus.svg)",
         'minus-active': "url(public/img/icons/svg/icon-minus-active.svg)",
         'arrow-top': "url(public/img/icons/svg/icon-arrow-top.svg)",
-
+      },
+      
       gridColumnStart: {
         '13': '13',
         '14': '14',
