@@ -1,6 +1,6 @@
 /* eslint-disable max-len */
-import { Link, useParams } from 'react-router-dom';
-import { useCallback, useEffect, useMemo, useRef, useState } from 'react';
+import { useParams } from 'react-router-dom';
+import { useEffect, useMemo, useRef, useState } from 'react';
 import Skeleton from 'react-loading-skeleton';
 import cn from 'classnames';
 
