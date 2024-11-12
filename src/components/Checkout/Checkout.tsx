@@ -1,12 +1,20 @@
 import React from 'react';
 import { Button } from '../Button';
+import { Loader } from '../Loader';
 
 interface Props {
   totalItem: number;
   totalPrice: number;
+  isLoading: boolean;
+  onCheckout: () => void;
 }
 
-export const Checkout: React.FC<Props> = ({ totalItem, totalPrice }) => {
+export const Checkout: React.FC<Props> = ({
+  totalItem,
+  totalPrice,
+  isLoading,
+  onCheckout,
+}) => {
   return (
     <article className="flex flex-col p-24 w- h-max border border-solid border-elements rounded-sm desktop:col-span-1">
       <div className="flex flex-col text-center">
@@ -16,7 +24,16 @@ export const Checkout: React.FC<Props> = ({ totalItem, totalPrice }) => {
         </span>
         <div className="w-full my-16 border-t border-solid border-elements" />
       </div>
-      <Button children="Checkout" />
+      {isLoading ? (
+        <Loader />
+      ) : (
+        <Button
+          children="Checkout"
+          onClick={() => {
+            onCheckout();
+          }}
+        />
+      )}
     </article>
   );
 };
