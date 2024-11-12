@@ -1,12 +1,13 @@
 @use 'src/styles/utils/library' as *;
 
 .header {
+  position: relative;
   display: flex;
   justify-content: space-between;
   background-color: theme('colors.white');
 
   border-bottom: 1px solid theme('colors.elements');
-  z-index: 2;
+  z-index: 3;
 
   &__left {
     display: flex;
