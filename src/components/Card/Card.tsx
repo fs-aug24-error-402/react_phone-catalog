@@ -1,6 +1,7 @@
 import { useUpdateReduxValuesFromLocalStorage } from '../../hooks/useUpdateReduxValuesFromLocalStorage';
 import { Product } from '../../types/Product';
 import { Button } from '../Button';
+
 import './Card.scss';
 
 interface Props {
@@ -12,7 +13,13 @@ export const Card: React.FC<Props> = ({ product }) => {
 
   return (
     <article className="card tablet:h-508 mobile:h-440">
-      <img src={`${product.image}`} alt={product.name} className="card__img" />
+      <a className="img_url">
+        <img
+          src={`${product.image}`}
+          alt={product.name}
+          className="card__img"
+        />
+      </a>
 
       <h3 className="card__model font-main-font" title={product.name}>
         {product.name}

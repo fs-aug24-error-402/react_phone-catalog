@@ -20,12 +20,16 @@
   flex-grow: 1;
 }
 
-.card__img {
+.img_url {
+  display: block;
   min-height: 100px;
   max-height: 196px;
-  object-fit: scale-down;
   flex-grow: 100%;
   margin: 0 auto;
+}
+
+.card__img {
+  height: 100%;
 }
 
 .card__model {
@@ -68,13 +72,13 @@
 .card__price-old::after {
   content: '';
   position: absolute;
-  left: 0px;
+  left: 0;
   top: 53%;
-  width: 102%;
+  width: 100%;
   height: 2px;
   background-color: #89939a;
-  mix-blend-mode: color-dodge;
   transform: translateY(-50%);
+  // mix-blend-mode: color-dodge;
 }
 
 .card__info-container {
@@ -106,42 +110,22 @@
 .card__buttons-container {
   display: flex;
   gap: 8px;
-  justify-content: space-between;
   margin-top: 16px;
-}
-
-.card__buttons-add {
-  flex-grow: 1;
-  height: 40px;
-  min-width: 118px;
-  font-size: 14px;
-  font-weight: 700;
-  color: #ffffff;
-  background-color: #4219d0;
-  border: none;
-  border-radius: 48px;
-  text-align: center;
-  cursor: pointer;
-  transition: all 0.3s;
-}
-
-.card__buttons-add:hover {
-  background-color: #ffffff;
-  color: #4219d0;
-  border: 1px solid #e2e6e9;
-  box-shadow: 0px 3px 13px 0px #17203166;
 }
 
 .card__buttons-favorite {
   height: 40px;
-  width: 40px;
+  aspect-ratio: 1/1;
+
   display: flex;
   align-items: center;
   justify-content: center;
+
   color: #0f0f11;
   border: 1px solid #b4bdc3;
   border-radius: 50%;
   background-color: #ffffff;
+
   cursor: pointer;
   transition: all 0.3s;
 }
@@ -151,5 +135,5 @@
 }
 
 .card:hover {
-  transform: scale(1.1);
+  transform: scale(1.05);
 }
