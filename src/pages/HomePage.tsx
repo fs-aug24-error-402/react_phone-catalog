@@ -1,7 +1,7 @@
 import Banner from '../components/Banner/Banner';
 import { PhonesSlider } from '../components/PhonesSlider/PhonesSlider';
 import Categories from '../components/Categories/Categories';
-import { useProcessedData } from '../utils/useProcessedData';
+import { useProcessedData } from '../hooks/useProcessedData';
 
 import './styles/HomePage.scss';
 
@@ -10,8 +10,11 @@ export const HomePage = () => {
 
   return (
     <div className="home">
-      <h1 className="home__title">Welcome to Nice Gadgets store!</h1>
-      <div className="home__content-container">
+      <div className="home__content-container ">
+        <div className="home__title-container">
+          <h1 className="home__title">Welcome to Nice Gadgets store!</h1>
+        </div>
+
         <div className="home__banner-container flex items-center justify-center">
           <Banner />
         </div>

@@ -11,6 +11,7 @@ import { Link } from 'react-router-dom';
 export default function Banner() {
   return (
     <Swiper
+      eventsPrefix="test"
       slidesPerView={1}
       spaceBetween={100}
       updateOnWindowResize={true}

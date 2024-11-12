@@ -5,12 +5,12 @@ import { Card } from '../Card';
 import { Product } from '../../types/Product';
 
 import cn from 'classnames';
+import './PhonesSlider.scss';
 
 import 'swiper/css';
 import 'swiper/css/pagination';
 import 'swiper/css/navigation';
 
-import './PhonesSlider.scss';
 import { FreeMode } from 'swiper/modules';
 
 interface Props {
