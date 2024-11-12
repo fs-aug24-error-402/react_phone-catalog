@@ -1,6 +1,7 @@
 import { Outlet, useLocation } from 'react-router-dom';
 import { useEffect, useState } from 'react';
 import { AnimatePresence } from 'framer-motion';
+import cn from 'classnames';
 
 import { Footer } from './components/Footer/Footer';
 import { Header } from './components/Header';
@@ -22,7 +23,11 @@ function App() {
   }, [location]);
 
   return (
-    <div className="app flex flex-col min-h-screen">
+    <div
+      className={cn('app flex flex-col min-h-screen', {
+        'fixed left-0 right-0': isAsideVisible,
+      })}
+    >
       <Header
         isMobile={isMobile}
         isAsideVisible={isAsideVisible}
