@@ -2,6 +2,7 @@
 import { useUpdateReduxValuesFromLocalStorage } from '../../hooks/useUpdateReduxValuesFromLocalStorage';
 import { Product } from '../../types/Product';
 import { Button } from '../Button';
+
 import './Card.scss';
 
 interface Props {

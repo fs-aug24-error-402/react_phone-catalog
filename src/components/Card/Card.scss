@@ -32,7 +32,6 @@
   min-height: 100px;
   max-height: 196px;
   height: 100%;
-  width: 100%;
 }
 
 .card__model {
@@ -138,7 +137,3 @@
 .card__buttons-favorite:hover {
   border: 1px solid #0f0f11;
 }
-
-// .card:hover {
-//   transform: scale(1.05);
-// }
