@@ -8,6 +8,7 @@ export default {
     screens: {
       mobile: '320px',
       tablet: '640px',
+      'tablet-large': '768px',
       desktop: '1200px',
     },
 
@@ -15,6 +16,7 @@ export default {
       '0': '0px',
       '4': '4px',
       '8': '8px',
+      '12': '12px',
       '13': '13px',
       '16': '16px',
       '18': '18px',
@@ -30,6 +32,9 @@ export default {
       '80': '80px',
       '96': '96px',
       '152': '152px',
+      '176': '176px',
+      '440': '440px',
+      '508': '508px',
 
     },
 
@@ -84,7 +89,7 @@ export default {
         'minus-active': "url(public/img/icons/svg/icon-minus-active.svg)",
         'arrow-top': "url(public/img/icons/svg/icon-arrow-top.svg)",
       },
-      
+
       gridColumnStart: {
         '13': '13',
         '14': '14',

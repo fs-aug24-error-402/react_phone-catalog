@@ -1,8 +1,7 @@
 .card {
   padding: 32px;
-  max-width: 288px;
-  min-width: 227px;
-  height: 508px;
+  max-width: 100%;
+  min-width: 212px;
   box-sizing: border-box;
   border: 1px solid theme('colors.elements');
   background-color: theme('colors.white');
@@ -24,15 +23,21 @@
   display: block;
   min-height: 100px;
   max-height: 196px;
+  object-fit: contain;
   flex-grow: 100%;
   margin: 0 auto;
 }
 
 .card__img {
+  min-height: 100px;
+  max-height: 196px;
   height: 100%;
+  width: 100%;
 }
 
 .card__model {
+  display: flex;
+  align-items: flex-end;
   flex: 1 1 auto;
   min-height: 42px;
   margin-top: 16px;
@@ -115,8 +120,4 @@
   display: flex;
   gap: 8px;
   margin-top: 16px;
-}
-
-.card:hover {
-  transform: scale(1.05);
 }
