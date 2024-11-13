@@ -1,4 +1,8 @@
-.sort {
-  border-radius: border-radius(sm);
+@use 'src/styles/utils/library' as *;
+
+.container {
+  // border-radius: border-radius(sm);
   border: 1px solid theme('colors.elements');
+  @include page-grid;
+  @include padding-inline;
 }

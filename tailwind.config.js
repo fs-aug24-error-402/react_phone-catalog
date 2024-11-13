@@ -8,6 +8,7 @@ export default {
     screens: {
       mobile: '320px',
       tablet: '640px',
+      'tablet-large': '768px',
       desktop: '1200px',
     },
 
@@ -88,7 +89,7 @@ export default {
         'minus-active': "url(public/img/icons/svg/icon-minus-active.svg)",
         'arrow-top': "url(public/img/icons/svg/icon-arrow-top.svg)",
       },
-      
+
       gridColumnStart: {
         '13': '13',
         '14': '14',

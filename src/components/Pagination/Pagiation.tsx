@@ -6,6 +6,7 @@ import classNames from 'classnames';
 import { Product } from '../../types/Product';
 import { getFilteredDevices } from '../../utils/utils';
 import { getSearchWith } from '../../utils/searchHelper';
+import { useWindowWidth } from '../../app/hooks';
 
 interface Props {
   items: Product[];
@@ -13,6 +14,9 @@ interface Props {
 
 export const PaginatedItems: FC<Props> = ({ items }) => {
   const [searchParams, setSearchParams] = useSearchParams();
+  const { isMobile } = useWindowWidth();
+
+  const displayedPagesRange = isMobile ? 3 : 5;
 
   const query = searchParams.get('query') || '';
   const sortBy = searchParams.get('sort-by') || '';
@@ -47,18 +51,20 @@ export const PaginatedItems: FC<Props> = ({ items }) => {
         breakLabel={
           <button
             disabled
-            className="flex items-start pointer-events-none justify-center
+            className="flex items-center pointer-events-none justify-center
             border rounded-full hover:border-primary h-32 w-32"
           >
             ...
           </button>
         }
         nextLabel={
-          isItLastPage ? (
-            <img src="img/icons/svg/icon-arrow-right-inactive.svg" />
-          ) : (
-            <img src="img/icons/svg/icon-arrow-right.svg" />
-          )
+          <img
+            src={
+              isItLastPage
+                ? 'img/icons/svg/icon-arrow-right-inactive.svg'
+                : 'img/icons/svg/icon-arrow-right.svg'
+            }
+          />
         }
         nextLinkClassName={classNames(
           'flex justify-center items-center ml-8 rounded-full border',
@@ -66,14 +72,16 @@ export const PaginatedItems: FC<Props> = ({ items }) => {
           { 'pointer-events-none': isItLastPage },
         )}
         onPageChange={handlePageClick}
-        pageRangeDisplayed={5}
+        pageRangeDisplayed={displayedPagesRange}
         pageCount={pageCount}
         previousLabel={
-          isItFirstPage ? (
-            <img src="img/icons/svg/icon-arrow-left-inactive.svg" />
-          ) : (
-            <img src="img/icons/svg/icon-arrow-left.svg" />
-          )
+          <img
+            src={
+              isItFirstPage
+                ? 'img/icons/svg/icon-arrow-left-inactive.svg'
+                : 'img/icons/svg/icon-arrow-left.svg'
+            }
+          />
         }
         previousLinkClassName={classNames(
           'flex justify-center items-center ml-8 rounded-full border',

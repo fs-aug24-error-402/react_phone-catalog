@@ -17,11 +17,6 @@ export const Dropdown: FC<Props> = ({ sortKeys, sortType }) => {
   const displayableName =
     selecteditem.charAt(0).toUpperCase() + selecteditem.slice(1);
 
-  const dropdownId = `dropdown-${sortKeys.join('').replaceAll(' ', '')}`;
-  const dropdownItemsId = `dropdown-items-${sortKeys
-    .join('')
-    .replaceAll(' ', '')}`;
-
   function handleSelection(selectedElement: string) {
     SetSearchParams(() =>
       getSearchWith(searchParams, {
@@ -39,7 +34,6 @@ export const Dropdown: FC<Props> = ({ sortKeys, sortType }) => {
         <>
           <div>
             <MenuButton
-              id={dropdownId}
               className="flex items-center h-40 w-[100%] justify-between pl-12
           gap-x-1.5 rounded-sm bg-white px-12 text-sm font-semibold
         text-primary shadow-sm ring-1 ring-elements hover:ring-primary"
@@ -56,7 +50,6 @@ export const Dropdown: FC<Props> = ({ sortKeys, sortType }) => {
           </div>
 
           <MenuItems
-            id={dropdownItemsId}
             transition
             className="absolute border shadow-2xl top-[105%] w-[100%] bg-white
           rounded-sm transition focus:outline-none data-[closed]:scale-95
@@ -71,14 +64,20 @@ export const Dropdown: FC<Props> = ({ sortKeys, sortType }) => {
 
                 return (
                   <MenuItem key={key}>
-                    <li
+                    <div
                       onClick={() => handleSelection(String(key))}
-                      className={`${isSelected ? 'bg-elements' : 'bg-white'}
-                  flex items-center rounded-sm justify-center cursor-pointer
-                  hover:bg-elements h-40 w-[100%] border-elements`}
+                      className={`${
+                        isSelected
+                          ? 'bg-elements text-primary'
+                          : 'bg-white text-secondary'
+                      }
+                  flex items-center rounded-sm justify-start px-12
+                  cursor-pointerhover:bg-elements h-40 w-[100%]
+                  border-element font-medium hover:bg-elements
+                hover:text-primary`}
                     >
                       {key}
-                    </li>
+                    </div>
                   </MenuItem>
                 );
               })}

@@ -1,5 +1,6 @@
 import { useEffect, useState } from 'react';
 import { useSearchParams } from 'react-router-dom';
+import style from '../styles/helpers/container.module.scss';
 
 import { Product } from '../types/Product';
 import { getProducts } from '../api.ts';
@@ -7,6 +8,7 @@ import { Catalog } from '../components/Catalog/Catalog';
 import { getFilteredDevices } from '../utils/utils';
 import { Filters } from '../components/Filters/Filters';
 import { PaginatedItems } from '../components/Pagination/Pagiation';
+import { Breadcrumbs } from '../components/Breadcrumbs/Breadcrumbs.tsx';
 
 export const AccessoriesPage = () => {
   const [accessories, setAccessories] = useState<Product[]>([]);
@@ -25,9 +27,12 @@ export const AccessoriesPage = () => {
 
   return (
     !!filteredItems.length && (
-      <>
-        <h1>Tablets</h1>
-        <span>{filteredItems.length} models</span>
+      <div className={style.container}>
+        <Breadcrumbs className="tablet:mb-40 mobile:mb-24" />
+
+        <h1 className="mb-8">Accessories</h1>
+
+        <span className="text-secondary">{filteredItems.length} models</span>
 
         <Filters />
 
@@ -37,7 +42,7 @@ export const AccessoriesPage = () => {
             <PaginatedItems items={filteredItems} />
           </>
         )}
-      </>
+      </div>
     )
   );
 };
