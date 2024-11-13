@@ -51,7 +51,7 @@ export const ModalContent: React.FC<Props> = ({ onClose }) => {
       <div className="flex justify-center gap-16 mt-6">
         <a
           className="p-2 bg-gray-200"
-          href="https://www.instagram.com/mate_academy/"
+          href="https://www.instagram.com/superpooper_/"
           target="_blank"
           rel="noopener noreferrer"
         >

@@ -5,7 +5,6 @@ import { Breadcrumbs } from '../components/Breadcrumbs';
 import { CartItem } from '../components/CartItem/CartItem';
 import { Checkout } from '../components/Checkout/Checkout';
 import { CheckoutModal } from '../components/CheckoutModal/CheckoutModal';
-import { useUpdateReduxValuesFromLocalStorage } from '../hooks/useUpdateReduxValuesFromLocalStorage';
 import style from '../styles/helpers/container.module.scss';
 
 export const CartPage = () => {
@@ -37,7 +36,7 @@ export const CartPage = () => {
       {showModal && (
         <CheckoutModal onClose={handleCloseModal} onAccept={handleAccept} />
       )}
-      
+
       <Breadcrumbs className="my-24" />
 
       <h1>Cart</h1>
