@@ -1,5 +1,5 @@
-import { getDevices } from '../../public/api/api';
-import { useState } from 'react';
+import { getProducts } from '..//api.ts';
+import { useEffect, useState } from 'react';
 import { Product } from '../types/Product';
 
 export function useProcessedData() {
@@ -10,36 +10,38 @@ export function useProcessedData() {
   const [newModels, setNewModels] = useState<Product[]>([]);
   const [hotPricesModels, setHotPricesModels] = useState<Product[]>([]);
 
-  // const isEmptyError = !dataFromServer.length && !isUploadError && !isLoading;
+  useEffect(() => {
+    getProducts().then(res => {
+      const newDevices = res.filter(device => device.year === 2022);
 
-  getDevices().then(res => {
-    const newDevices = res.filter(device => device.year === 2022);
+      setNewModels(newDevices);
 
-    setNewModels(newDevices);
-  });
+      getProducts().then(res => {
+        const newPrices = res
+          .sort(
+            (device1, device2) =>
+              device2.fullPrice -
+              device2.price -
+              (device1.fullPrice - device1.price),
+          )
+          .slice(0, 20);
 
-  getDevices().then(res => {
-    const newPrices = res
-      .sort(
-        (device1, device2) =>
-          device2.fullPrice -
-          device2.price -
-          (device1.fullPrice - device1.price),
-      )
-      .slice(0, 20);
+        setHotPricesModels(newPrices);
+      });
 
-    setHotPricesModels(newPrices);
-  });
-
-  getDevices().then(res => {
-    setPhonesAmount(res.filter(device => device.category === 'phones').length);
-    setTabletsAmount(
-      res.filter(device => device.category === 'tablets').length,
-    );
-    setAccessoriesAmount(
-      res.filter(device => device.category === 'accessories').length,
-    );
-  });
+      getProducts().then(res => {
+        setPhonesAmount(
+          res.filter(device => device.category === 'phones').length,
+        );
+        setTabletsAmount(
+          res.filter(device => device.category === 'tablets').length,
+        );
+        setAccessoriesAmount(
+          res.filter(device => device.category === 'accessories').length,
+        );
+      });
+    });
+  }, []);
 
   return {
     phonesAmount,

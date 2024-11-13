@@ -1,3 +1,4 @@
+/* eslint-disable max-len */
 import { useParams } from 'react-router-dom';
 import { useEffect, useMemo, useRef, useState } from 'react';
 import Skeleton from 'react-loading-skeleton';

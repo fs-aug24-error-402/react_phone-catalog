@@ -5,7 +5,10 @@ export const ProductNotFound = () => {
   const navigate = useNavigate();
 
   return (
-    <div className="absolute bottom-1/2 translate-y-1/2 right-1/2 translate-x-1/2 flex flex-col justify-center items-center">
+    <div
+      className="absolute bottom-1/2 translate-y-1/2 right-1/2
+    translate-x-1/2 flex flex-col justify-center items-center"
+    >
       <img
         src="img/product-not-found.png"
         alt="Product not found image"
