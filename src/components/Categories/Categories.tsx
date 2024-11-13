@@ -1,4 +1,4 @@
-import { useProcessedData } from '../../utils/useProcessedData';
+import { useProcessedData } from '../../hooks/useProcessedData';
 import { Link } from 'react-router-dom';
 
 import './Categories.scss';

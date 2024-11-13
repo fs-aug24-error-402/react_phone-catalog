@@ -10,26 +10,25 @@ export function useProcessedData() {
   const [newModels, setNewModels] = useState<Product[]>([]);
   const [hotPricesModels, setHotPricesModels] = useState<Product[]>([]);
 
-  getProducts().then(res => {
-    const newDevices = res.filter(device => device.year === 2022);
-
-    setNewModels(newDevices);
-  });
-
-  getProducts().then(res => {
-    const newPrices = res
-      .sort(
-        (device1, device2) =>
-          device2.fullPrice -
-          device2.price -
-          (device1.fullPrice - device1.price),
-      )
-      .slice(0, 20);
-
-    setHotPricesModels(newPrices);
-  });
-
   useEffect(() => {
+    getProducts().then(res => {
+      const newDevices = res.filter(device => device.year === 2022);
+
+      setNewModels(newDevices);
+    });
+
+    getProducts().then(res => {
+      const newPrices = res
+        .sort(
+          (device1, device2) =>
+            device2.fullPrice -
+            device2.price -
+            (device1.fullPrice - device1.price),
+        )
+        .slice(0, 20);
+
+      setHotPricesModels(newPrices);
+    });
     getProducts()
       .then(res => {
         setPhonesAmount(

@@ -1,11 +1,9 @@
 import Banner from '../components/Banner/Banner';
 import { PhonesSlider } from '../components/PhonesSlider/PhonesSlider';
 import Categories from '../components/Categories/Categories';
-import { useProcessedData } from '../utils/useProcessedData';
-import style from '../styles/helpers/container.module.scss';
+import { useProcessedData } from '../hooks/useProcessedData';
 
 import './styles/HomePage.scss';
-import classNames from 'classnames';
 
 export const HomePage = () => {
   const { newModels, hotPricesModels } = useProcessedData();
@@ -14,10 +12,13 @@ export const HomePage = () => {
   const newModelsTitle = 'Brand new models';
 
   return (
-    <div className={classNames('home', style.container)}>
-      <h1 className="home__title">Welcome to Nice Gadgets store!</h1>
-      <div className="home__content-container">
-        <div className="home__banner-container flex items-center justify-center">
+    <div className="home">
+      <div className="home__content-container ">
+        <div className="home__title-container">
+          <h1 className="home__title">Welcome to Nice Gadgets store!</h1>
+        </div>
+
+        <div className="home__banner-container">
           <Banner />
         </div>
 

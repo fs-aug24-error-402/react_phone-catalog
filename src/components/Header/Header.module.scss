@@ -36,12 +36,12 @@
     }
 
     &--fav {
-      background: no-repeat center
-        url('img/icons/svg/icon-favourites.svg');
+      background: no-repeat center url('img/icons/svg/icon-favourites.svg');
     }
 
     &--cart {
-      background: no-repeat center url('public/img/icons/svg/icon-shoping-cart.svg');
+      background: no-repeat center
+        url('public/img/icons/svg/icon-shoping-cart.svg');
     }
 
     &--fav,
