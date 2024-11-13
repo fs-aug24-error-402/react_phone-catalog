@@ -6,6 +6,7 @@ interface Props {
   onClick?: () => void;
   className?: string;
   selected?: boolean;
+  type?: 'button' | 'submit' | 'reset';
 }
 
 export const Button: FC<Props> = ({
@@ -13,9 +14,11 @@ export const Button: FC<Props> = ({
   onClick,
   className,
   selected,
+  type = 'button',
 }) => {
   return (
     <button
+      type={type}
       onClick={onClick}
       className={`${styles.button} ${
         selected
