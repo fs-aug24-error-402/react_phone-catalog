@@ -5,12 +5,12 @@ import { Card } from '../Card';
 import { Product } from '../../types/Product';
 
 import cn from 'classnames';
+import './PhonesSlider.scss';
 
 import 'swiper/css';
 import 'swiper/css/pagination';
 import 'swiper/css/navigation';
 
-import './PhonesSlider.scss';
 import { FreeMode } from 'swiper/modules';
 
 interface Props {
@@ -28,7 +28,6 @@ export const PhonesSlider: React.FC<Props> = ({ title, data }) => {
       <div className="container">
         <div className="top-container">
           <h2 className="title">{title}</h2>
-
           <div className="buttons-container">
             <button
               onClick={() => {
@@ -58,7 +57,12 @@ export const PhonesSlider: React.FC<Props> = ({ title, data }) => {
           }}
           slidesPerView={'auto'}
           spaceBetween={16}
+          speed={1100}
           freeMode={false}
+          onInit={() => {
+            setReachFirst(true);
+            setReachLast(false);
+          }}
           onReachBeginning={() => setReachFirst(true)}
           onReachEnd={() => setReachLast(true)}
           onFromEdge={() => {
