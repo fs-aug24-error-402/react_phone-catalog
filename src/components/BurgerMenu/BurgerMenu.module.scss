@@ -1,14 +1,16 @@
 @use 'src/styles/utils/library' as *;
 
 .burger-menu {
-  position: absolute;
+  position: fixed;
   top: $header-size;
-  bottom: 0;
+  left: 0;
+  height: calc(100vh - $header-size);
+  overflow: hidden;
 
   padding-top: 24px;
 
   background-color: theme('colors.white');
-  z-index: 1;
+  z-index: 2;
 }
 
 .fav-cart {

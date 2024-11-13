@@ -1,0 +1,103 @@
+@import '../../utils/mixins';
+
+.home {
+  display: flex;
+  justify-content: center;
+  flex-direction: column;
+  margin: 32px;
+
+  @include on-mobile {
+    margin: 0;
+  }
+
+  @include on-tablet {
+    margin: 0;
+  }
+}
+
+.home__title-container {
+  display: flex;
+  justify-content: flex-start;
+
+  @include on-desktop {
+    justify-content: center;
+  }
+}
+.home__title {
+  margin-top: 24px;
+  margin-bottom: 56px;
+
+  font-size: 48px;
+  font-size: 48px;
+  font-weight: 800;
+  line-height: 56px;
+  letter-spacing: -0.01em;
+  color: #0f0f11;
+
+  @include on-mobile {
+    margin-inline: 16px;
+    margin-block: 24px;
+  }
+
+  @include on-tablet {
+    margin-inline: 24px;
+    margin-block: 32px;
+  }
+
+  @include on-desktop {
+    width: 1136px;
+  }
+}
+
+.home__content-container {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  gap: 80px;
+
+  @include on-mobile {
+    gap: 56px;
+  }
+
+  @include on-tablet {
+    gap: 64px;
+  }
+}
+
+.home__banner-container {
+  @include on-tablet {
+    margin-inline: 24px;
+  }
+}
+
+.home__slider-container {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.home__categories-container {
+  display: flex;
+  justify-content: center;
+
+  @include on-mobile {
+    margin-inline: 16px;
+    flex-direction: column;
+  }
+
+  @include on-tablet {
+    margin-inline: 24px;
+  }
+}
+
+.home__last-item {
+  margin-bottom: 80px;
+
+  @include on-mobile {
+    margin-bottom: 64px;
+  }
+
+  @include on-tablet {
+    margin-bottom: 64px;
+  }
+}

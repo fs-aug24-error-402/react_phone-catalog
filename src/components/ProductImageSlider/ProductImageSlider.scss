@@ -1,0 +1,116 @@
+@use 'src/styles/utils/library' as *;
+
+.gallery {
+  --columns: 4;
+
+  display: grid;
+  column-gap: 16px;
+  grid-template-columns: repeat(var(--columns), 1fr);
+
+  @include on-tablet {
+    --columns: 7;
+    grid-auto-flow: dense;
+  }
+
+  @include on-desktop {
+    --columns: 12;
+  }
+}
+
+.main {
+  grid-column: 1 / -1;
+  width: 100%;
+  align-content: center;
+  height: 288px;
+  margin-bottom: 16px;
+
+  .swiper-slide {
+    display: flex;
+    justify-content: center;
+    align-items: start;
+
+    img {
+      height: 100%;
+      aspect-ratio: 1 / 1;
+      object-fit: contain;
+      padding: 7px;
+
+      @include on-tablet {
+        width: 100%;
+        height: auto;
+      }
+
+      @include on-desktop {
+        padding: 11px;
+      }
+    }
+  }
+
+  @include on-tablet {
+    grid-column: 2 / -1;
+    height: 100%;
+    margin-bottom: 0;
+  }
+
+  @include on-desktop {
+    grid-column: 3 / -1;
+  }
+}
+
+.thumbs {
+  grid-column: 1 / -1;
+  width: 100%;
+
+  .swiper-slide {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    max-height: 49px;
+    border: 1px solid theme('colors.elements');
+    border-radius: 4px;
+
+    padding: 5px;
+
+    transition: border 0.3s ease;
+
+    @include on-tablet {
+      position: relative;
+      width: 100%;
+      padding-top: 100%;
+    }
+
+    @include on-desktop {
+      border-radius: 8px;
+    }
+
+    img {
+      width: 100%;
+      height: 100%;
+      object-fit: contain;
+      border-radius: 8px;
+
+      @include on-tablet {
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        object-fit: contain;
+        padding: 5px;
+      }
+    }
+  }
+
+  .swiper-slide-thumb-active {
+    border-color: theme('colors.primary');
+  }
+
+  @include on-tablet {
+    grid-column: span 1;
+  }
+
+  @include on-desktop {
+    grid-column: span 2;
+  }
+}

@@ -12,9 +12,9 @@ export const BurgerMenu = () => {
   return (
     <motion.aside
       className={cn(styles['burger-menu'], 'flex flex-col')}
-      initial={{ opacity: 0, width: 0 }}
-      animate={{ opacity: 1, width: '100%' }}
-      exit={{ opacity: 0, width: 0 }}
+      initial={{ opacity: 0, right: '-100%' }}
+      animate={{ opacity: 1, right: 0 }}
+      exit={{ opacity: 0, right: '-100%' }}
       transition={{ duration: 0.5 }}
     >
       <div className={cn(styles['burger-menu__top'], 'flex-1 px-16')}>
@@ -24,7 +24,7 @@ export const BurgerMenu = () => {
       <div className={cn(styles['burger-menu__bottom'], styles['fav-cart'])}>
         <NavLink to={'favourites'} className={getLinkClass}>
           <img
-            src="img/icons/png/Favourites (Heart Like).png"
+            src="img/icons/svg/icon-favourites.svg"
             alt="Link to page with favourites products"
             className={styles['fav-cart__icon']}
           />
@@ -32,7 +32,7 @@ export const BurgerMenu = () => {
 
         <NavLink to={'cart'} className={getLinkClass}>
           <img
-            src="img/icons/png/shopping-bag-(cart).png"
+            src="img/icons/svg/icon-shoping-cart.svg"
             alt="Link to cart page"
             className={styles['fav-cart__icon']}
           />

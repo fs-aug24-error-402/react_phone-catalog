@@ -38,7 +38,7 @@ $header-size: $header-icon-padding * 2;
   @include after-underscore-base;
 
   @include on-tablet {
-    bottom: -130%;
+    bottom: calc(($header-size / 2 - 50%) * -1);
   }
 }
 

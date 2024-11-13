@@ -29,8 +29,9 @@ export const CartItem: React.FC<Props> = ({
 
   return (
     <article
-      className="flex flex-col gap-y-16 p-16 border border-solid border-elements rounded-sm
-    tablet:flex-row tablet:justify-between tablet:gap-24 tablet:p-24"
+      className="flex flex-col gap-y-16 p-16 border border-solid
+      border-elements rounded-sm tablet:flex-row
+      tablet:justify-between tablet:gap-24 tablet:p-24"
     >
       <section className="flex gap-16 items-center">
         <div>
@@ -56,7 +57,8 @@ export const CartItem: React.FC<Props> = ({
           <button
             onClick={handleDecreaseCount}
             className={cn(
-              'h-32 w-32 bg-minus bg-no-repeat bg-center border border-elements rounded-full',
+              'h-32 w-32 bg-minus bg-no-repeat bg-center border',
+              'border-elements rounded-full',
               {
                 'bg-minus-active': itemCount > 1,
                 'hover:border-primary': itemCount > 1,
@@ -66,7 +68,8 @@ export const CartItem: React.FC<Props> = ({
           <span className="h-32 w-32 text-center leading-8">{itemCount}</span>
           <button
             onClick={handleIncreaseCount}
-            className="h-32 w-32 bg-plus bg-no-repeat bg-center border border-elements rounded-full hover:border-primary"
+            className="h-32 w-32 bg-plus bg-no-repeat bg-center border
+            border-elements rounded-full hover:border-primary"
           />
         </div>
 

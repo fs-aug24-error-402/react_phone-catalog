@@ -5,16 +5,11 @@ export const NotFoundPage = () => {
   const navigate = useNavigate();
 
   return (
-    <div className="min-h-screen grid place-items-center">
-      <div className="text-center">
-        <p className="text-accent">404</p>
-
-        <h1 className="mt-8 text-balance text-primary">Page not found</h1>
-
-        <p className="mt-16 text-pretty text-secondary">
-          Sorry, we couldn’t find the page you’re looking for.
-        </p>
-
+    <div
+      className="grid place-items-start justify-center bg-not-found-img
+        bg-center bg-no-repeat w-screen h-screen bg-contain bg-yellow-500"
+    >
+      <div className="text-cente">
         <div className="mt-32 flex items-center justify-center gap-x-32">
           <Button onClick={() => navigate(-1)} className="px-32">
             Go Back

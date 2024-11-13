@@ -1,0 +1,145 @@
+@mixin on-mobile {
+  @media (max-width: 640px) {
+    @content;
+  }
+}
+
+@mixin on-tablet {
+  @media (min-width: 640px) and (max-width: 1200px) {
+    @content;
+  }
+}
+@mixin on-desktop {
+  @media (min-width: 1200px) {
+    @content;
+  }
+}
+
+.container {
+  display: inline-flex;
+  flex-direction: column;
+
+  max-width: 100% !important;
+
+  @include on-tablet {
+    max-width: 100% !important;
+  }
+
+  @include on-desktop {
+    max-width: 1136px !important;
+  }
+  .swiper {
+    display: inline-flex;
+    align-items: flex-start;
+
+    margin: 0 !important;
+
+    @include on-tablet {
+      max-width: 100% !important;
+    }
+  }
+
+  .swiper-wrapper {
+    @include on-mobile {
+      margin-left: 16px;
+    }
+
+    @include on-tablet {
+      margin-left: 24px;
+    }
+  }
+
+  .swiper-slide {
+    width: 272px !important;
+  }
+}
+
+.top-container {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  height: 41px;
+
+  margin-bottom: 24px;
+  max-width: 1136px;
+
+  @include on-mobile {
+    margin-inline: 16px;
+  }
+
+  @include on-tablet {
+    margin-inline: 24px;
+  }
+}
+
+.title {
+  font-size: 32px;
+  font-weight: 800;
+  letter-spacing: -0.01em;
+
+  font-weight: 800;
+  color: #0f0f11;
+}
+
+.buttons-container {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  width: 80px;
+}
+
+.button-prev {
+  box-sizing: border-box;
+
+  height: 32px;
+  width: 32px;
+  border-radius: 48px;
+  background-color: #fff;
+
+  box-shadow: 0px 1px 4px 0px #17203166;
+
+  transition: all 0.3s;
+}
+
+.disabled-left {
+  border: 1px solid #e2e6e9;
+  background: center no-repeat
+    url('public/img/icons/svg/arrow-left-disabled.svg');
+}
+
+.is-active-left {
+  border: 1px solid #b4bdc3;
+  background: center no-repeat url('public/img/icons/svg/icon-arrow-left.svg');
+}
+
+.is-active-left:hover {
+  border: 1px solid #0f0f11;
+}
+
+.button-next {
+  box-sizing: border-box;
+
+  height: 32px;
+  width: 32px;
+
+  border-radius: 48px;
+  background-color: #fff;
+  box-shadow: 0px 1px 4px 0px #17203166;
+
+  transition: all 0.3s;
+}
+
+.disabled-right {
+  border: 1px solid #e2e6e9;
+  background: center no-repeat
+    url('public/img/icons/svg/arrow-right-disabled.svg');
+}
+
+.is-active-right {
+  border: 1px solid #b4bdc3;
+  background: center no-repeat url('public/img/icons/svg/Arrow-Right.svg');
+}
+
+.is-active-right:hover {
+  border: 1px solid #0f0f11;
+}
