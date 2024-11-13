@@ -39,9 +39,10 @@ export const validatePhone = (phone: string): Error => {
 };
 
 export const validateCardNumber = (number: string) => {
+  const cleanedCardNumber = number.replace(/\D/g, '');
   const regex = /^\d{16}$/;
 
-  if (!regex.test(number)) {
+  if (!regex.test(cleanedCardNumber)) {
     return Error.INVALID_CARD_NUMBER;
   }
 

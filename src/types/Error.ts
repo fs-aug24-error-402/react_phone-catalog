@@ -9,4 +9,6 @@ export enum Error {
   INVALID_CARD_NUMBER = 'Invalid card number',
   INVALID_EXPIRY_DATE = 'Invalid expiry date',
   INVALID_CVV = 'Invalid CVV',
+  EMPTY_CITY = 'City should not be empty',
+  EMPTY_WAREHOUSE = 'Waerhouse should not be empty',
 }

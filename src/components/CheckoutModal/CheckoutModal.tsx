@@ -6,19 +6,15 @@ import { Button } from '../Button';
 import { Loader } from '../Loader';
 import { Error } from '../../types/Error';
 import {
-  validateCardNumber,
-  validateCVV,
-  validateFirstName,
-  validateLastName,
-  validatePhone,
-  validateValidityPeriod,
-} from '../../utils/validation';
-import {
   formatCardNumber,
   formatPhoneNumber,
   formatValidityPeriod,
 } from '../../utils/formatters';
 import { NP } from '../../types/NovaPoshta';
+import { FormInput } from '../FormInput/FormInput';
+import { validateForm } from '../../utils/validateForm';
+import { FormDropdown } from '../FormDropdown/FormDropdown';
+import { FormError } from '../FormError/FormError';
 
 interface Props {
   onClose: () => void;
@@ -124,49 +120,22 @@ export const CheckoutModal: React.FC<Props> = ({ onClose, onAccept }) => {
   const handleSubmit = (event: React.FormEvent) => {
     event.preventDefault();
 
-    let validationError = validateFirstName(firstName);
+    const validationError = validateForm(
+      firstName,
+      lastName,
+      phone,
+      selectedCity,
+      selectedWarehouse,
+      paymentMethod,
+      cardNumber,
+      validityPeriod,
+      CVV,
+    );
 
     if (validationError !== Error.DEFAULT) {
       setHasError(validationError);
 
       return;
-    }
-
-    validationError = validateLastName(lastName);
-    if (validationError !== Error.DEFAULT) {
-      setHasError(validationError);
-
-      return;
-    }
-
-    validationError = validatePhone(phone);
-    if (validationError !== Error.DEFAULT) {
-      setHasError(validationError);
-
-      return;
-    }
-
-    if (paymentMethod === 'card') {
-      validationError = validateCardNumber(cardNumber);
-      if (validationError) {
-        setHasError(validationError);
-
-        return;
-      }
-
-      validationError = validateValidityPeriod(validityPeriod);
-      if (validationError) {
-        setHasError(validationError);
-
-        return;
-      }
-
-      validationError = validateCVV(CVV);
-      if (validationError) {
-        setHasError(validationError);
-
-        return;
-      }
     }
 
     setHasError(Error.DEFAULT);
@@ -180,19 +149,9 @@ export const CheckoutModal: React.FC<Props> = ({ onClose, onAccept }) => {
     }, 2000);
   };
 
-  const handleInputChange =
-    (
-      setter: React.Dispatch<React.SetStateAction<string>>,
-      formatter?: (value: string) => string,
-    ) =>
-    (e: React.ChangeEvent<HTMLInputElement>) => {
-      const formattedValue = formatter
-        ? formatter(e.target.value)
-        : e.target.value;
-
-      setter(formattedValue);
-      setHasError(Error.DEFAULT);
-    };
+  const handleCloseError = () => {
+    setHasError(Error.DEFAULT);
+  };
 
   const handleClose = () => {
     setPaymentMethod('cash');
@@ -210,6 +169,9 @@ export const CheckoutModal: React.FC<Props> = ({ onClose, onAccept }) => {
         className="fixed inset-0 bg-gray-500 bg-opacity-75 transition-opacity"
         aria-hidden="true"
       >
+        {hasError !== Error.DEFAULT && (
+          <FormError message={hasError} onClose={handleCloseError} />
+        )}
         <div className="fixed inset-0 z-10 w-screen overflow-y-auto">
           <div
             className={cn('flex justify-center text-center', {
@@ -251,111 +213,67 @@ export const CheckoutModal: React.FC<Props> = ({ onClose, onAccept }) => {
                   <form onSubmit={handleSubmit}>
                     <div className="mb-8">
                       <h4 className="text-h4 mb-4">Personal information</h4>
-                      <div className="grid grid-cols-1 gap-8">
-                        <input
-                          type="text"
+                      <div className="grid grid-cols-1 gap-4">
+                        <FormInput
                           placeholder="Petro"
-                          className="border border-elements p-8 rounded-sm focus:outline-none focus:border-primary"
                           value={firstName}
-                          onChange={handleInputChange(setFirstName)}
+                          setter={setFirstName}
+                          hasError={hasError}
                         />
-                        {hasError === Error.EMPTY_FIRST_NAME && (
-                          <span className="text-red">
-                            {Error.EMPTY_FIRST_NAME}
-                          </span>
-                        )}
-                        {hasError === Error.INVALID_FIRST_NAME && (
-                          <span className="text-red">
-                            {Error.INVALID_FIRST_NAME}
-                          </span>
-                        )}
-
-                        <input
-                          type="text"
+                        <FormInput
                           placeholder="Petrenko"
-                          className="border border-elements p-8 rounded-sm focus:outline-none focus:border-primary"
                           value={lastName}
-                          onChange={handleInputChange(setLastName)}
+                          setter={setLastName}
+                          hasError={hasError}
                         />
-                        {hasError === Error.EMPTY_LAST_NAME && (
-                          <span className="text-red">
-                            {Error.EMPTY_LAST_NAME}
-                          </span>
-                        )}
-                        {hasError === Error.INVALID_LAST_NAME && (
-                          <span className="text-red">
-                            {Error.INVALID_LAST_NAME}
-                          </span>
-                        )}
-
-                        <input
+                        <FormInput
                           type="tel"
                           placeholder="Phone (000) 123-4567"
-                          className="border border-elements p-8 rounded-sm focus:outline-none focus:border-primary"
                           value={phone}
-                          onChange={handleInputChange(
-                            setPhone,
-                            formatPhoneNumber,
-                          )}
+                          setter={setPhone}
+                          formatter={formatPhoneNumber}
+                          hasError={hasError}
                         />
-                        {hasError === Error.EMPTY_PHONE_NUMBER && (
-                          <span className="text-red">
-                            {Error.EMPTY_PHONE_NUMBER}
-                          </span>
-                        )}
-                        {hasError === Error.INVALID_PHONE_NUMBER && (
-                          <span className="text-red">
-                            {Error.INVALID_PHONE_NUMBER}
-                          </span>
-                        )}
                       </div>
                     </div>
 
                     <div className="mb-8">
                       <h4 className="text-h4 mb-4">Delivery Address</h4>
-                      <div className="grid gap-8 relative">
-                        <div>
-                          <input
-                            list="city"
-                            type="text"
+                      <div className="grid gap-4">
+                        <div className="w-full">
+                          <FormInput
                             placeholder="City"
-                            className="border border-elements w-full p-8 rounded-sm focus:outline-none focus:border-primary"
                             value={foundedCity}
-                            onChange={handleInputChange(setFoundedCity)}
-                            onFocus={() => onInput('city')}
+                            setter={setFoundedCity}
+                            onInput={onInput}
+                            inputType="city"
+                            hasError={hasError}
                           />
                           {isInput.city && (
                             <div
                               ref={dropdownRef}
                               className="absolute z-12 w-full origin-top-right rounded-md bg-white shadow-lg transition focus:outline-none"
                             >
-                              <ul className="flex flex-col gap-4">
-                                {cities.slice(0, 5).map(city => (
-                                  <li
-                                    key={city.Ref}
-                                    onClick={() => {
-                                      setSelectedCity(city);
-                                      setFoundedCity(city.Description);
-                                      offInput('city');
-                                    }}
-                                    className="block px-4 py-4 text-sm w-full border-b hover:bg-elements"
-                                  >
-                                    {city.Description}
-                                  </li>
-                                ))}
-                              </ul>
+                              <FormDropdown
+                                items={cities}
+                                onSelect={city => {
+                                  setSelectedCity(city);
+                                  setFoundedCity(city.Description);
+                                }}
+                                onClose={() => offInput('city')}
+                              />
                             </div>
                           )}
                         </div>
 
                         <div>
-                          <input
-                            type="text"
+                          <FormInput
                             placeholder="Warehouse"
-                            className="border border-elements p-8 w-full rounded-sm focus:outline-none focus:border-primary"
                             value={selectedWarehouse}
-                            onChange={handleInputChange(setSelectedWarehouse)}
-                            onFocus={() => onInput('warehouse')}
+                            setter={setSelectedWarehouse}
+                            onInput={onInput}
+                            inputType="warehouse"
+                            hasError={hasError}
                           />
 
                           {isInput.warehouse && (
@@ -363,22 +281,13 @@ export const CheckoutModal: React.FC<Props> = ({ onClose, onAccept }) => {
                               ref={dropdownRef}
                               className="absolute z-11 origin-top-right rounded-md bg-white shadow-lg focus:outline-none"
                             >
-                              <ul className="flex flex-col max-h-72 overflow-y-auto border rounded-sm">
-                                {warehouses.map(warehouse => (
-                                  <li
-                                    key={warehouse.Ref}
-                                    onClick={() => {
-                                      setSelectedWarehouse(
-                                        warehouse.Description,
-                                      );
-                                      offInput('warehouse');
-                                    }}
-                                    className="block px-4 py-4 text-sm w-full border-b hover:bg-elements"
-                                  >
-                                    {warehouse.Description}
-                                  </li>
-                                ))}
-                              </ul>
+                              <FormDropdown
+                                items={warehouses}
+                                onSelect={warehouse => {
+                                  setSelectedWarehouse(warehouse.Description);
+                                }}
+                                onClose={() => offInput('warehouse')}
+                              />
                             </div>
                           )}
                         </div>
@@ -413,55 +322,28 @@ export const CheckoutModal: React.FC<Props> = ({ onClose, onAccept }) => {
                       </div>
 
                       {paymentMethod === 'card' && (
-                        <div className="mt-8">
-                          <input
-                            type="text"
+                        <div className="grid grid-cols-2 gap-4 mt-8">
+                          <FormInput
                             placeholder="Card number"
-                            className="border border-elements p-8 rounded-sm mb-4 w-full focus:outline-none focus:border-primary"
                             value={cardNumber}
-                            onChange={handleInputChange(
-                              setCardNumber,
-                              formatCardNumber,
-                            )}
-                            required
+                            className="col-span-2"
+                            setter={setCardNumber}
+                            formatter={formatCardNumber}
+                            hasError={hasError}
                           />
-                          {hasError === Error.INVALID_CARD_NUMBER && (
-                            <span className="text-red">
-                              {Error.INVALID_CARD_NUMBER}
-                            </span>
-                          )}
-                          <div className="flex gap-8">
-                            <input
-                              type="text"
-                              placeholder="MM/YY"
-                              className="border border-elements p-8 rounded-sm w-full focus:outline-none focus:border-primary"
-                              value={validityPeriod}
-                              onChange={handleInputChange(
-                                setValidityPeriod,
-                                formatValidityPeriod,
-                              )}
-                              required
-                            />
-                            {hasError === Error.INVALID_EXPIRY_DATE && (
-                              <span className="text-red">
-                                {Error.INVALID_EXPIRY_DATE}
-                              </span>
-                            )}
-                            <input
-                              type="text"
-                              placeholder="CVV"
-                              className="border border-elements p-8 rounded-sm w-full focus:outline-none focus:border-primary"
-                              value={CVV}
-                              maxLength={3}
-                              onChange={handleInputChange(setCVV)}
-                              required
-                            />
-                            {hasError === Error.INVALID_CVV && (
-                              <span className="text-red">
-                                {Error.INVALID_CVV}
-                              </span>
-                            )}
-                          </div>
+                          <FormInput
+                            placeholder="MM/YY"
+                            value={validityPeriod}
+                            setter={setValidityPeriod}
+                            formatter={formatValidityPeriod}
+                            hasError={hasError}
+                          />
+                          <FormInput
+                            placeholder="CVV"
+                            value={CVV}
+                            setter={setCVV}
+                            hasError={hasError}
+                          />
                         </div>
                       )}
                     </div>
