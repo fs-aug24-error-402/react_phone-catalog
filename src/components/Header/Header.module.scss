@@ -28,20 +28,20 @@
     transition: background 0.2s ease-in-out;
 
     &--open {
-      background: no-repeat center url('img/icons/svg/icon-burger-menu.svg');
+      background: no-repeat center url('/img/icons/svg/icon-burger-menu.svg');
     }
 
     &--close {
-      background: no-repeat center url('img/icons/svg/icon-close-black.svg');
+      background: no-repeat center url('/img/icons/svg/icon-close-black.svg');
     }
 
     &--fav {
-      background: no-repeat center url('img/icons/svg/icon-favourites.svg');
+      background: no-repeat center url('/img/icons/svg/icon-favourites.svg');
     }
 
     &--cart {
       background: no-repeat center
-        url('public/img/icons/svg/icon-shoping-cart.svg');
+        url('/img/icons/svg/icon-shoping-cart.svg');
     }
 
     &--fav,
