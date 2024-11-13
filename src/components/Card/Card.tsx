@@ -1,6 +1,7 @@
 import { Product } from '../../types/Product';
 import { AddToCartButton } from '../AddToCartButton';
 import { AddToFavouritesButton } from '../AddToFavouritesButton';
+import { Link } from 'react-router-dom';
 import './Card.scss';
 
 interface Props {
