@@ -1,6 +1,6 @@
-import { getProducts } from '..//api.ts';
+import { getProducts } from '../api.ts';
 import { useEffect, useState } from 'react';
-import { Product } from '../types/Product';
+import { Product } from '../types/Product.ts';
 
 export function useProcessedData() {
   const [phonesAmount, setPhonesAmount] = useState(0);
@@ -15,21 +15,22 @@ export function useProcessedData() {
       const newDevices = res.filter(device => device.year === 2022);
 
       setNewModels(newDevices);
+    });
 
-      getProducts().then(res => {
-        const newPrices = res
-          .sort(
-            (device1, device2) =>
-              device2.fullPrice -
-              device2.price -
-              (device1.fullPrice - device1.price),
-          )
-          .slice(0, 20);
+    getProducts().then(res => {
+      const newPrices = res
+        .sort(
+          (device1, device2) =>
+            device2.fullPrice -
+            device2.price -
+            (device1.fullPrice - device1.price),
+        )
+        .slice(0, 20);
 
-        setHotPricesModels(newPrices);
-      });
-
-      getProducts().then(res => {
+      setHotPricesModels(newPrices);
+    });
+    getProducts()
+      .then(res => {
         setPhonesAmount(
           res.filter(device => device.category === 'phones').length,
         );
@@ -39,8 +40,10 @@ export function useProcessedData() {
         setAccessoriesAmount(
           res.filter(device => device.category === 'accessories').length,
         );
+      })
+      .catch(error => {
+        console.error('Error fetching products:', error);
       });
-    });
   }, []);
 
   return {

@@ -1,4 +1,3 @@
-/* eslint-disable max-len */
 import { Link, useLocation } from 'react-router-dom';
 import cn from 'classnames';
 import { FC } from 'react';
