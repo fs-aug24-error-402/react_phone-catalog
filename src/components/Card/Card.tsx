@@ -1,7 +1,6 @@
-import { useUpdateReduxValuesFromLocalStorage } from '../../hooks/useUpdateReduxValuesFromLocalStorage';
-import { Link } from 'react-router-dom';
 import { Product } from '../../types/Product';
-import { Button } from '../Button';
+import { AddToCartButton } from '../AddToCartButton';
+import { AddToFavouritesButton } from '../AddToFavouritesButton';
 import './Card.scss';
 
 interface Props {
@@ -9,8 +8,6 @@ interface Props {
 }
 
 export const Card: React.FC<Props> = ({ product }) => {
-  const { toggleProduct } = useUpdateReduxValuesFromLocalStorage();
-
   return (
     <article
       className="card tablet:h-508 mobile:h-440 mobile:w-[288px]
@@ -54,23 +51,9 @@ export const Card: React.FC<Props> = ({ product }) => {
       </div>
 
       <div className="card__buttons-container">
-        <Button
-          onClick={() => toggleProduct('cart', product)}
-          className="w-[100%] font-bold"
-        >
-          Add to cart
-        </Button>
+        <AddToCartButton product={product} className="w-full" />
 
-        <button
-          onClick={() => toggleProduct('favorites', product)}
-          className="card__buttons-favorite"
-        >
-          <img
-            src="img/icons/svg/icon-favourites.svg"
-            className="card__buttons-heart-img"
-            alt="Add to favorite"
-          />
-        </button>
+        <AddToFavouritesButton product={product} className="h-40" />
       </div>
     </article>
   );

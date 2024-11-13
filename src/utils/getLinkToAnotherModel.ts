@@ -3,12 +3,10 @@ export const getLinkToAnotherModel = (
   newValue: string,
   id: string,
 ) => {
-  const newId = id
-    .split('-')
-    .map(part =>
-      part === prevValue.toLowerCase() ? newValue.toLowerCase() : part,
-    )
-    .join('-');
+  const normalizedPrevValue = prevValue.toLowerCase().replaceAll(' ', '-');
+  const normalizedNewValue = newValue.toLowerCase().replaceAll(' ', '-');
+
+  const newId = id.replace(normalizedPrevValue, normalizedNewValue);
 
   return `../${newId}`;
 };
