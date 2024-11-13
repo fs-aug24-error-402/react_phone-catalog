@@ -14,11 +14,17 @@ export const FavouritesPage = () => {
 
       <h1 className="mb-8">Favorites</h1>
 
-      <div className="mb-40">
-        <span className="text-secondary">{favorites.length} models</span>
-      </div>
+      {favorites.length ? (
+        <>
+          <div className="mb-40">
+            <span className="text-secondary">{favorites.length} models</span>
+          </div>
 
-      <Catalog items={favorites} />
+          <Catalog items={favorites} />
+        </>
+      ) : (
+        <h2>Favorites is empty</h2>
+      )}
     </div>
   );
 };

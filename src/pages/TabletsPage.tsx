@@ -11,6 +11,7 @@ import { PaginatedItems } from '../components/Pagination/Pagiation';
 import { Breadcrumbs } from '../components/Breadcrumbs/Breadcrumbs.tsx';
 
 export const TabletsPage = () => {
+  const [isLoading, setIsLoading] = useState(false);
   const [tablets, setTablets] = useState<Product[]>([]);
   const [searchParams] = useSearchParams();
 
@@ -20,29 +21,27 @@ export const TabletsPage = () => {
   const filteredItems = getFilteredDevices(tablets, query, sortBy);
 
   useEffect(() => {
-    getProducts().then(res =>
-      setTablets(res.filter(device => device.category === 'tablets')),
-    );
+    setIsLoading(true);
+
+    getProducts()
+      .then(res =>
+        setTablets(res.filter(device => device.category === 'phones')),
+      )
+      .finally(() => setIsLoading(false));
   }, []);
 
   return (
-    !!filteredItems.length && (
-      <div className={style.container}>
-        <Breadcrumbs className="tablet:mb-40 mobile:mb-24" />
+    <div className={style.container}>
+      <Breadcrumbs className="tablet:mb-40 mobile:mb-24" />
 
-        <h1 className="mb-8">Tablets</h1>
+      <h1 className="mb-8">Tablets</h1>
 
-        <span className="text-secondary">{filteredItems.length} models</span>
+      <span className="text-secondary">{filteredItems.length} models</span>
 
-        <Filters />
+      <Filters />
 
-        {!!filteredItems.length && (
-          <>
-            <Catalog items={filteredItems} />
-            <PaginatedItems items={filteredItems} />
-          </>
-        )}
-      </div>
-    )
+      <Catalog items={filteredItems} isLoading={isLoading} />
+      <PaginatedItems items={filteredItems} />
+    </div>
   );
 };
