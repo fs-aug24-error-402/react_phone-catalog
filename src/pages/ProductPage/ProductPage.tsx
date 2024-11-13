@@ -1,5 +1,5 @@
 import { useParams } from 'react-router-dom';
-import { useEffect, useMemo, useRef, useState } from 'react';
+import { useEffect, useMemo, useState } from 'react';
 import Skeleton from 'react-loading-skeleton';
 import cn from 'classnames';
 
@@ -7,8 +7,8 @@ import styles from './ProductPage.module.scss';
 import helper from '/src/styles/helpers/container.module.scss';
 import 'react-loading-skeleton/dist/skeleton.css';
 
-import { MobileDevice } from '../../types';
-import { getPhoneById } from '../../api';
+import { Accessory, MobileDevice, Product } from '../../types';
+import { getAccessoryById, getPhoneById, getTabletById } from '../../api';
 import { getTechSpecs } from '../../utils';
 import { useProducts } from '../../app/hooks';
 
@@ -16,18 +16,18 @@ import { ProductNotFound } from '../ProductNotFound';
 import { Breadcrumbs } from '../../components/Breadcrumbs';
 import { BackNavLink } from '../../components/BackNavLink';
 import { TechSpecsTable } from '../../components/TechSpecsTable';
-import { Button } from '../../components/Button';
 import { ProductImageSlider } from '../../components/ProductImageSlider';
 import { ColorSelector } from '../../components/ColorSelector';
 import { CapacitySelector } from '../../components/CapacitySelector';
+import { AddToCartButton } from '../../components/AddToCartButton';
+import { AddToFavouritesButton } from '../../components/AddToFavouritesButton';
 
 export const ProductPage = () => {
-  const { phoneId } = useParams();
+  const { phoneId, tabletId, accessoryId } = useParams();
   const { products } = useProducts();
-  const isInFavourites = false;
-  const productId = useRef(0);
 
-  const [device, setDevice] = useState<MobileDevice | null>(null);
+  const [product, setProduct] = useState<Product | null>(null);
+  const [device, setDevice] = useState<MobileDevice | Accessory | null>(null);
   const [hasError, setHasError] = useState(false);
 
   useEffect(() => {
@@ -35,17 +35,27 @@ export const ProductPage = () => {
     setHasError(false);
 
     if (phoneId) {
-      productId.current =
-        products.find(({ itemId }) => itemId === phoneId)?.id || 0;
+      setProduct(products.find(({ itemId }) => itemId === phoneId) || null);
 
       getPhoneById(phoneId)
         .then(setDevice)
         .catch(() => setHasError(true));
+    } else if (tabletId) {
+      setProduct(products.find(({ itemId }) => itemId === tabletId) || null);
+
+      getTabletById(tabletId)
+        .then(setDevice)
+        .catch(() => setHasError(true));
+    } else if (accessoryId) {
+      setProduct(products.find(({ itemId }) => itemId === accessoryId) || null);
+
+      getAccessoryById(accessoryId)
+        .then(setDevice)
+        .catch(() => setHasError(true));
     } else {
-      //Temp solution
       setHasError(true);
     }
-  }, [phoneId, products]);
+  }, [phoneId, tabletId, accessoryId, products]);
 
   const techSpech = useMemo(
     () => (device ? getTechSpecs(device) : []),
@@ -54,7 +64,7 @@ export const ProductPage = () => {
   const techSpechPart = useMemo(() => techSpech.slice(0, 4), [techSpech]);
 
   //temp loader
-  if (!device && hasError) {
+  if (hasError) {
     return <ProductNotFound />;
   }
 
@@ -81,7 +91,7 @@ export const ProductPage = () => {
 
             <div className="relative desktop:static col-span-full tablet:col-span-5 desktop:col-start-14 desktop:col-span-7">
               <span className="text-small text-secondary absolute top-0 right-0">
-                {device ? `ID: ${productId.current}` : <Skeleton width={50} />}
+                {product ? `ID: ${product.id}` : <Skeleton width={50} />}
               </span>
 
               {device ? (
@@ -124,23 +134,14 @@ export const ProductPage = () => {
                   <Skeleton />
                 )}
 
-                {device ? (
+                {device && product ? (
                   <div className="flex gap-8">
-                    <Button className="flex-1">Add to cart</Button>
+                    <AddToCartButton
+                      product={product}
+                      className="flex-1 h-48"
+                    />
 
-                    <button
-                      onClick={() => {}}
-                      className="rounded-lg h-48 aspect-square bg-white border border-icons flex items-center justify-center hover:border-primary transition-border duration-300 ease-in-out"
-                    >
-                      <img
-                        src={
-                          isInFavourites
-                            ? 'img/icons/svg/icon-favourites-filled.svg'
-                            : 'img/icons/svg/icon-favourites.svg'
-                        }
-                        alt="Icon for add to favourites button"
-                      />
-                    </button>
+                    <AddToFavouritesButton product={product} className="h-48" />
                   </div>
                 ) : (
                   <Skeleton height={48} width="100%" />
