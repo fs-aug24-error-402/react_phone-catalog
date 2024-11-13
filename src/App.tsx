@@ -20,7 +20,7 @@ function App() {
 
   const handleToggleAside = () => setIsAsideVisible(prev => !prev);
 
-  useInactivityTimer(10000, () => {
+  useInactivityTimer(20000, () => {
     if (!hasModalBeenShown) {
       setShowModal(true);
       setHasModalBeenShown(true);

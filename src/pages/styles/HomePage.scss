@@ -1,20 +1,4 @@
-@mixin on-mobile {
-  @media (max-width: 640px) {
-    @content;
-  }
-}
-
-@mixin on-tablet {
-  @media (min-width: 640px) and (max-width: 1200px) {
-    @content;
-  }
-}
-
-@mixin on-desktop {
-  @media (min-width: 1200px) {
-    @content;
-  }
-}
+@import '../../utils/mixins';
 
 .home {
   display: flex;

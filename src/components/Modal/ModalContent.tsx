@@ -67,7 +67,7 @@ export const ModalContent: React.FC<Props> = ({ onClose }) => {
         </a>
         <a
           className="p-2 bg-gray-200"
-          href="https://www.youtube.com/watch?v=dQw4w9WgXcQ"
+          href="https://www.youtube.com/watch?v=eo_ShBjsaD8"
           target="_blank"
           rel="noopener noreferrer"
         >

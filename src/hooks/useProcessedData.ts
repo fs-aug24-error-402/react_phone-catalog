@@ -1,5 +1,5 @@
 import { getProducts } from '../api.ts';
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import { Product } from '../types/Product.ts';
 
 export function useProcessedData() {
@@ -31,15 +31,23 @@ export function useProcessedData() {
     setHotPricesModels(newPrices);
   });
 
-  getProducts().then(res => {
-    setPhonesAmount(res.filter(device => device.category === 'phones').length);
-    setTabletsAmount(
-      res.filter(device => device.category === 'tablets').length,
-    );
-    setAccessoriesAmount(
-      res.filter(device => device.category === 'accessories').length,
-    );
-  });
+  useEffect(() => {
+    getProducts()
+      .then(res => {
+        setPhonesAmount(
+          res.filter(device => device.category === 'phones').length,
+        );
+        setTabletsAmount(
+          res.filter(device => device.category === 'tablets').length,
+        );
+        setAccessoriesAmount(
+          res.filter(device => device.category === 'accessories').length,
+        );
+      })
+      .catch(error => {
+        console.error('Error fetching products:', error);
+      });
+  }, []);
 
   return {
     phonesAmount,

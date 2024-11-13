@@ -15,7 +15,7 @@ export const HomePage = () => {
           <h1 className="home__title">Welcome to Nice Gadgets store!</h1>
         </div>
 
-        <div className="home__banner-container flex items-center justify-center">
+        <div className="home__banner-container">
           <Banner />
         </div>
 
