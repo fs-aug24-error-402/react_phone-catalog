@@ -27,7 +27,8 @@ export const PhonesSlider: React.FC<Props> = ({ title, data }) => {
     <>
       <div className="container">
         <div className="top-container">
-          <h2 className="title">{title}</h2>
+          <h2 className="slider-title">{title}</h2>
+
           <div className="buttons-container">
             <button
               onClick={() => {

@@ -72,12 +72,11 @@
   }
 }
 
-.title {
+.slider-title {
   font-size: 32px;
   font-weight: 800;
   letter-spacing: -0.01em;
 
-  font-weight: 800;
   color: #0f0f11;
 }
 
@@ -137,7 +136,7 @@
 
 .is-active-right {
   border: 1px solid #b4bdc3;
-  background: center no-repeat url('public/img/icons/svg/Arrow-Right.svg');
+  background: center no-repeat url('public/img/icons/svg/icon-arrow-right.svg');
 }
 
 .is-active-right:hover {

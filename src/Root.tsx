@@ -11,6 +11,8 @@ import { CartPage } from './pages/CartPage';
 import { ProductPage } from './pages/ProductPage';
 import { Provider } from 'react-redux';
 import { store } from './app/store';
+import { Contacts } from './pages/Contacts';
+import { Rights } from './pages/Rights';
 
 export const Root = () => {
   return (
@@ -37,6 +39,14 @@ export const Root = () => {
 
             <Route path="favourites" element={<FavouritesPage />} />
             <Route path="cart" element={<CartPage />} />
+
+            <Route path="contacts">
+              <Route index element={<Contacts />} />
+            </Route>
+
+            <Route path="rights">
+              <Route index element={<Rights />} />
+            </Route>
           </Route>
 
           <Route path="*" element={<NotFoundPage />} />
