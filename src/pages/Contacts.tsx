@@ -182,11 +182,11 @@ export const Contacts = () => {
           </form>
         </div>
         <iframe
-          src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d2540.755483498283!2d30.537652059780243!3d50.44565500445737!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x40d4cfadcd3ea051%3A0xa4acb6468ab721e9!2z0KLQtdGA0LzQtdC90L7QstGB0LrQuNC5INCk0L7QvdGC0LDQvSDQsiDQnNCw0YDQuNC40L3RgdC60L7QvCDQn9Cw0YDQutC1!5e0!3m2!1sru!2sua!4v1731543487704!5m2!1sru!2sua"
-          width="600"
-          height="450"
+          src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d21275.773615728995!2d24.68417719567871!3d48.19752957700534!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x4736e5ce63ef1353%3A0x466c1ca1f0a577e6!2z0JrRgNC40LLQvtC_0L7Qu9GM0LUsINCY0LLQsNC90L4t0KTRgNCw0L3QutC-0LLRgdC60LDRjyDQvtCx0LvQsNGB0YLRjCwgNzg3MDY!5e0!3m2!1sru!2sua!4v1731574041265!5m2!1sru!2sua"
+          className="w-full h-440 mt-64"
+          allowFullScreen={true}
           loading="lazy"
-          className="w-full rounded-sm mt-64"
+          referrerPolicy="no-referrer-when-downgrade"
         ></iframe>
       </div>
     </div>
