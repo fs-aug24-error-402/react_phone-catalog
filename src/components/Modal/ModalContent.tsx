@@ -32,7 +32,7 @@ export const ModalContent: React.FC<Props> = ({ onClose }) => {
   };
 
   return (
-    <div className="relative p-16 bg-elements rounded-xl  flex flex-col gap-12 items-center desktop:p-24 mobile:p-16">
+    <div className="relative gap-8 p-16 bg-elements rounded-xl flex flex-col desktop:gap-12 items-center desktop:p-32 mobile:p-16 mobile:gap-8">
       <h2 className="text-center">
         Still looking for an option?
         <br /> We have a deal for you!

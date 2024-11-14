@@ -12,6 +12,7 @@ import { ProductPage } from './pages/ProductPage';
 import { Provider } from 'react-redux';
 import { store } from './app/store';
 import { Contacts } from './pages/Contacts';
+import { Rights } from './pages/Rights';
 
 export const Root = () => {
   return (
@@ -41,6 +42,10 @@ export const Root = () => {
 
             <Route path="contacts">
               <Route index element={<Contacts />} />
+            </Route>
+
+            <Route path="rights">
+              <Route index element={<Rights />} />
             </Route>
           </Route>
 
