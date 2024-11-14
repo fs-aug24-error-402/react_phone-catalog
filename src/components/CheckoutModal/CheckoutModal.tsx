@@ -343,6 +343,7 @@ export const CheckoutModal: React.FC<Props> = ({ onClose, onAccept }) => {
                             value={CVV}
                             setter={setCVV}
                             hasError={hasError}
+                            maxLength={3}
                           />
                         </div>
                       )}

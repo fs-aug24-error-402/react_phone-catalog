@@ -12,6 +12,7 @@ interface Props {
   formatter?: (value: string) => string;
   setter: React.Dispatch<React.SetStateAction<string>>;
   onInput?: (type: 'city' | 'warehouse') => void;
+  maxLength?: number;
 }
 
 export const FormInput: React.FC<Props> = ({
@@ -24,6 +25,7 @@ export const FormInput: React.FC<Props> = ({
   setter,
   onInput,
   inputType = 'city',
+  maxLength = 50,
 }) => {
   const handleInputChange =
     (
@@ -44,11 +46,13 @@ export const FormInput: React.FC<Props> = ({
       placeholder={placeholder}
       className={cn(
         `w-full border border-elements p-8 rounded-sm focus:outline-none focus:border-primary ${className}`,
+        'transition-colors duration-300',
         { 'border-red': hasError !== Error.DEFAULT },
       )}
       value={value}
       onChange={handleInputChange(setter, formatter)}
       onFocus={() => onInput?.(inputType)}
+      maxLength={maxLength}
     />
   );
 };
