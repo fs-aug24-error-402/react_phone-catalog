@@ -239,7 +239,7 @@ export const CheckoutModal: React.FC<Props> = ({ onClose, onAccept }) => {
 
                     <div className="mb-8">
                       <h4 className="text-h4 mb-4">Delivery Address</h4>
-                      <div className="grid gap-4">
+                      <div className="relative grid gap-4">
                         <div className="w-full">
                           <FormInput
                             placeholder="City"
