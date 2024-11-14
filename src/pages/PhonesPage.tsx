@@ -11,7 +11,7 @@ import { Filters } from '../components/Filters/Filters';
 import { Breadcrumbs } from '../components/Breadcrumbs/Breadcrumbs.tsx';
 
 export const PhonesPage = () => {
-  const [isLoading, setIsLoading] = useState(false);
+  const [isLoading, setIsLoading] = useState(true);
   const [phones, setPhones] = useState<Product[]>([]);
   const [searchParams] = useSearchParams();
 

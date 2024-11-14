@@ -11,7 +11,7 @@ import { PaginatedItems } from '../components/Pagination/Pagiation';
 import { Breadcrumbs } from '../components/Breadcrumbs/Breadcrumbs.tsx';
 
 export const AccessoriesPage = () => {
-  const [isLoading, setIsLoading] = useState(false);
+  const [isLoading, setIsLoading] = useState(true);
   const [accessories, setAccessories] = useState<Product[]>([]);
   const [searchParams] = useSearchParams();
 
