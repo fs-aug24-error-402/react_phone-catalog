@@ -1,5 +1,9 @@
 export enum Error {
   DEFAULT = '',
+  EMPTY_NAME = 'Name is required',
+  SHORT_NAME = 'Name must be at least 2 characters',
+  INVALID_EMAIL = 'Invalid email format',
+  EMPTY_MESSAGE = 'Message cannot be empty',
   EMPTY_FIRST_NAME = 'First name should not be empty',
   INVALID_FIRST_NAME = 'Please enter a valid First name',
   EMPTY_LAST_NAME = 'Last name should not be empty',

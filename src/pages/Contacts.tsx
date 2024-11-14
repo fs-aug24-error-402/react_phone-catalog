@@ -1,13 +1,68 @@
+import React, { useState } from 'react';
 import { Breadcrumbs } from '../components/Breadcrumbs';
 import { Button } from '../components/Button';
 import style from '../styles/helpers/container.module.scss';
 import './styles/contacts.scss';
+import { validateContactForm } from '../utils/validateContactForm';
+import { ContactFormFields } from '../types/ContactFormFields';
+import { Loader } from '../components/Loader';
 
 export const Contacts = () => {
+  const startData = {
+    [ContactFormFields.NAME]: '',
+    [ContactFormFields.EMAIL]: '',
+    [ContactFormFields.PHONE]: '',
+    [ContactFormFields.MESSAGE]: '',
+  };
+  const [buttonText, setButtonText] = useState('Send');
+  const [isLoading, setIsLoading] = useState(false);
+
+  const [formData, setFormData] = useState(startData);
+  const [formErrors, setFormErrors] = useState(startData);
+
+  const handleChange = (
+    e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>,
+  ) => {
+    const { id, value } = e.target;
+
+    setButtonText('Send');
+
+    setFormData(prevData => ({
+      ...prevData,
+      [id]: value,
+    }));
+
+    const error = validateContactForm(id as ContactFormFields, value);
+
+    setFormErrors(prevErrors => ({
+      ...prevErrors,
+      [id]: error,
+    }));
+  };
+
+  const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
+    e.preventDefault();
+
+    const formValid =
+      Object.values(formErrors).every(error => error === '') &&
+      Object.values(formData).every(value => value.trim() !== '');
+
+    if (!formValid) {
+      setButtonText('Oops! Something Is Wrong');
+
+      return;
+    }
+
+    setIsLoading(true);
+    setTimeout(() => setIsLoading(false), 800);
+    setTimeout(() => setFormData(startData), 900);
+    setFormErrors(startData);
+    setButtonText('Message Sent');
+  };
+
   return (
     <div className={style.container}>
       <Breadcrumbs className="my-24" />
-
       <div className="flex justify-center flex-col gap-8">
         <h1 className="text-4xl font-bold">Contacts</h1>
         <p className="p-text tracking-wide">
@@ -55,28 +110,24 @@ export const Contacts = () => {
               <h2 className="text-xl font-semibold mb-8">Phone Support</h2>
               <div className="flex flex-col gap-8">
                 <p>
-                  <strong>Hours</strong>: 9:00 AM – 6:00 PM (EET), Monday –
-                  Friday
+                  <strong>Hours</strong>: 9:00 – 18:00, Monday – Friday
                 </p>
                 <p>
                   <strong>Toll-Free</strong>:
                   <a href="tel:+380800500123" className="hover:underline ml-1">
-                    {' '}
-                    +38 (0800) 500-123
+                    {' +38 (0800) 500-123'}
                   </a>
                 </p>
                 <p>
                   <strong>Call-Center</strong>:
                   <a href="tel:+380800500647" className="hover:underline ml-1">
-                    {' '}
-                    +38 (0800) 500-647
+                    {' +38 (0800) 500-647'}
                   </a>
                 </p>
                 <p>
                   <strong>Main Office</strong>:
                   <a href="tel:+380800456346" className="hover:underline ml-1">
-                    {' '}
-                    +38 (0800) 456-346
+                    {' +38 (0800) 456-346'}
                   </a>
                 </p>
               </div>
@@ -93,8 +144,7 @@ export const Contacts = () => {
                     rel="noopener noreferrer"
                     className="hover:underline ml-1"
                   >
-                    {' '}
-                    24 Khreshchatyk St, Kyiv, Ukraine
+                    {' 24 Khreshchatyk St, Kyiv'}
                   </a>
                 </p>
                 <p>
@@ -105,8 +155,7 @@ export const Contacts = () => {
                     rel="noopener noreferrer"
                     className="hover:underline ml-1"
                   >
-                    {' '}
-                    12 Rynok Square, Lviv, Ukraine
+                    {' 12 Rynok Square, Lviv'}
                   </a>
                 </p>
                 <p>
@@ -117,15 +166,16 @@ export const Contacts = () => {
                     rel="noopener noreferrer"
                     className="hover:underline ml-1"
                   >
-                    {' '}
-                    35 Deribasivska St, Odessa, Ukraine
+                    {' 35 Deribasivska St, Odessa'}
                   </a>
                 </p>
               </div>
             </div>
           </div>
-
-          <form className="mt-13 flex flex-col gap-24 w-full lg:w-1/2">
+          <form
+            className="mt-13 flex flex-col gap-24 w-full lg:w-1/2"
+            onSubmit={handleSubmit}
+          >
             <label
               className="font-semibold uppercase label-text"
               htmlFor="name"
@@ -133,11 +183,15 @@ export const Contacts = () => {
               Name
             </label>
             <input
-              id="name"
+              id={ContactFormFields.NAME}
               type="text"
-              // placeholder="Name"
-              className="border p-2 rounded py-16 px-16 transition-colors duration-300 hover:border-black"
+              value={formData[ContactFormFields.NAME]}
+              onChange={handleChange}
+              className={`border p-2 rounded py-16 px-16 transition-colors duration-300 hover:border-black ${formErrors[ContactFormFields.NAME] ? 'border-red' : ''}`}
             />
+            {formErrors[ContactFormFields.NAME] && (
+              <p className="text-red">{formErrors[ContactFormFields.NAME]}</p>
+            )}
 
             <label
               className="font-semibold uppercase label-text"
@@ -146,11 +200,15 @@ export const Contacts = () => {
               Email
             </label>
             <input
-              id="email"
+              id={ContactFormFields.EMAIL}
               type="email"
-              // placeholder="Email"
-              className="border p-2 rounded py-16 px-16 transition-colors duration-300 hover:border-black"
+              value={formData[ContactFormFields.EMAIL]}
+              onChange={handleChange}
+              className={`border p-2 rounded py-16 px-16 transition-colors duration-300 hover:border-black ${formErrors[ContactFormFields.EMAIL] ? 'border-red' : ''}`}
             />
+            {formErrors[ContactFormFields.EMAIL] && (
+              <p className="text-red">{formErrors[ContactFormFields.EMAIL]}</p>
+            )}
 
             <label
               className="font-semibold uppercase label-text"
@@ -159,11 +217,15 @@ export const Contacts = () => {
               Phone Number
             </label>
             <input
-              id="phone"
+              id={ContactFormFields.PHONE}
               type="text"
-              // placeholder="Phone Number"
-              className="border p-2 rounded py-16 px-16 transition-colors duration-300 hover:border-black"
+              value={formData[ContactFormFields.PHONE]}
+              onChange={handleChange}
+              className={`border p-2 rounded py-16 px-16 transition-colors duration-300 hover:border-black ${formErrors[ContactFormFields.PHONE] ? 'border-red' : ''}`}
             />
+            {formErrors[ContactFormFields.PHONE] && (
+              <p className="text-red">{formErrors[ContactFormFields.PHONE]}</p>
+            )}
 
             <label
               className="font-semibold uppercase label-text"
@@ -172,23 +234,33 @@ export const Contacts = () => {
               Message
             </label>
             <textarea
-              id="message"
-              // placeholder="Message"
-              className="mb-8 p-16  h-176 border rounded transition-colors duration-300 ease-in-out hover:border-black"
-              required
+              id={ContactFormFields.MESSAGE}
+              value={formData[ContactFormFields.MESSAGE]}
+              onChange={handleChange}
+              className={`mb-8 p-16 h-176 border rounded transition-colors duration-300 hover:border-black ${formErrors[ContactFormFields.MESSAGE] ? 'border-red-500' : ''}`}
             ></textarea>
+            {formErrors[ContactFormFields.MESSAGE] && (
+              <p className="text-red">
+                {formErrors[ContactFormFields.MESSAGE]}
+              </p>
+            )}
 
-            <Button>Send</Button>
+            {isLoading ? (
+              <Loader />
+            ) : (
+              <Button type="submit">{buttonText}</Button>
+            )}
           </form>
         </div>
-        <iframe
-          src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d21275.773615728995!2d24.68417719567871!3d48.19752957700534!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x4736e5ce63ef1353%3A0x466c1ca1f0a577e6!2z0JrRgNC40LLQvtC_0L7Qu9GM0LUsINCY0LLQsNC90L4t0KTRgNCw0L3QutC-0LLRgdC60LDRjyDQvtCx0LvQsNGB0YLRjCwgNzg3MDY!5e0!3m2!1sru!2sua!4v1731574041265!5m2!1sru!2sua"
-          className="w-full h-440 mt-64"
-          allowFullScreen={true}
-          loading="lazy"
-          referrerPolicy="no-referrer-when-downgrade"
-        ></iframe>
       </div>
+      <h2 className="mt-64"> We Are Located Here: </h2>
+      <iframe
+        src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d21273.030288152662!2d24.675336474575857!3d48.204135262418134!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x4736e5ce63ef1353%3A0x466c1ca1f0a577e6!2z0JrRgNC40LLQvtC_0L7Qu9GM0LUsINCY0LLQsNC90L4t0KTRgNCw0L3QutC-0LLRgdC60LDRjyDQvtCx0LvQsNGB0YLRjCwgNzg3MDY!5e0!3m2!1sru!2sua!4v1731593176895!5m2!1sru!2sua"
+        className="w-full rounded-sm h-440 mt-24"
+        allowFullScreen={true}
+        loading="lazy"
+        referrerPolicy="no-referrer-when-downgrade"
+      ></iframe>
     </div>
   );
 };
