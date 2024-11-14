@@ -27,13 +27,13 @@ export const Footer = () => {
         </li>
 
         <li className="transition-colors duration-300 hover:text-primary">
-          <Link to="contacts" className="" target="_blank">
+          <Link to="contacts" className="" onClick={handleScrollToTop}>
             Contacts
           </Link>
         </li>
 
         <li className="transition-colors duration-300 hover:text-primary">
-          <Link to="#" className="" target="_blank">
+          <Link to="rights" className="" onClick={handleScrollToTop}>
             Rights
           </Link>
         </li>
