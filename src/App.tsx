@@ -12,7 +12,7 @@ import { useWindowWidth } from './app/hooks';
 
 function App() {
   const [isAsideVisible, setIsAsideVisible] = useState(false);
-  const [showModal, setShowModal] = useState(false);
+  const [showModal, setShowModal] = useState(true);
   const [hasModalBeenShown, setHasModalBeenShown] = useState(false);
 
   const { isMobile } = useWindowWidth();

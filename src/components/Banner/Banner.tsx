@@ -19,7 +19,7 @@ export default function Banner() {
         spaceBetween={100}
         updateOnWindowResize={true}
         loop={true}
-        speed={2000}
+        speed={1500}
         autoplay={{
           delay: 8000,
           disableOnInteraction: false,

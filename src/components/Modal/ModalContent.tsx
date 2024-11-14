@@ -1,22 +1,42 @@
 import { FaInstagram, FaLinkedin, FaYoutube } from 'react-icons/fa';
 import { Button } from '../Button';
+import { useState } from 'react';
+import { Loader } from '../Loader';
+import { ButtonName } from '../../types/ButtonName';
 
 interface Props {
   onClose: () => void;
 }
 
 export const ModalContent: React.FC<Props> = ({ onClose }) => {
+  const [email, setEmail] = useState('');
+  const [buttonText, setButtonText] = useState(ButtonName.SEND);
+  const [isLoading, setIsLoading] = useState(false);
+
   const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
+    if (!email) {
+      setButtonText(ButtonName.ERROR);
+
+      return;
+    }
+
     e.preventDefault();
-    onClose();
+    setIsLoading(true);
+    setTimeout(() => setIsLoading(false), 800);
+    setTimeout(() => onClose(), 900);
+  };
+
+  const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+    setEmail(e.target.value.trimStart());
+    setButtonText(ButtonName.SEND);
   };
 
   return (
-    <div className="relative bg-elements rounded-xl p-24 flex flex-col gap-18 items-center mx-4">
-      <h1 className="text-3xl font-extrabold text-center">
+    <div className="relative p-16 bg-elements rounded-xl  flex flex-col gap-12 items-center desktop:p-24 mobile:p-16">
+      <h2 className="text-center">
         Still looking for an option?
         <br /> We have a deal for you!
-      </h1>
+      </h2>
       <p className="font-semibold text-center max-w-md">
         Subscribe and get all news about hot propositions first
       </p>
@@ -24,22 +44,29 @@ export const ModalContent: React.FC<Props> = ({ onClose }) => {
       <div className="w-full max-w-md rounded-md flex items-center justify-center">
         <img
           src="img\modal-can.png"
-          className="object-cover w-full"
+          className=" w-152 object-cover desktop:w-full tablet:w-2/3 tablet:h-2/3 mobile:w-3/5  mobile::h-3/5"
           alt="ICan©"
         />
       </div>
 
       <form
         onSubmit={handleSubmit}
-        className="w-full flex flex-col gap-18 items-center"
+        className="w-full flex flex-col gap-12 items-center"
       >
         <input
           type="email"
           placeholder="Enter your email"
-          required
-          className="w-full px-16 py-8 text-secondary border border-gray-300 rounded-md focus:ring-black-500"
+          value={email}
+          onChange={handleChange}
+          className="w-full px-16 py-8 text-secondary border transition-colors duration-300 border-gray-300 rounded-sm hover:border-black focus:ring-black"
         />
-        <Button className="w-full"> Subscribe</Button>
+        {isLoading ? (
+          <Loader />
+        ) : (
+          <Button className="w-full m-8" type="submit">
+            {buttonText}
+          </Button>
+        )}
 
         <button
           onClick={onClose}

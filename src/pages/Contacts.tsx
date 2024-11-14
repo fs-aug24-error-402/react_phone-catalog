@@ -1,11 +1,14 @@
 import React, { useState } from 'react';
+
 import { Breadcrumbs } from '../components/Breadcrumbs';
 import { Button } from '../components/Button';
-import style from '../styles/helpers/container.module.scss';
-import './styles/contacts.scss';
 import { validateContactForm } from '../utils/validateContactForm';
 import { ContactFormFields } from '../types/ContactFormFields';
 import { Loader } from '../components/Loader';
+import { ButtonName } from '../types/ButtonName';
+
+import style from '../styles/helpers/container.module.scss';
+import './styles/contacts.scss';
 
 export const Contacts = () => {
   const startData = {
@@ -14,7 +17,8 @@ export const Contacts = () => {
     [ContactFormFields.PHONE]: '',
     [ContactFormFields.MESSAGE]: '',
   };
-  const [buttonText, setButtonText] = useState('Send');
+
+  const [buttonText, setButtonText] = useState(ButtonName.SEND);
   const [isLoading, setIsLoading] = useState(false);
 
   const [formData, setFormData] = useState(startData);
@@ -25,7 +29,7 @@ export const Contacts = () => {
   ) => {
     const { id, value } = e.target;
 
-    setButtonText('Send');
+    setButtonText(ButtonName.SEND);
 
     setFormData(prevData => ({
       ...prevData,
@@ -48,7 +52,7 @@ export const Contacts = () => {
       Object.values(formData).every(value => value.trim() !== '');
 
     if (!formValid) {
-      setButtonText('Oops! Something Is Wrong');
+      setButtonText(ButtonName.ERROR);
 
       return;
     }
@@ -57,7 +61,7 @@ export const Contacts = () => {
     setTimeout(() => setIsLoading(false), 800);
     setTimeout(() => setFormData(startData), 900);
     setFormErrors(startData);
-    setButtonText('Message Sent');
+    setButtonText(ButtonName.SUCCESS);
   };
 
   return (
@@ -237,7 +241,7 @@ export const Contacts = () => {
               id={ContactFormFields.MESSAGE}
               value={formData[ContactFormFields.MESSAGE]}
               onChange={handleChange}
-              className={`mb-8 p-16 h-176 border rounded transition-colors duration-300 hover:border-black ${formErrors[ContactFormFields.MESSAGE] ? 'border-red-500' : ''}`}
+              className={`p-16 h-176 border rounded transition-colors duration-300 hover:border-black ${formErrors[ContactFormFields.MESSAGE] ? 'border-red-500' : ''}`}
             ></textarea>
             {formErrors[ContactFormFields.MESSAGE] && (
               <p className="text-red">
@@ -248,12 +252,16 @@ export const Contacts = () => {
             {isLoading ? (
               <Loader />
             ) : (
-              <Button type="submit">{buttonText}</Button>
+              <Button className="m-8" type="submit">
+                {buttonText}
+              </Button>
             )}
           </form>
         </div>
       </div>
+
       <h2 className="mt-64"> We Are Located Here: </h2>
+
       <iframe
         src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d21273.030288152662!2d24.675336474575857!3d48.204135262418134!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x4736e5ce63ef1353%3A0x466c1ca1f0a577e6!2z0JrRgNC40LLQvtC_0L7Qu9GM0LUsINCY0LLQsNC90L4t0KTRgNCw0L3QutC-0LLRgdC60LDRjyDQvtCx0LvQsNGB0YLRjCwgNzg3MDY!5e0!3m2!1sru!2sua!4v1731593176895!5m2!1sru!2sua"
         className="w-full rounded-sm h-440 mt-24"
