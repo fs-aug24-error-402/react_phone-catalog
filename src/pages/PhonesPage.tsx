@@ -1,4 +1,4 @@
-import { useEffect, useState } from 'react';
+import { useEffect, useMemo, useState } from 'react';
 import { useSearchParams } from 'react-router-dom';
 import style from '../styles/helpers/container.module.scss';
 
@@ -8,24 +8,30 @@ import { getProducts } from '../api.ts';
 import { getFilteredDevices } from '../utils/utils';
 import { PaginatedItems } from '../components/Pagination/Pagiation';
 import { Filters } from '../components/Filters/Filters';
-import { useProducts } from '../app/hooks';
 import { Breadcrumbs } from '../components/Breadcrumbs/Breadcrumbs.tsx';
 
 export const PhonesPage = () => {
-  const { products } = useProducts();
+  const [isLoading, setIsLoading] = useState(true);
   const [phones, setPhones] = useState<Product[]>([]);
   const [searchParams] = useSearchParams();
 
   const query = searchParams.get('query') || '';
-  const sortBy = searchParams.get('sort-by') || '';
+  const sortBy = searchParams.get('sort-by') || 'newest';
 
-  const filteredItems = getFilteredDevices(phones, query, sortBy);
+  const filteredItems = useMemo(
+    () => getFilteredDevices(phones, query, sortBy),
+    [query, sortBy, phones],
+  );
 
   useEffect(() => {
-    getProducts().then(res =>
-      setPhones(res.filter(device => device.category === 'phones')),
-    );
-  }, [products]);
+    setIsLoading(true);
+
+    getProducts()
+      .then(res =>
+        setPhones(res.filter(device => device.category === 'phones')),
+      )
+      .finally(() => setIsLoading(false));
+  }, []);
 
   return (
     <div className={style.container}>
@@ -37,12 +43,8 @@ export const PhonesPage = () => {
 
       <Filters />
 
-      {!!phones.length && (
-        <>
-          <Catalog items={filteredItems} />
-          <PaginatedItems items={filteredItems} />
-        </>
-      )}
+      <Catalog items={filteredItems} isLoading={isLoading} />
+      <PaginatedItems items={filteredItems} />
     </div>
   );
 };

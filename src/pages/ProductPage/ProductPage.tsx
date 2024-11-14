@@ -21,6 +21,7 @@ import { ColorSelector } from '../../components/ColorSelector';
 import { CapacitySelector } from '../../components/CapacitySelector';
 import { AddToCartButton } from '../../components/AddToCartButton';
 import { AddToFavouritesButton } from '../../components/AddToFavouritesButton';
+import { PhonesSlider } from '../../components/PhonesSlider/PhonesSlider';
 
 export const ProductPage = () => {
   const { phoneId, tabletId, accessoryId } = useParams();
@@ -62,6 +63,11 @@ export const ProductPage = () => {
     [device],
   );
   const techSpechPart = useMemo(() => techSpech.slice(0, 4), [techSpech]);
+
+  const recomendedProductsList = products
+    .filter(item => item.category === product?.category)
+    .toSorted((p1, p2) => p2.year - p1.year)
+    .slice(0, 16);
 
   //temp loader
   if (hasError) {
@@ -203,13 +209,18 @@ export const ProductPage = () => {
       <section className={cn(styles.page__like, styles.page__section)}>
         <div className={styles.like}>
           <div className={helper.container}>
-            <h2 className={styles.like__title}>
-              {device ? 'You may also like' : <Skeleton />}
-            </h2>
+            <h2 className={styles.like__title}>{device ? '' : <Skeleton />}</h2>
           </div>
 
           <div className={styles.like__slider}>
-            {device ? 'slider' : <Skeleton height={300} />}
+            {device ? (
+              <PhonesSlider
+                data={recomendedProductsList!}
+                title="You may also like"
+              />
+            ) : (
+              <Skeleton height={300} />
+            )}
           </div>
         </div>
       </section>

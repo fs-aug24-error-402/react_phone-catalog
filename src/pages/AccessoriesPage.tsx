@@ -1,4 +1,4 @@
-import { useEffect, useState } from 'react';
+import { useEffect, useMemo, useState } from 'react';
 import { useSearchParams } from 'react-router-dom';
 import style from '../styles/helpers/container.module.scss';
 
@@ -11,38 +11,40 @@ import { PaginatedItems } from '../components/Pagination/Pagiation';
 import { Breadcrumbs } from '../components/Breadcrumbs/Breadcrumbs.tsx';
 
 export const AccessoriesPage = () => {
+  const [isLoading, setIsLoading] = useState(true);
   const [accessories, setAccessories] = useState<Product[]>([]);
   const [searchParams] = useSearchParams();
 
   const query = searchParams.get('query') || '';
-  const sortBy = searchParams.get('sort-by') || '';
+  const sortBy = searchParams.get('sort-by') || 'newest';
 
-  const filteredItems = getFilteredDevices(accessories, query, sortBy);
+  const filteredItems = useMemo(
+    () => getFilteredDevices(accessories, query, sortBy),
+    [query, sortBy, accessories],
+  );
 
   useEffect(() => {
-    getProducts().then(res =>
-      setAccessories(res.filter(device => device.category === 'accessories')),
-    );
+    setIsLoading(true);
+
+    getProducts()
+      .then(res =>
+        setAccessories(res.filter(device => device.category === 'accessories')),
+      )
+      .finally(() => setIsLoading(false));
   }, []);
 
   return (
-    !!filteredItems.length && (
-      <div className={style.container}>
-        <Breadcrumbs className="tablet:mb-40 mobile:mb-24" />
+    <div className={style.container}>
+      <Breadcrumbs className="tablet:mb-40 mobile:mb-24" />
 
-        <h1 className="mb-8">Accessories</h1>
+      <h1 className="mb-8">Accessories</h1>
 
-        <span className="text-secondary">{filteredItems.length} models</span>
+      <span className="text-secondary">{filteredItems.length} models</span>
 
-        <Filters />
+      <Filters />
 
-        {!!filteredItems.length && (
-          <>
-            <Catalog items={filteredItems} />
-            <PaginatedItems items={filteredItems} />
-          </>
-        )}
-      </div>
-    )
+      <Catalog items={filteredItems} isLoading={isLoading} />
+      <PaginatedItems items={filteredItems} />
+    </div>
   );
 };

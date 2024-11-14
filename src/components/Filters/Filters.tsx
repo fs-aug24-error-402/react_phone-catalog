@@ -45,12 +45,12 @@ export const Filters = () => {
         className="flex gap-8 justify-between tablet:w-auto
           mobile:justify-around w-[100%]"
       >
-        <div className="flex flex-col w-176">
+        <div className="flex flex-col gap-4 w-176">
           <span className={sortTextClassNames}>Sort by</span>
           <Dropdown sortType="sort-by" sortKeys={sortBy} />
         </div>
 
-        <div className="flex flex-col w-[128px]">
+        <div className="flex flex-col gap-4 w-[128px]">
           <span className={sortTextClassNames}>Items on page</span>
           <Dropdown sortType="items-on-page" sortKeys={pageItems} />
         </div>
