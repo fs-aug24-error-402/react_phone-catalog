@@ -65,7 +65,9 @@ export const CartItem: React.FC<Props> = ({
               },
             )}
           />
-          <span className="h-32 w-32 text-center leading-8">{itemCount}</span>
+          <span className="flex items-center justify-center h-32 w-32 text-center leading-8">
+            {itemCount}
+          </span>
           <button
             onClick={handleIncreaseCount}
             className="h-32 w-32 bg-plus bg-no-repeat bg-center border
