@@ -17,7 +17,7 @@ function App() {
   const location = useLocation();
 
   const [isAsideVisible, setIsAsideVisible] = useState(false);
-  const [showModal, setShowModal] = useState(false);
+  const [showModal, setShowModal] = useState(true);
   const [hasModalBeenShown, setHasModalBeenShown] = useState(false);
 
   const handleToggleAside = () => setIsAsideVisible(prev => !prev);
