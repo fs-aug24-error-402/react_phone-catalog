@@ -15,7 +15,7 @@ export default function Categories() {
           <div className="categories-type">
             <img
               className="categories-img"
-              src="public\img\categories\Phones.png"
+              src="img\categories\Phones.png"
               alt="Phones"
             />
 
@@ -31,7 +31,7 @@ export default function Categories() {
           <div className="categories-type">
             <img
               className="categories-img"
-              src="public\img\categories\Tablets.png"
+              src="img\categories\Tablets.png"
               alt="Tablets"
             />
 
@@ -47,7 +47,7 @@ export default function Categories() {
           <div className="categories-type">
             <img
               className="categories-img"
-              src="public\img\categories\Accessories.png"
+              src="img\categories\Accessories.png"
               alt="Accessories"
             />
             <div className="categories-info">
