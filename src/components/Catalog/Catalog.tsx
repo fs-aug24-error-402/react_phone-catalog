@@ -48,11 +48,22 @@ export const Catalog: FC<Props> = ({ items, isLoading = false }) => {
           gap-x-16 gap-y-40 mb-40 tablet-large:grid-cols-3 tablet:grid-cols-2
           mobile:grid-cols-1"
     >
-      {itemsForDisplay.length
-        ? itemsForDisplay.map(item => (
+      {!isLoading ? (
+        itemsForDisplay.length ? (
+          itemsForDisplay.map(item => (
             <Card product={item} isLoading={isLoading} key={item.id} />
           ))
-        : skeletons.map(item => <Card product={item} isLoading={true} />)}
+        ) : (
+          <>
+            <h1 className="col-span-full">No items were found</h1>
+            <img className="col-span-full" src="img/product-not-found.png" />
+          </>
+        )
+      ) : (
+        skeletons.map(item => (
+          <Card product={item} isLoading={true} key={String(Math.random())} />
+        ))
+      )}
     </section>
   );
 };

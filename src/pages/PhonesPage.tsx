@@ -1,4 +1,4 @@
-import { useEffect, useState } from 'react';
+import { useEffect, useMemo, useState } from 'react';
 import { useSearchParams } from 'react-router-dom';
 import style from '../styles/helpers/container.module.scss';
 
@@ -16,9 +16,12 @@ export const PhonesPage = () => {
   const [searchParams] = useSearchParams();
 
   const query = searchParams.get('query') || '';
-  const sortBy = searchParams.get('sort-by') || '';
+  const sortBy = searchParams.get('sort-by') || 'newest';
 
-  const filteredItems = getFilteredDevices(phones, query, sortBy);
+  const filteredItems = useMemo(
+    () => getFilteredDevices(phones, query, sortBy),
+    [query, sortBy, phones],
+  );
 
   useEffect(() => {
     setIsLoading(true);

@@ -16,7 +16,7 @@ export const PaginatedItems: FC<Props> = ({ items }) => {
   const [searchParams, setSearchParams] = useSearchParams();
   const { isMobile } = useWindowWidth();
 
-  const displayedPagesRange = isMobile ? 3 : 5;
+  const displayedPagesRange = isMobile ? 1 : 3;
 
   const query = searchParams.get('query') || '';
   const sortBy = searchParams.get('sort-by') || '';
@@ -72,7 +72,7 @@ export const PaginatedItems: FC<Props> = ({ items }) => {
           { 'pointer-events-none': isItLastPage },
         )}
         onPageChange={handlePageClick}
-        pageRangeDisplayed={displayedPagesRange}
+        marginPagesDisplayed={displayedPagesRange}
         pageCount={pageCount}
         previousLabel={
           <img
