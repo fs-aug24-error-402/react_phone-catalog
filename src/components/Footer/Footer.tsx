@@ -1,3 +1,4 @@
+import { Link } from 'react-router-dom';
 import { handleScrollToTop } from '../../utils/utils';
 
 export const Footer = () => {
@@ -26,15 +27,15 @@ export const Footer = () => {
         </li>
 
         <li className="transition-colors duration-300 hover:text-primary">
-          <a href="#" className="" target="_blank">
+          <Link to="contacts" className="" target="_blank">
             Contacts
-          </a>
+          </Link>
         </li>
 
         <li className="transition-colors duration-300 hover:text-primary">
-          <a href="#" className="" target="_blank">
+          <Link to="#" className="" target="_blank">
             Rights
-          </a>
+          </Link>
         </li>
       </ul>
 

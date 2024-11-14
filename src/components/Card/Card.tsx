@@ -10,10 +10,7 @@ interface Props {
 
 export const Card: React.FC<Props> = ({ product }) => {
   return (
-    <article
-      className="card tablet:h-508 mobile:h-440 mobile:w-[288px]
-    tablet-large:w-[240px] desktop:w-[288px]"
-    >
+    <article className="card tablet:h-508 mobile:h-440">
       <Link className="img_url" to={`/${product.category}/${product.itemId}`}>
         <img
           src={`${product.image}`}

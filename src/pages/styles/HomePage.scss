@@ -23,13 +23,13 @@
     justify-content: center;
   }
 }
+
 .home__title {
   margin-top: 24px;
   margin-bottom: 56px;
 
   font-size: 48px;
-  font-size: 48px;
-  font-weight: 800;
+  font-weight: 700;
   line-height: 56px;
   letter-spacing: -0.01em;
   color: #0f0f11;
@@ -67,6 +67,10 @@
 .home__banner-container {
   @include on-tablet {
     margin-inline: 24px;
+  }
+
+  @include on-desktop {
+    margin-top: 32px;
   }
 }
 
