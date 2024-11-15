@@ -4,6 +4,7 @@ import Skeleton, { SkeletonTheme } from 'react-loading-skeleton';
 import { Product } from '../../types';
 import { AddToCartButton } from '../AddToCartButton';
 import { AddToFavouritesButton } from '../AddToFavouritesButton';
+import { handleScrollToTop } from '../../utils/utils';
 
 import 'react-loading-skeleton/dist/skeleton.css';
 import './Card.scss';
@@ -39,6 +40,7 @@ export const Card: React.FC<Props> = ({ product, isLoading = false }) => {
             <>
               <Link
                 className="img_url"
+                onClick={handleScrollToTop}
                 to={`/${product.category}/${product.itemId}`}
               >
                 <img
