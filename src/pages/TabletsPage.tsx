@@ -43,8 +43,12 @@ export const TabletsPage = () => {
 
       <Filters />
 
-      <Catalog items={filteredItems} isLoading={isLoading} />
-      <Pagination items={filteredItems} />
+      {!!filteredItems.length && (
+        <>
+          <Catalog items={filteredItems} isLoading={isLoading} />
+          <Pagination items={filteredItems} />
+        </>
+      )}
     </div>
   );
 };

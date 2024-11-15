@@ -20,6 +20,12 @@ export const ModalContent: React.FC<Props> = ({ onClose }) => {
       return;
     }
 
+    if (!email) {
+      setButtonText(ButtonName.ERROR);
+
+      return;
+    }
+
     e.preventDefault();
     setIsLoading(true);
     setTimeout(() => setIsLoading(false), 800);
