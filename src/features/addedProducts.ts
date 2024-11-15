@@ -1,6 +1,5 @@
 import { createSlice, PayloadAction } from '@reduxjs/toolkit';
-import { Product } from '../types/Product';
-import { KeyType } from '../types/KeyType';
+import { Product, KeyType } from '../types';
 
 interface TotalCount {
   price: number;

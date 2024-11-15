@@ -1,68 +1,54 @@
-.card {
-  padding: 32px;
-  max-width: 100%;
-  min-width: 212px;
-  box-sizing: border-box;
-  border: 1px solid theme('colors.elements');
-  background-color: theme('colors.white');
-  border-radius: 8px;
-  color: #333333;
-  transition: all 0.3s;
-  display: flex;
-  flex-direction: column;
-}
+@use 'src/styles/utils/library' as *;
 
-.card__head-container {
+.card {
   display: flex;
   flex-direction: column;
   gap: 8px;
-  flex-grow: 1;
+
+  padding: 32px;
+  width: 100%;
+
+  border: 1px solid theme('colors.elements');
+  background-color: theme('colors.surface1');
+  border-radius: theme('borderRadius.sm');
+
+  transition: all 0.3s;
+
+  color: theme('colors.primary');
+
+  &:hover {
+    box-shadow: 0 2px 16px rgba(0, 0, 0, 10%);
+  }
 }
 
 .img_url {
   display: block;
-  min-height: 100px;
-  max-height: 196px;
-  object-fit: contain;
-  flex-grow: 100%;
+  height: 130px;
   margin: 0 auto;
+
+  @include on-tablet {
+    height: 196px;
+  }
 }
 
 .card__img {
-  min-height: 100px;
-  max-height: 196px;
   height: 100%;
-  width: 100%;
 }
 
 .card__model {
   display: flex;
-  align-items: flex-end;
-  flex: 1 1 auto;
-  min-height: 42px;
-  margin-top: 16px;
-  line-height: 21px;
-  max-height: 79px;
-  font-size: 14px;
-  font-weight: 600;
-  color: #333333;
+  align-items: end;
+
+  min-height: calc(21px * 3);
 }
 
 .card__price-container {
   display: flex;
-  justify-content: left;
   align-items: center;
   gap: 8px;
-  width: 100%;
-  height: 50px;
-  border-bottom: 1px solid theme('colors.elements');
-}
 
-.card__price-current {
-  padding: 8px 0;
-  font-size: 22px;
-  font-weight: 800;
-  color: #333333;
+  padding-bottom: 8px;
+  border-bottom: 1px solid theme('colors.elements');
 }
 
 .card__price-old {
@@ -71,9 +57,9 @@
   isolation: isolate;
   position: relative;
 
-  padding: 8px 0;
   font-size: 22px;
-  font-weight: 600;
+  font-weight: 400;
+  line-height: 21px;
   color: theme('colors.secondary');
 
   &::after {
@@ -91,18 +77,16 @@
 }
 
 .card__info-container {
-  margin: 16px 0;
   display: flex;
   justify-content: space-between;
-  line-height: 15px;
+  padding-block: 8px;
 }
 
 .card__info-title-container {
   display: flex;
   flex-direction: column;
   gap: 8px;
-  font-size: 12px;
-  font-weight: 700;
+
   color: theme('colors.secondary');
 }
 
@@ -110,14 +94,17 @@
   display: flex;
   flex-direction: column;
   gap: 8px;
-  font-size: 12px;
-  font-weight: 700;
-  color: #333333;
+
   text-align: right;
 }
 
 .card__buttons-container {
   display: flex;
   gap: 8px;
-  margin-top: 16px;
+}
+
+.theme-dark {
+  .card {
+    border: none;
+  }
 }

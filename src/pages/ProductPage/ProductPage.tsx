@@ -1,6 +1,6 @@
 import { useParams } from 'react-router-dom';
 import { useEffect, useMemo, useState } from 'react';
-import Skeleton from 'react-loading-skeleton';
+import Skeleton, { SkeletonTheme } from 'react-loading-skeleton';
 import cn from 'classnames';
 
 import styles from './ProductPage.module.scss';
@@ -10,7 +10,7 @@ import 'react-loading-skeleton/dist/skeleton.css';
 import { Accessory, MobileDevice, Product } from '../../types';
 import { getAccessoryById, getPhoneById, getTabletById } from '../../api';
 import { getTechSpecs } from '../../utils';
-import { useProducts } from '../../app/hooks';
+import { useProducts, useTheme } from '../../app/hooks';
 
 import { ProductNotFound } from '../ProductNotFound';
 import { Breadcrumbs } from '../../components/Breadcrumbs';
@@ -21,11 +21,12 @@ import { ColorSelector } from '../../components/ColorSelector';
 import { CapacitySelector } from '../../components/CapacitySelector';
 import { AddToCartButton } from '../../components/AddToCartButton';
 import { AddToFavouritesButton } from '../../components/AddToFavouritesButton';
-import { PhonesSlider } from '../../components/PhonesSlider/PhonesSlider';
+import { PhonesSlider } from '../../components/PhonesSlider';
 
 export const ProductPage = () => {
   const { phoneId, tabletId, accessoryId } = useParams();
   const { products } = useProducts();
+  const { isDark } = useTheme();
 
   const [product, setProduct] = useState<Product | null>(null);
   const [device, setDevice] = useState<MobileDevice | Accessory | null>(null);
@@ -75,7 +76,12 @@ export const ProductPage = () => {
   }
 
   return (
-    <>
+    <SkeletonTheme
+      baseColor="var(--color-elements)"
+      highlightColor={
+        isDark ? 'var(--color-elements)' : 'var(--color-hover-and-bg)'
+      }
+    >
       <div className={cn(helper.container, styles.page)}>
         <Breadcrumbs className="col-span-full mb-24 tablet:mb-40" />
 
@@ -176,7 +182,7 @@ export const ProductPage = () => {
                   <h4 className={'mb-16'}>{title}</h4>
 
                   {text.map((content, index) => (
-                    <p key={index} className={'text-secondary'}>
+                    <p key={index} className="text-secondary mb-16">
                       {content}
                     </p>
                   ))}
@@ -208,10 +214,6 @@ export const ProductPage = () => {
 
       <section className={cn(styles.page__like, styles.page__section)}>
         <div className={styles.like}>
-          <div className={helper.container}>
-            <h2 className={styles.like__title}>{device ? '' : <Skeleton />}</h2>
-          </div>
-
           <div className={styles.like__slider}>
             {device ? (
               <PhonesSlider
@@ -224,6 +226,6 @@ export const ProductPage = () => {
           </div>
         </div>
       </section>
-    </>
+    </SkeletonTheme>
   );
 };

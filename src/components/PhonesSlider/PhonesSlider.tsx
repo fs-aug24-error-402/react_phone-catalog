@@ -1,17 +1,18 @@
-import { Swiper, SwiperSlide } from 'swiper/react';
 import React, { useRef, useState } from 'react';
 import { Swiper as SwiperType } from 'swiper';
-import { Card } from '../Card';
-import { Product } from '../../types/Product';
-
+import { Swiper, SwiperSlide } from 'swiper/react';
+import { FreeMode } from 'swiper/modules';
+import { FiChevronRight, FiChevronLeft } from 'react-icons/fi';
 import cn from 'classnames';
-import './PhonesSlider.scss';
 
 import 'swiper/css';
 import 'swiper/css/pagination';
 import 'swiper/css/navigation';
+import './PhonesSlider.scss';
 
-import { FreeMode } from 'swiper/modules';
+import { Product } from '../../types';
+import { ButtonSmall } from '../ButtonSmall';
+import { Card } from '../Card';
 
 interface Props {
   title: string;
@@ -30,28 +31,34 @@ export const PhonesSlider: React.FC<Props> = ({ title, data }) => {
           <h2 className="slider-title">{title}</h2>
 
           <div className="buttons-container">
-            <button
+            <ButtonSmall
               onClick={() => {
                 swiperRef.current?.slidePrev();
               }}
               className={cn('button-prev', {
-                'disabled-left': reachFirst,
-                'is-active-left': !reachFirst,
+                'text-icons': reachFirst,
+                'text-primary': !reachFirst,
               })}
               disabled={reachFirst}
-            ></button>
-            <button
+            >
+              <FiChevronLeft className="h-16 w-16" />
+            </ButtonSmall>
+
+            <ButtonSmall
               onClick={() => {
                 swiperRef.current?.slideNext();
               }}
               className={cn('button-next', {
-                'disabled-right': reachLast,
-                'is-active-right': !reachLast,
+                'text-icons': reachLast,
+                'text-primary': !reachLast,
               })}
               disabled={reachLast}
-            ></button>
+            >
+              <FiChevronRight className="h-16 w-16" />
+            </ButtonSmall>
           </div>
         </div>
+
         <Swiper
           onSwiper={swiper => {
             swiperRef.current = swiper;

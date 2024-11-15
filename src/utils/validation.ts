@@ -1,4 +1,4 @@
-import { Error } from '../types/Error';
+import { Error } from '../types';
 
 export const validateFirstName = (firstName: string): Error => {
   if (!firstName.trim()) {

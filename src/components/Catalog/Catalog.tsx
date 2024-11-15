@@ -1,8 +1,8 @@
 import { FC, useEffect } from 'react';
 import { useSearchParams } from 'react-router-dom';
 
-import { Product } from '../../types/Product';
-import { Card } from '../Card/Card';
+import { Product } from '../../types';
+import { Card } from '../Card';
 
 import { handleScrollToTop } from '../../utils/utils';
 

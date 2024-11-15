@@ -1,5 +1,7 @@
 import { FC, ReactNode } from 'react';
+import cn from 'classnames';
 import styles from './Button.module.scss';
+import { useTheme } from '../../app/hooks';
 
 interface Props {
   children: ReactNode;
@@ -11,22 +13,23 @@ interface Props {
 
 export const Button: FC<Props> = ({
   children,
-  onClick,
+  onClick = () => {},
   className,
   selected,
   type = 'button',
 }) => {
+  const { isDark } = useTheme();
+
   return (
     <button
       type={type}
       onClick={onClick}
-      className={`${styles.button} ${
-        selected
-          ? 'text-accent border border-elements bg-white'
-          : 'text-white bg-accent'
-      }
-      ${className}
-      active:text-accent active:border-elements active:bg-white`}
+      className={cn(styles.button, className, {
+        'text-accent border border-elements bg-white': selected && !isDark,
+        'text-white bg-accent': !selected && !isDark,
+        'bg-surface2': selected && isDark,
+        'bg-accent hover:bg-accent-light shadow-none': !selected && isDark,
+      })}
     >
       {children}
     </button>

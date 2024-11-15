@@ -3,24 +3,24 @@ import { Link } from 'react-router-dom';
 
 import './Categories.scss';
 
-export default function Categories() {
+export const Categories = () => {
   const { phonesAmount, tabletsAmount, accessoriesAmount } = useProcessedData();
 
   return (
     <div className="categories-container mobile:flex mobile:flex-col ">
-      <div className="categories-title">Shop by category</div>
+      <h2 className="categories-title">Shop by category</h2>
 
       <div className="categories-variants">
         <Link className="mobile-link" to={'phones'}>
           <div className="categories-type">
             <img
               className="categories-img"
-              src="img\categories\Phones.png"
+              src="img/categories/Phones.png"
               alt="Phones"
             />
 
             <div className="categories-info">
-              <div className="title">Mobile phones</div>
+              <h4 className="title">Mobile phones</h4>
 
               <div className="subtitle">{phonesAmount} models</div>
             </div>
@@ -31,12 +31,12 @@ export default function Categories() {
           <div className="categories-type">
             <img
               className="categories-img"
-              src="img\categories\Tablets.png"
+              src="img/categories/Tablets.png"
               alt="Tablets"
             />
 
             <div className="categories-info">
-              <div className="title">Tablets</div>
+              <h4 className="title">Tablets</h4>
 
               <div className="subtitle">{tabletsAmount} models</div>
             </div>
@@ -47,11 +47,11 @@ export default function Categories() {
           <div className="categories-type">
             <img
               className="categories-img"
-              src="img\categories\Accessories.png"
+              src="img/categories/Accessories.png"
               alt="Accessories"
             />
             <div className="categories-info">
-              <div className="title">Accessories</div>
+              <h4 className="title">Accessories</h4>
 
               <div className="subtitle">{accessoriesAmount} models</div>
             </div>
@@ -60,4 +60,4 @@ export default function Categories() {
       </div>
     </div>
   );
-}
+};

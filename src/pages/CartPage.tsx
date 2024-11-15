@@ -2,9 +2,9 @@ import { useState } from 'react';
 import { useUpdateReduxValuesFromLocalStorage } from '../hooks/useUpdateReduxValuesFromLocalStorage';
 
 import { Breadcrumbs } from '../components/Breadcrumbs';
-import { CartItem } from '../components/CartItem/CartItem';
-import { Checkout } from '../components/Checkout/Checkout';
-import { CheckoutModal } from '../components/CheckoutModal/CheckoutModal';
+import { CartItem } from '../components/CartItem';
+import { Checkout } from '../components/Checkout';
+import { CheckoutModal } from '../components/CheckoutModal';
 import style from '../styles/helpers/container.module.scss';
 
 export const CartPage = () => {
@@ -55,6 +55,7 @@ export const CartPage = () => {
               />
             ))}
           </div>
+
           <Checkout
             totalItem={totalCount.item}
             totalPrice={totalCount.price}
@@ -64,7 +65,7 @@ export const CartPage = () => {
         </section>
       ) : (
         <img
-          src="public/img/cart-is-empty.png"
+          src="img/cart-is-empty.png"
           alt="Cart is empty"
           className="mx-auto h-[40vh]"
         />

@@ -2,12 +2,12 @@ import { useEffect, useMemo, useState } from 'react';
 import { useSearchParams } from 'react-router-dom';
 import style from '../styles/helpers/container.module.scss';
 
-import { Product } from '../types/Product';
+import { Product } from '../types';
 import { getProducts } from '../api.ts';
-import { Catalog } from '../components/Catalog/Catalog';
+import { Catalog } from '../components/Catalog';
 import { getFilteredDevices } from '../utils/utils';
-import { Filters } from '../components/Filters/Filters';
-import { PaginatedItems } from '../components/Pagination/Pagiation';
+import { Filters } from '../components/Filters';
+import { Pagination } from '../components/Pagination';
 import { Breadcrumbs } from '../components/Breadcrumbs/Breadcrumbs.tsx';
 
 export const AccessoriesPage = () => {
@@ -44,7 +44,7 @@ export const AccessoriesPage = () => {
       <Filters />
 
       <Catalog items={filteredItems} isLoading={isLoading} />
-      <PaginatedItems items={filteredItems} />
+      <Pagination items={filteredItems} />
     </div>
   );
 };

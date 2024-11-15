@@ -28,30 +28,6 @@
   @include on-desktop {
     max-width: 1136px !important;
   }
-  .swiper {
-    display: inline-flex;
-    align-items: flex-start;
-
-    margin: 0 !important;
-
-    @include on-tablet {
-      max-width: 100% !important;
-    }
-  }
-
-  .swiper-wrapper {
-    @include on-mobile {
-      margin-left: 16px;
-    }
-
-    @include on-tablet {
-      margin-left: 24px;
-    }
-  }
-
-  .swiper-slide {
-    width: 272px !important;
-  }
 }
 
 .top-container {
@@ -72,14 +48,6 @@
   }
 }
 
-.slider-title {
-  font-size: 32px;
-  font-weight: 800;
-  letter-spacing: -0.01em;
-
-  color: #0f0f11;
-}
-
 .buttons-container {
   display: flex;
   justify-content: space-between;
@@ -87,58 +55,39 @@
   width: 80px;
 }
 
-.button-prev {
-  box-sizing: border-box;
-
-  height: 32px;
-  width: 32px;
-  border-radius: 48px;
-  background-color: #fff;
-
-  box-shadow: 0px 1px 4px 0px #17203166;
-
-  transition: all 0.3s;
-}
-
-.disabled-left {
-  border: 1px solid #e2e6e9;
-  background: center no-repeat
-    url('public/img/icons/svg/arrow-left-disabled.svg');
-}
-
-.is-active-left {
-  border: 1px solid #b4bdc3;
-  background: center no-repeat url('public/img/icons/svg/icon-arrow-left.svg');
-}
-
-.is-active-left:hover {
-  border: 1px solid #0f0f11;
-}
-
+.button-prev,
 .button-next {
-  box-sizing: border-box;
-
   height: 32px;
   width: 32px;
-
-  border-radius: 48px;
-  background-color: #fff;
-  box-shadow: 0px 1px 4px 0px #17203166;
-
-  transition: all 0.3s;
 }
 
-.disabled-right {
-  border: 1px solid #e2e6e9;
-  background: center no-repeat
-    url('public/img/icons/svg/arrow-right-disabled.svg');
-}
+.swiper-phones-slider {
+  display: inline-flex;
+  align-items: flex-start;
 
-.is-active-right {
-  border: 1px solid #b4bdc3;
-  background: center no-repeat url('public/img/icons/svg/icon-arrow-right.svg');
-}
+  margin: 0 !important;
 
-.is-active-right:hover {
-  border: 1px solid #0f0f11;
+  @include on-tablet {
+    max-width: 100% !important;
+  }
+
+  .swiper-wrapper {
+    @include on-mobile {
+      margin-left: 16px;
+    }
+
+    @include on-tablet {
+      margin-left: 24px;
+    }
+  }
+
+  .swiper-slide {
+    width: 272px !important;
+  }
+
+  .slider-title {
+    font-size: 32px;
+    font-weight: 800;
+    letter-spacing: -0.01em;
+  }
 }

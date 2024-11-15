@@ -1,5 +1,4 @@
-import { ContactFormFields } from '../types/ContactFormFields';
-import { Error } from '../types/Error';
+import { ContactFormFields, Error } from '../types';
 
 const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
 const phoneRegex = /^\+?\d{10,15}$/;

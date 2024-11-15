@@ -2,6 +2,7 @@ import cn from 'classnames';
 import { FC } from 'react';
 import { Link } from 'react-router-dom';
 import { addSpaceBetweenNumAndText, getLinkToAnotherModel } from '../../utils';
+import { useTheme } from '../../app/hooks';
 
 interface Props {
   id: string;
@@ -14,6 +15,8 @@ export const CapacitySelector: FC<Props> = ({
   capacity,
   capacityAvailable,
 }) => {
+  const { isDark } = useTheme();
+
   return (
     <div className="pb-24 mb-24 border-b border-elements">
       <p className="text-small text-secondary mb-8">Select capacity</p>
@@ -30,9 +33,12 @@ export const CapacitySelector: FC<Props> = ({
                 'rounded h-32 px-8 flex items-center leading border hover:border-primary',
                 'transition-bg duration-300 ease-in-out',
                 {
-                  'bg-white border-icons text-primary': !isActive,
-                  'bg-primary border-primary text-white pointer-events-none':
-                    isActive,
+                  'border-icons text-primary': !isActive,
+                  'bg-white': !isActive && !isDark,
+                  'bg-black': !isActive && isDark,
+                  'bg-primary border-primary pointer-events-none': isActive,
+                  'text-white': isActive && !isDark,
+                  'text-black': isActive && isDark,
                 },
               )}
             >

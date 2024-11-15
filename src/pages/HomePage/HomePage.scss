@@ -1,0 +1,95 @@
+@use 'src/styles/utils/library' as *;
+
+.home {
+  display: flex;
+  justify-content: center;
+  flex-direction: column;
+  margin: 0;
+
+  @include on-desktop {
+    margin: 32px;
+  }
+}
+
+.home__title-container {
+  display: flex;
+  justify-content: flex-start;
+
+  @include on-desktop {
+    justify-content: center;
+  }
+}
+
+.home__title {
+  margin-inline: 16px;
+  margin-block: 24px;
+
+  @include on-tablet {
+    margin-inline: 24px;
+    margin-block: 32px;
+  }
+
+  @include on-desktop {
+    margin-top: 24px;
+    width: 1136px;
+  }
+}
+
+.home__content-container {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  gap: 56px;
+
+  @include on-tablet {
+    gap: 64px;
+  }
+
+  @include on-desktop {
+    gap: 80px;
+  }
+}
+
+.home__banner-container {
+  @include on-tablet {
+    margin-inline: 24px;
+  }
+
+  @include on-desktop {
+    margin-top: 32px;
+  }
+}
+
+.home__slider-container {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.home__categories-container {
+  display: flex;
+  justify-content: center;
+  margin-inline: 16px;
+  flex-direction: column;
+
+  @include on-tablet {
+    margin-inline: 24px;
+    flex-direction: row;
+  }
+
+  @include on-desktop {
+    margin-inline: 32px;
+  }
+}
+
+.home__last-item {
+  margin-bottom: 64px;
+
+  @include on-tablet {
+    margin-bottom: 64px;
+  }
+
+  @include on-desktop {
+    margin-bottom: 80px;
+  }
+}

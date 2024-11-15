@@ -1,5 +1,4 @@
-import { Accessory } from '../types/Accessory';
-import { MobileDevice } from '../types/MobileDevice';
+import { Accessory, MobileDevice } from '../types';
 import { addSpaceBetweenNumAndText } from './addSpaceBetweenNumAndText';
 
 export const getTechSpecs = (prod: MobileDevice | Accessory) => {
@@ -19,6 +18,12 @@ export const getTechSpecs = (prod: MobileDevice | Accessory) => {
     [ram[0], addSpaceBetweenNumAndText(ram[1])],
     ['built in memory', addSpaceBetweenNumAndText(capacity[1])],
   );
+
+  const screen = techEntries[0][1];
+
+  if (typeof screen === 'string' && techEntries[0][0] === 'screen') {
+    techEntries[0][1] = screen.replace("'", '”');
+  }
 
   return techEntries.map(([key, value]) =>
     Array.isArray(value) ? [key, value.join(', ')] : [key, value],

@@ -1,5 +1,5 @@
 import { useAppSelector } from '../hooks/useAppSelector';
-import { Catalog } from '../components/Catalog/Catalog';
+import { Catalog } from '../components/Catalog';
 import { Breadcrumbs } from '../components/Breadcrumbs';
 import style from '../styles/helpers/container.module.scss';
 
@@ -23,7 +23,11 @@ export const FavouritesPage = () => {
           <Catalog items={favorites} />
         </>
       ) : (
-        <h2>Favorites is empty</h2>
+        <img
+          src="img/product-not-found.png"
+          alt="Cart is empty"
+          className="mx-auto h-[40vh]"
+        />
       )}
     </div>
   );

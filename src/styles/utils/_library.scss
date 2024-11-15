@@ -1,5 +1,6 @@
 $header-icon-padding: 32px;
-$header-size: $header-icon-padding * 2;
+$header-size-mobile: 48px;
+$header-size-desktop: 64px;
 
 @mixin on-tablet {
   @media (min-width: theme('screens.tablet')) {
@@ -18,6 +19,7 @@ $header-size: $header-icon-padding * 2;
   position: absolute;
 
   left: 50%;
+  bottom: 0;
 
   display: block;
   height: 2px;
@@ -30,22 +32,6 @@ $header-size: $header-icon-padding * 2;
   @include on-tablet {
     height: 3px;
   }
-}
-
-@mixin nav-link-after {
-  bottom: calc(theme('spacing.8') * -1);
-
-  @include after-underscore-base;
-
-  @include on-tablet {
-    bottom: calc(($header-size / 2 - 50%) * -1);
-  }
-}
-
-@mixin header-icon-after {
-  bottom: 0;
-
-  @include after-underscore-base;
 }
 
 @mixin padding-inline {
