@@ -8,6 +8,7 @@ export default {
     screens: {
       mobile: '320px',
       tablet: '640px',
+      'tablet-large': '768px',
       desktop: '1200px',
     },
 
