@@ -37,14 +37,15 @@ export const RightsPage = () => {
         onRequestClose={() => setShowVirus(false)}
         ariaHideApp={false}
         className=" mt-10 flex flex-col gap-4 text-black rounded-lg shadow-lg focus:outline-none"
-        overlayClassName="z-40 fixed inset-0 bg-black bg-opacity-60 backdrop-blur-sm flex justify-center items-center"
+        overlayClassName="z-40 fixed inset-0 bg-gray-900 bg-opacity-70 backdrop-blur-sm flex justify-center items-center"
       >
         <VirusModal />
       </Modal>
 
-      <div className="mx-auto px-4 py-8 text-gray-800">
-        <h1 className="text-3xl font-bold mb-16">Terms and Conditions</h1>
-        <p className="text-sm text-gray-500 mb-6">
+      <div className="mx-auto px-4 py-8 text-primary">
+        <h1 className="mb-16">Terms and Conditions</h1>
+
+        <p className="text-small text-secondary mb-6">
           Last updated: November 14, 2024
         </p>
 
@@ -54,11 +55,11 @@ export const RightsPage = () => {
             Service.
           </p>
         </section>
-        <h2 className="text-2xl font-semibold mb-16">
-          Interpretation and Definitions
-        </h2>
+
+        <h2 className="mb-16">Interpretation and Definitions</h2>
+
         <div className="flex justify-start flex-col ">
-          <h3 className="text-xl font-medium mb-2">Interpretation</h3>
+          <h3 className="mb-2">Interpretation</h3>
           <p className="mb-16">
             The words of which the initial letter is capitalized have meanings
             defined under the following conditions. The following definitions
@@ -66,7 +67,7 @@ export const RightsPage = () => {
             singular or in plural.
           </p>
 
-          <h3 className="text-xl font-medium mb-2">Definitions</h3>
+          <h3 className="mb-2">Definitions</h3>
           <p className="mb-16">
             For the purposes of these Terms and Conditions:
           </p>
@@ -78,6 +79,7 @@ export const RightsPage = () => {
               interest or other securities entitled to vote for election of
               directors or other managing authority
             </li>
+
             <li>
               <strong>Country</strong> refers to: Ukraine
             </li>
@@ -87,6 +89,7 @@ export const RightsPage = () => {
               "We", "Us" or "Our" in this Agreement refers to Nice Gadgets,
               Kyiv, Ukraine, 01001.
             </li>
+
             <li>
               <strong>Device </strong> means any device that can access the
               Service such as a computer, a cellphone or a digital tablet.
@@ -97,6 +100,7 @@ export const RightsPage = () => {
               mean these Terms and Conditions that form the entire agreement
               between You and the Company regarding the use of the Service.
             </li>
+
             <li>
               <strong>Website </strong> refers to Nice Gadgets, accessible from
               <a href="http://www.nicegadgets.ua" className="">
@@ -105,7 +109,9 @@ export const RightsPage = () => {
             </li>
           </ul>
         </div>
-        <h2 className="text-2xl font-semibold mb-16">Acknowledgment</h2>
+
+        <h2 className="mb-16">Acknowledgment</h2>
+
         <section className="mb-8">
           <p className="mb-16">
             These are the Terms and Conditions governing the use of this Service
@@ -120,6 +126,7 @@ export const RightsPage = () => {
             Terms and Conditions apply to all visitors, users and others who
             access or use the Service.
           </p>
+
           <p className="mb-16">
             Your access to and use of the Service is also conditioned on Your
             acceptance of and compliance with the Privacy Policy of the Company.
@@ -131,9 +138,8 @@ export const RightsPage = () => {
           </p>
         </section>
 
-        <h2 className="text-2xl font-semibold mb-16">
-          Links to Other Websites
-        </h2>
+        <h2 className="mb-16">Links to Other Websites</h2>
+
         <section className="mb-8">
           <p className="mb-16">
             Our Service may contain links to third-party web sites or services
@@ -151,7 +157,8 @@ export const RightsPage = () => {
           </p>
         </section>
 
-        <h2 className="text-2xl font-semibold mb-16">Termination</h2>
+        <h2 className="mb-16">Termination</h2>
+
         <p className="mb-16">
           We may terminate or suspend Your access immediately, without prior
           notice or liability, for any reason whatsoever, including without
@@ -159,9 +166,8 @@ export const RightsPage = () => {
           Your right to use the Service will cease immediately.
         </p>
 
-        <h4 className="text-2xl font-semibold mb-16">
-          Download Full Tearms and Conditions
-        </h4>
+        <h4 className="mb-16">Download Full Tearms and Conditions</h4>
+
         <a
           href="tearms\Tearms and Conditions.docx"
           download="Tearms and Conditions.docx"
