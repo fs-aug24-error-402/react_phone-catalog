@@ -1,12 +1,16 @@
 import { NavLink, useNavigate } from 'react-router-dom';
 import { FC, MouseEvent } from 'react';
+import { FiChevronLeft } from 'react-icons/fi';
 import cn from 'classnames';
+
+import { useTheme } from '../../app/hooks';
 
 interface Props {
   className?: string;
 }
 
 export const BackNavLink: FC<Props> = ({ className }) => {
+  const { isDark } = useTheme();
   const navigate = useNavigate();
 
   const handleBack = (
@@ -20,20 +24,18 @@ export const BackNavLink: FC<Props> = ({ className }) => {
     <NavLink
       to="#"
       onClick={handleBack}
-      className={cn('flex items-center gap-4', className)}
+      className={cn(
+        'flex items-center gap-4 transition-color duration-300 ease-in-out',
+        className,
+        {
+          'text-secondary hover:text-primary': !isDark,
+          'text-primary hover:text-accent': isDark,
+        },
+      )}
     >
-      <img
-        src="img/icons/svg/icon-arrow-left.svg"
-        alt="Back icon"
-        className="h-16 aspect-square"
-      />
-      <span
-        className={
-          'text-small leading-2 text-secondary hover:text-primary transition-color duration-300 ease-in-out'
-        }
-      >
-        Back
-      </span>
+      <FiChevronLeft className="h-16 w-16" />
+
+      <span className="text-small">Back</span>
     </NavLink>
   );
 };

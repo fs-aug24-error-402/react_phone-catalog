@@ -1,7 +1,11 @@
-import { Menu, MenuButton, MenuItem, MenuItems } from '@headlessui/react';
-import { getSearchWith } from '../../utils/searchHelper';
-import { FC, useState } from 'react';
 import { useSearchParams } from 'react-router-dom';
+import { FC, useState } from 'react';
+import { Menu, MenuButton, MenuItem, MenuItems } from '@headlessui/react';
+import { FiChevronDown, FiChevronUp } from 'react-icons/fi';
+import cn from 'classnames';
+
+import { useTheme } from '../../app/hooks';
+import { getSearchWith } from '../../utils/searchHelper';
 
 interface Props {
   sortType: string;
@@ -10,12 +14,13 @@ interface Props {
 
 export const Dropdown: FC<Props> = ({ sortKeys, sortType }) => {
   const [searchParams, SetSearchParams] = useSearchParams();
+  const { isDark } = useTheme();
 
   const currentParam = searchParams.get(sortType);
-  const [selecteditem, setSelectedItem] = useState(currentParam || sortKeys[0]);
+  const [selectedItem, setSelectedItem] = useState(currentParam || sortKeys[0]);
 
   const displayableName =
-    selecteditem.charAt(0).toUpperCase() + selecteditem.slice(1);
+    selectedItem.charAt(0).toUpperCase() + selectedItem.slice(1);
 
   function handleSelection(selectedElement: string) {
     SetSearchParams(() =>
@@ -34,47 +39,58 @@ export const Dropdown: FC<Props> = ({ sortKeys, sortType }) => {
         <>
           <div>
             <MenuButton
-              className="flex items-center h-40 w-[100%] justify-between pl-12
-          gap-x-1.5 rounded-sm bg-white px-12 text-sm font-semibold
-        text-primary shadow-sm ring-1 ring-elements hover:ring-primary"
+              className={cn(
+                'flex items-center h-40 w-full justify-between',
+                'rounded-sm bg-surface2 px-12 text-sm border',
+                'transition-all duration-200 ease-in-out',
+                {
+                  'border-icons hover:border-secondary': !isDark,
+                  'border-surface2 hover:border-icons': isDark,
+                  'data-[open]:border-primary': !isDark,
+                  'data-[open]:border-accent': isDark,
+                },
+              )}
             >
               {displayableName}
-              <img
-                src={
-                  open
-                    ? 'img/icons/svg/icon-arrow-up-inactive.svg'
-                    : 'img/icons/svg/icon-arrow-down.svg'
-                }
-              />
+              {open ? (
+                <FiChevronUp className="h-16 w-16 text-secondary" />
+              ) : (
+                <FiChevronDown className="h-16 w-16 text-secondary" />
+              )}
             </MenuButton>
           </div>
 
           <MenuItems
             transition
-            className="absolute border shadow-2xl top-[105%] w-[100%] bg-white
-          rounded-sm transition focus:outline-none data-[closed]:scale-95
-          data-[closed]:transform data-[closed]:opacity-0
-          data-[enter]:duration-100 data-[leave]:duration-75
-          data-[enter]:ease-out data-[leave]:ease-in"
+            className={cn(
+              'absolute top-[105%] w-full',
+              'border border-elements rounded-sm transition focus:outline-none',
+              'data-[closed]:scale-95 data-[closed]:transform data-[closed]:opacity-0',
+              'data-[enter]:duration-100 data-[enter]:ease-out',
+              'data-[leave]:duration-75 data-[leave]:ease-in z-10',
+              { 'bg-white': !isDark, 'bg-black': isDark },
+            )}
           >
             <div className="py-1">
               {sortKeys.map(key => {
                 const isSelected =
-                  key.toLowerCase() === selecteditem.toLowerCase();
+                  key.toLowerCase() === selectedItem.toLowerCase();
 
                 return (
                   <MenuItem key={key}>
                     <div
                       onClick={() => handleSelection(String(key))}
-                      className={`${
-                        isSelected
-                          ? 'bg-elements text-primary'
-                          : 'bg-white text-secondary'
-                      }
-                  flex items-center rounded-sm justify-start px-12
-                  cursor-pointerhover:bg-elements h-40 w-[100%]
-                  border-element font-medium hover:bg-elements
-                hover:text-primary`}
+                      className={cn(
+                        'flex items-center justify-start w-full h-40 px-12 rounded-sm cursor-pointer',
+                        'transition-all duration-300 ease-in-out hover:text-primary',
+                        {
+                          'hover:bg-elements': !isDark,
+                          'hover:bg-surface2': isDark,
+                          'bg-elements text-primary': isSelected && !isDark,
+                          'bg-surface2 text-primary': isSelected && isDark,
+                          'text-secondary': !isSelected,
+                        },
+                      )}
                     >
                       {key}
                     </div>

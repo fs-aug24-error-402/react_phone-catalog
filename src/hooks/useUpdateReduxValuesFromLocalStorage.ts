@@ -1,7 +1,7 @@
-import { useEffect } from 'react';
-import { Product } from '../types/Product';
-import { KeyType } from '../types/KeyType';
 import { useDispatch } from 'react-redux';
+import { useEffect } from 'react';
+
+import { Product, KeyType } from '../types';
 import { useAppSelector } from './useAppSelector';
 import {
   calculateTotalInCart,

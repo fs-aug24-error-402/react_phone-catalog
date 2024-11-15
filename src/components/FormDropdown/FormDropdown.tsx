@@ -1,5 +1,7 @@
 import React from 'react';
-import { NP } from '../../types/NovaPoshta';
+import cn from 'classnames';
+import { NP } from '../../types';
+import { useTheme } from '../../app/hooks';
 
 interface Props {
   items: NP[];
@@ -8,8 +10,16 @@ interface Props {
 }
 
 export const FormDropdown: React.FC<Props> = ({ items, onSelect, onClose }) => {
+  const { isDark } = useTheme();
+
   return (
-    <ul className="flex flex-col gap-4 max-h-96 overflow-y-auto border rounded-sm">
+    <ul
+      className={cn(
+        'flex flex-col gap-4 max-h-152 overflow-y-auto',
+        'border border-elements rounded-sm focus:outline-none',
+        { 'bg-white': !isDark, 'bg-black': isDark },
+      )}
+    >
       {items.map(item => (
         <li
           key={item.Ref}
@@ -17,7 +27,13 @@ export const FormDropdown: React.FC<Props> = ({ items, onSelect, onClose }) => {
             onSelect(item);
             onClose();
           }}
-          className="block px-4 py-4 text-sm w-full border-b hover:bg-elements"
+          className={cn(
+            'block px-4 py-4 text-small w-full border-b border-elements',
+            {
+              'hover:bg-elements': !isDark,
+              'hover:bg-surface2': isDark,
+            },
+          )}
         >
           {item.Description}
         </li>

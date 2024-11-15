@@ -2,14 +2,13 @@
 
 .burger-menu {
   position: fixed;
-  top: $header-size;
+  top: $header-size-mobile;
   left: 0;
-  height: calc(100vh - $header-size);
+  height: calc(100vh - $header-size-mobile);
   overflow: hidden;
 
   padding-top: 24px;
 
-  background-color: theme('colors.white');
   z-index: 2;
 }
 
@@ -25,9 +24,5 @@
     width: 50%;
 
     box-shadow: -1px 0 theme('colors.elements');
-  }
-
-  &__icon {
-    padding-block: theme('spacing.24');
   }
 }

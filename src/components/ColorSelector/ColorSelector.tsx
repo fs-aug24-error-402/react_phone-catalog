@@ -2,6 +2,7 @@ import { Link } from 'react-router-dom';
 import { FC } from 'react';
 import cn from 'classnames';
 import { getLinkToAnotherModel, getProductColor } from '../../utils';
+import { useTheme } from '../../app/hooks';
 
 interface Props {
   label: string;
@@ -16,6 +17,8 @@ export const ColorSelector: FC<Props> = ({
   color,
   colorsAvailable,
 }) => {
+  const { isDark } = useTheme();
+
   return (
     <div className="pb-24 mb-24 border-b border-elements">
       <p className="text-small text-secondary mb-8">{label}</p>
@@ -27,8 +30,11 @@ export const ColorSelector: FC<Props> = ({
             to={getLinkToAnotherModel(color, curColor, id)}
             className={cn(
               getProductColor(curColor),
-              'rounded-lg h-32 aspect-square border-2 border-white outline outline-1 outline-elements hover:outline-icons transition-outline duration-300 ease-in-out',
+              'rounded-lg h-32 aspect-square border-2 outline outline-1 outline-elements',
+              'transition-outline duration-300 ease-in-out',
               {
+                'border-white hover:outline-icons': !isDark,
+                'border-black hover:outline-secondary': isDark,
                 'outline-primary pointer-events-none': color === curColor,
               },
             )}

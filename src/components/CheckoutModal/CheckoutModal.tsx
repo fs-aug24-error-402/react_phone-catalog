@@ -15,6 +15,7 @@ import { FormInput } from '../FormInput/FormInput';
 import { validateForm } from '../../utils/validateForm';
 import { FormDropdown } from '../FormDropdown/FormDropdown';
 import { FormError } from '../FormError/FormError';
+import { useTheme } from '../../app/hooks';
 
 interface Props {
   onClose: () => void;
@@ -22,6 +23,7 @@ interface Props {
 }
 
 export const CheckoutModal: React.FC<Props> = ({ onClose, onAccept }) => {
+  const { isDark } = useTheme();
   const [firstName, setFirstName] = useState('');
   const [lastName, setLastName] = useState('');
   const [phone, setPhone] = useState('');
@@ -165,22 +167,25 @@ export const CheckoutModal: React.FC<Props> = ({ onClose, onAccept }) => {
       role="dialog"
       aria-modal="true"
     >
-      <div
-        className="fixed inset-0 bg-gray-500 bg-opacity-75 transition-opacity"
-        aria-hidden="true"
-      >
+      <div className="fixed inset-0 bg-gray-900 bg-opacity-75 transition-opacity">
         {hasError !== Error.DEFAULT && (
           <FormError message={hasError} onClose={handleCloseError} />
         )}
-        <div className="fixed inset-0 z-10 w-screen overflow-y-auto">
+        <div className="fixed inset-0 z-10 w-screen h-max overflow-auto top-1/2 -translate-y-1/2">
           <div
             className={cn('flex justify-center text-center', {
               'min-h-full': isSuccessful,
             })}
           >
-            <div className="flex flex-col gap-y-8 relative transform overflow-hidden px-16 py-32 rounded-lg bg-white text-left shadow-xl transition-all mobile:my-32 mobile:w-full mobile:max-w-lg">
+            <div
+              className={cn(
+                'flex flex-col gap-y-8 px-16 py-32 rounded-lg relative transform overflow-hidden',
+                'transform overflow-hidden text-left shadow-xl transition-all mobile:w-full mobile:max-w-lg',
+                { 'bg-white': !isDark, 'bg-black': isDark },
+              )}
+            >
               {isSuccessful ? (
-                <div className="flex flex-col items-center my-auto">
+                <div className="flex flex-col items-center">
                   {isLoading ? (
                     <Loader />
                   ) : (
@@ -188,8 +193,9 @@ export const CheckoutModal: React.FC<Props> = ({ onClose, onAccept }) => {
                       <span className="text-h1-lg text-center text-[#2dbd5a]">
                         Successful order processing!
                       </span>
+
                       <img
-                        src="./img/icons/png/icon-successful.png"
+                        src="img/icons/icon-successful.png"
                         alt="successful icon"
                         className="w-[50%]"
                       />
@@ -204,15 +210,18 @@ export const CheckoutModal: React.FC<Props> = ({ onClose, onAccept }) => {
                       src="img/logo-nova-poshta.png"
                       alt="Logo Nova Poshta"
                     />
+
                     <span className="text-h3">
                       Order delivery by Nova Poshta
                     </span>
                   </div>
+
                   <div className="border-b border-solid border-elements mb-8" />
 
                   <form onSubmit={handleSubmit}>
                     <div className="mb-8">
                       <h4 className="text-h4 mb-4">Personal information</h4>
+
                       <div className="grid grid-cols-1 gap-4">
                         <FormInput
                           placeholder="Petro"
@@ -220,12 +229,14 @@ export const CheckoutModal: React.FC<Props> = ({ onClose, onAccept }) => {
                           setter={setFirstName}
                           hasError={hasError}
                         />
+
                         <FormInput
                           placeholder="Petrenko"
                           value={lastName}
                           setter={setLastName}
                           hasError={hasError}
                         />
+
                         <FormInput
                           type="tel"
                           placeholder="Phone (000) 123-4567"
@@ -239,7 +250,7 @@ export const CheckoutModal: React.FC<Props> = ({ onClose, onAccept }) => {
 
                     <div className="mb-8">
                       <h4 className="text-h4 mb-4">Delivery Address</h4>
-                      <div className="grid gap-4">
+                      <div className="relative grid gap-4">
                         <div className="w-full">
                           <FormInput
                             placeholder="City"
@@ -249,10 +260,14 @@ export const CheckoutModal: React.FC<Props> = ({ onClose, onAccept }) => {
                             inputType="city"
                             hasError={hasError}
                           />
+
                           {isInput.city && (
                             <div
                               ref={dropdownRef}
-                              className="absolute z-12 w-full origin-top-right rounded-md bg-white shadow-lg transition focus:outline-none"
+                              className={cn(
+                                'absolute z-12 w-full origin-top-right rounded-sm shadow-lg transition focus:outline-none',
+                                { 'bg-white': !isDark, 'bg-black': isDark },
+                              )}
                             >
                               <FormDropdown
                                 items={cities}
@@ -279,7 +294,10 @@ export const CheckoutModal: React.FC<Props> = ({ onClose, onAccept }) => {
                           {isInput.warehouse && (
                             <div
                               ref={dropdownRef}
-                              className="absolute z-11 origin-top-right rounded-md bg-white shadow-lg focus:outline-none"
+                              className={cn(
+                                'absolute z-11 origin-top-right rounded-sm shadow-lg focus:outline-none',
+                                { 'bg-white': !isDark, 'bg-black': isDark },
+                              )}
                             >
                               <FormDropdown
                                 items={warehouses}
@@ -308,6 +326,7 @@ export const CheckoutModal: React.FC<Props> = ({ onClose, onAccept }) => {
                           />
                           Cash on delivery
                         </label>
+
                         <label className="flex items-center">
                           <input
                             type="radio"
@@ -331,6 +350,7 @@ export const CheckoutModal: React.FC<Props> = ({ onClose, onAccept }) => {
                             formatter={formatCardNumber}
                             hasError={hasError}
                           />
+
                           <FormInput
                             placeholder="MM/YY"
                             value={validityPeriod}
@@ -338,11 +358,13 @@ export const CheckoutModal: React.FC<Props> = ({ onClose, onAccept }) => {
                             formatter={formatValidityPeriod}
                             hasError={hasError}
                           />
+
                           <FormInput
                             placeholder="CVV"
                             value={CVV}
                             setter={setCVV}
                             hasError={hasError}
+                            maxLength={3}
                           />
                         </div>
                       )}
@@ -354,6 +376,7 @@ export const CheckoutModal: React.FC<Props> = ({ onClose, onAccept }) => {
                         className="w-full bg-red"
                         onClick={handleClose}
                       />
+
                       <Button
                         children="Accept Order"
                         type="submit"

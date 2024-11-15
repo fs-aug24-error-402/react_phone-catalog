@@ -1,5 +1,4 @@
-import { Error } from '../types/Error';
-import { NP } from '../types/NovaPoshta';
+import { Error, NP } from '../types';
 import {
   validateCardNumber,
   validateCVV,

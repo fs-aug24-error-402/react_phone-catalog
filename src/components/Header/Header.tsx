@@ -1,11 +1,14 @@
 import { Link, NavLink } from 'react-router-dom';
 import { FC } from 'react';
+import { FiHeart, FiShoppingBag, FiX, FiMenu } from 'react-icons/fi';
 import cn from 'classnames';
 
 import styles from './Header.module.scss';
 import { Navbar } from '../Navbar';
-import { ProductCounter } from '../ProductCounter/ProductCounter';
+import { ProductCounter } from '../ProductCounter';
 import { useAppSelector } from '../../hooks/useAppSelector';
+import { ToggleThemeButton } from '../ToggleThemeButton';
+import { useTheme } from '../../app/hooks';
 const getLinkClass = (isActive: boolean) =>
   cn(styles.header__icon, {
     [styles['header__icon--active']]: isActive,
@@ -22,13 +25,19 @@ export const Header: FC<Props> = ({
   isAsideVisible,
   onToggleAside,
 }) => {
+  const { isDark } = useTheme();
   const { addedProducts, totalCount } = useAppSelector(
     state => state.addedProducts,
   );
 
   return (
     <>
-      <header className={styles.header}>
+      <header
+        className={cn(styles.header, {
+          'bg-white shadow-[0_1px_#E2E6E9]': !isDark,
+          'bg-black shadow-[0_1px_#323542]': isDark,
+        })}
+      >
         <div className={styles.header__left}>
           <div
             className={cn(
@@ -39,7 +48,7 @@ export const Header: FC<Props> = ({
           >
             <Link to={'/'}>
               <img
-                src="img/logo.svg"
+                src={isDark ? 'img/logo-dark.svg' : 'img/logo.svg'}
                 alt="Nice Gadgets Logo"
                 className={cn(styles.logo__img, 'px-16 desktop:px-24')}
               />
@@ -50,14 +59,24 @@ export const Header: FC<Props> = ({
         </div>
 
         <div className={styles.header__right}>
+          <div className={styles.header__toggle}>
+            <ToggleThemeButton />
+          </div>
+
           {isMobile && (
             <div
               className={cn(styles.header__icon, {
-                [styles['header__icon--close']]: isAsideVisible,
-                [styles['header__icon--open']]: !isAsideVisible,
+                'shadow-[-1px_0_#E2E6E9]': !isDark,
+                'shadow-[-1px_0_#323542]': isDark,
               })}
               onClick={onToggleAside}
-            />
+            >
+              {isAsideVisible ? (
+                <FiX className="h-16 w-16" />
+              ) : (
+                <FiMenu className="h-16 w-16" />
+              )}
+            </div>
           )}
 
           {!isMobile && (
@@ -65,23 +84,37 @@ export const Header: FC<Props> = ({
               <NavLink
                 to={'favourites'}
                 className={({ isActive }) =>
-                  cn(getLinkClass(isActive), styles['header__icon--fav'])
+                  cn(getLinkClass(isActive), styles['header__icon--fav'], {
+                    'shadow-[-1px_0_#E2E6E9]': !isDark,
+                    'shadow-[-1px_0_#323542]': isDark,
+                  })
                 }
               >
-                {!!addedProducts.favorites.length && (
-                  <ProductCounter count={addedProducts.favorites.length} />
-                )}
+                <div className="relative">
+                  <FiHeart className="h-16 w-16" />
+
+                  {!!addedProducts.favorites.length && (
+                    <ProductCounter count={addedProducts.favorites.length} />
+                  )}
+                </div>
               </NavLink>
 
               <NavLink
                 to={'cart'}
                 className={({ isActive }) =>
-                  cn(getLinkClass(isActive), styles['header__icon--cart'])
+                  cn(getLinkClass(isActive), styles['header__icon--cart'], {
+                    'shadow-[-1px_0_#E2E6E9]': !isDark,
+                    'shadow-[-1px_0_#323542]': isDark,
+                  })
                 }
               >
-                {!!totalCount.item && (
-                  <ProductCounter count={totalCount.item} />
-                )}
+                <div className="relative">
+                  <FiShoppingBag className="h-16 w-16" />
+
+                  {!!totalCount.item && (
+                    <ProductCounter count={totalCount.item} />
+                  )}
+                </div>
               </NavLink>
             </>
           )}

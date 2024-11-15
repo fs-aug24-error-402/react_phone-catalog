@@ -1,6 +1,7 @@
 import cn from 'classnames';
 import React from 'react';
 import { Error } from '../../types/Error';
+import { useTheme } from '../../app/hooks';
 
 interface Props {
   type?: string;
@@ -12,6 +13,7 @@ interface Props {
   formatter?: (value: string) => string;
   setter: React.Dispatch<React.SetStateAction<string>>;
   onInput?: (type: 'city' | 'warehouse') => void;
+  maxLength?: number;
 }
 
 export const FormInput: React.FC<Props> = ({
@@ -24,7 +26,9 @@ export const FormInput: React.FC<Props> = ({
   setter,
   onInput,
   inputType = 'city',
+  maxLength = 50,
 }) => {
+  const { isDark } = useTheme();
   const handleInputChange =
     (
       setter: React.Dispatch<React.SetStateAction<string>>,
@@ -43,12 +47,20 @@ export const FormInput: React.FC<Props> = ({
       type={type}
       placeholder={placeholder}
       className={cn(
-        `w-full border border-elements p-8 rounded-sm focus:outline-none focus:border-primary ${className}`,
-        { 'border-red': hasError !== Error.DEFAULT },
+        `w-full border p-8 rounded-sm focus:outline-none focus:border-primary ${className}`,
+        'transition-colors duration-300',
+        {
+          'bg-white border-elements hover:border-secondary focus:border-primary':
+            !isDark,
+          'bg-surface2 border-surface2 hover:border-icons focus:border-accent':
+            isDark,
+          'border-red-500': hasError !== Error.DEFAULT,
+        },
       )}
       value={value}
       onChange={handleInputChange(setter, formatter)}
       onFocus={() => onInput?.(inputType)}
+      maxLength={maxLength}
     />
   );
 };

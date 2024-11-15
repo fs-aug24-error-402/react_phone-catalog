@@ -1,7 +1,9 @@
+import { Link } from 'react-router-dom';
 import React from 'react';
-import { Product } from '../../types/Product';
 import cn from 'classnames';
-import { KeyType } from '../../types/KeyType';
+import { FiX, FiPlus, FiMinus } from 'react-icons/fi';
+
+import { Product, KeyType } from '../../types';
 
 interface Props {
   addedProduct: Product & { count: number };
@@ -37,19 +39,22 @@ export const CartItem: React.FC<Props> = ({
         <div>
           <button
             onClick={() => onRemove('cart', addedProduct.id)}
-            className="h-16 w-16 bg-close bg-center hover:bg-close-active"
-          />
+            className="text-secondary hover:text-primary transition-colors duration-300 ease-in-out"
+          >
+            <FiX className="h-16 w-16" />
+          </button>
         </div>
 
-        <div className="w-66">
-          <img
-            src={addedProduct.image}
-            alt="Phone"
-            className="h-66 object-cover"
-          />
-        </div>
+        <Link
+          to={`/${addedProduct.category}/${addedProduct.itemId}`}
+          className="flex justify-center items-center gap-16 tablet:gap-24"
+        >
+          <div className="w-80 aspect-square flex justify-center items-center">
+            <img src={addedProduct.image} alt="Phone" className="h-66" />
+          </div>
 
-        <div className="text-buttons font-semibold">{addedProduct.name}</div>
+          <div className="text-buttons font-semibold">{addedProduct.name}</div>
+        </Link>
       </section>
 
       <section className="flex justify-between items-center tablet:gap-24">
@@ -57,20 +62,32 @@ export const CartItem: React.FC<Props> = ({
           <button
             onClick={handleDecreaseCount}
             className={cn(
-              'h-32 w-32 bg-minus bg-no-repeat bg-center border',
-              'border-elements rounded-full',
+              'flex justify-center items-center h-32 w-32',
+              'border border-elements rounded-full',
+              'transition-colors duration-300 ease-in-out',
               {
-                'bg-minus-active': itemCount > 1,
-                'hover:border-primary': itemCount > 1,
+                'pointer-events-none text-secondary': itemCount < 2,
+                'hover:border-primary text-primary': itemCount > 1,
               },
             )}
-          />
-          <span className="h-32 w-32 text-center leading-8">{itemCount}</span>
+          >
+            <FiMinus className="h-16 w-16" />
+          </button>
+
+          <span className="flex justify-center items-center h-32 w-32 text-center leading-8">
+            {itemCount}
+          </span>
+
           <button
             onClick={handleIncreaseCount}
-            className="h-32 w-32 bg-plus bg-no-repeat bg-center border
-            border-elements rounded-full hover:border-primary"
-          />
+            className={cn(
+              'flex justify-center items-center h-32 w-32',
+              'border border-elements rounded-lg hover:border-primary',
+              'transition-colors duration-300 ease-in-out',
+            )}
+          >
+            <FiPlus className="h-16 w-16" />
+          </button>
         </div>
 
         <div className="text-h3-lg tablet:flex tablet:w-80 tablet:justify-end">

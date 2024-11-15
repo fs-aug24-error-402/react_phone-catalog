@@ -1,7 +1,7 @@
 import { TypedUseSelectorHook, useDispatch, useSelector } from 'react-redux';
 import { useEffect } from 'react';
 import { AppDispatch, RootState } from './store';
-import { windowWidthActions, productsActions } from '../features';
+import { windowWidthActions, productsActions, themeActions } from '../features';
 import { getProducts } from '../api';
 
 const useAppDispatch = () => useDispatch<AppDispatch>();
@@ -40,4 +40,24 @@ export const useProducts = () => {
   }, []);
 
   return { products };
+};
+
+export const useTheme = () => {
+  const dispatch = useAppDispatch();
+  const isDark = useAppSelector(state => state.isDark);
+  const { toggleTheme, setTheme } = themeActions;
+
+  const onToggleTheme = () => {
+    dispatch(toggleTheme());
+    localStorage.setItem('isDark', JSON.stringify(!isDark));
+  };
+
+  useEffect(() => {
+    const storedTheme = JSON.parse(localStorage.getItem('isDark') || 'false');
+
+    dispatch(setTheme(storedTheme));
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, []);
+
+  return { isDark, onToggleTheme };
 };

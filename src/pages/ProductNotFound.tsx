@@ -1,7 +1,10 @@
 import { useNavigate } from 'react-router-dom';
+import cn from 'classnames';
 import { Button } from '../components/Button';
+import { useTheme } from '../app/hooks';
 
 export const ProductNotFound = () => {
+  const { isDark } = useTheme();
   const navigate = useNavigate();
 
   return (
@@ -12,7 +15,9 @@ export const ProductNotFound = () => {
       <img
         src="img/product-not-found.png"
         alt="Product not found image"
-        className="w-2/3 mb-32"
+        className={cn('w-2/3 mb-32', {
+          'drop-shadow-[0_0_100px_var(--color-accent-light)]': isDark,
+        })}
       />
       <h1 className="mb-16 text-balance text-center text-primary">
         Product not found

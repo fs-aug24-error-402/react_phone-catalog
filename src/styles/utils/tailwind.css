@@ -28,9 +28,41 @@
   }
 
   :root {
+    --color-white: #FFFFFF;
+    --color-black: #0F1121;
+    --color-accent: #4219d0;
+    --color-accent-light: #5e35f0;
+    --color-secondary-accent: #F4BA47;
+    --color-primary: var(--color-black);
+    --color-secondary: #89939A;
+    --color-icons: #B4BDC3;
+    --color-elements: #E2E6E9;
+    --color-hover-and-bg: #FAFBFC;
+    --color-surface1: var(--color-white);
+    --color-surface2: var(--color-white);
+    --color-toggle-light: var(--color-secondary-accent);
+    --color-toggle-dark: var(--color-white);
+
     color: theme('colors.primary');
 
     @apply text-body;
+  }
+
+  .theme-dark {
+    --color-white: #F1F2F9;
+    --color-black: #0F1121;
+    --color-primary: var(--color-white);
+    --color-accent: #905BFF;
+    --color-accent-light: #A378FF;
+    --color-secondary-accent: #EB5757;
+    --color-secondary: #75767F;
+    --color-icons: #4A4D58;
+    --color-elements: #3B3E4A;
+    --color-hover-and-bg: var(--color-black);
+    --color-surface1: #161827;
+    --color-surface2: #323542;
+
+    color: theme('colors.primary');
   }
 
   h1 {

@@ -1,6 +1,6 @@
 import { getProducts } from '../api.ts';
 import { useEffect, useState } from 'react';
-import { Product } from '../types/Product.ts';
+import { Product } from '../types';
 
 export function useProcessedData() {
   const [phonesAmount, setPhonesAmount] = useState(0);
@@ -12,7 +12,9 @@ export function useProcessedData() {
 
   useEffect(() => {
     getProducts().then(res => {
-      const newDevices = res.filter(device => device.year === 2022);
+      const newDevices = res.filter(
+        device => device.year === 2022 && device.capacity.includes('128'),
+      );
 
       setNewModels(newDevices);
     });
@@ -25,18 +27,21 @@ export function useProcessedData() {
             device2.price -
             (device1.fullPrice - device1.price),
         )
-        .slice(0, 20);
+        .slice(0, 10);
 
       setHotPricesModels(newPrices);
     });
+
     getProducts()
       .then(res => {
         setPhonesAmount(
           res.filter(device => device.category === 'phones').length,
         );
+
         setTabletsAmount(
           res.filter(device => device.category === 'tablets').length,
         );
+
         setAccessoriesAmount(
           res.filter(device => device.category === 'accessories').length,
         );

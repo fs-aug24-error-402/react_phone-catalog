@@ -8,7 +8,6 @@ export default {
     screens: {
       mobile: '320px',
       tablet: '640px',
-      'tablet-large': '768px',
       desktop: '1200px',
     },
 
@@ -32,24 +31,22 @@ export default {
       '80': '80px',
       '96': '96px',
       '152': '152px',
-      '176': '176px',
-      '440': '440px',
-      '508': '508px',
-
     },
 
     extend: {
       colors: {
-        accent: '#4219D0',
-        'secondary-accent': '#F4BA47',
-        primary: '#0F0F11',
-        secondary: '#89939A',
-        icons: '#B4BDC3',
-        elements: '#E2E6E9',
-        'hover-and-bg': '#FAFBFC',
-        white: '#FFFFFF',
-        green: '#27AE60',
-        red: '#EB5757',
+        white: 'var(--color-white)',
+        black: 'var(--color-black)',
+        accent: 'var(--color-accent)',
+        'accent-light': 'var(--color-accent-light)',
+        'secondary-accent': 'var(--color-secondary-accent)',
+        primary: 'var(--color-primary)',
+        secondary: 'var(--color-secondary)',
+        icons: 'var(--color-icons)',
+        elements: 'var(--color-elements)',
+        surface1: 'var(--color-surface1)',
+        surface2: 'var(--color-surface2)',
+        'hover-and-bg': 'var(--color-hover-and-bg)',
         'prod-black': '#1F1F1F',
         'prod-midnight': '#4D5850',
         'prod-blue': '#205D7A',
@@ -79,15 +76,6 @@ export default {
 
       boxShadow: {
         'footer-top': '0px -1px 0px 0px #E2E6E9',
-      },
-
-      backgroundImage: {
-        close: "url(public/img/icons/svg/icon-close.svg)",
-        'close-active': "url(public/img/icons/svg/icon-close-active.svg)",
-        plus: "url(public/img/icons/svg/icon-plus.svg)",
-        minus: "url(public/img/icons/svg/icon-minus.svg)",
-        'minus-active': "url(public/img/icons/svg/icon-minus-active.svg)",
-        'arrow-top': "url(public/img/icons/svg/icon-arrow-top.svg)",
       },
 
       gridColumnStart: {

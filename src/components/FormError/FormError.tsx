@@ -1,4 +1,4 @@
-import React, { useEffect } from 'react';
+import React, { useEffect, useState } from 'react';
 import { Error } from '../../types/Error';
 
 interface ErrorToastProps {
@@ -7,15 +7,21 @@ interface ErrorToastProps {
 }
 
 export const FormError: React.FC<ErrorToastProps> = ({ message, onClose }) => {
+  const [isVisible, setIsVisible] = useState(true);
+
   useEffect(() => {
-    const timer = setTimeout(onClose, 3000);
+    const timer = setTimeout(() => {
+      setIsVisible(false);
+      setTimeout(onClose, 500);
+    }, 3000);
 
     return () => clearTimeout(timer);
   }, [onClose]);
 
   return (
     <div
-      className="absolute z-20 top-4 right-4 max-w-xs p-8 bg-red text-white rounded-sm shadow flex items-center space-x-8"
+      className={`absolute z-20 top-4 right-4 max-w-xs p-8 bg-red text-white rounded-sm shadow flex items-center space-x-8
+      ${isVisible ? 'opacity-100' : 'opacity-0 transition-opacity duration-500'}`}
       role="alert"
     >
       <div className="flex items-center justify-center w-8 h-8 bg-white rounded-sm text-red">
