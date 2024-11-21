@@ -13,12 +13,14 @@ import { CartPage } from './pages/CartPage';
 import { ProductPage } from './pages/ProductPage';
 import { ContactsPage } from './pages/ContactsPage';
 import { RightsPage } from './pages/RightsPage';
+import { LogInPage } from './pages/LogInPage';
 
 export const Root = () => {
   return (
     <Provider store={store}>
       <Router>
         <Routes>
+          <Route path="registration" element={<LogInPage />} />
           <Route path="/" element={<App />}>
             <Route index element={<HomePage />} />
 
