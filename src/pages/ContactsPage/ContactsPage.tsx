@@ -1,76 +1,106 @@
 import React, { useState } from 'react';
 
-import { ButtonName, ContactFormFields } from '../../types';
+import { ButtonName, Error, FormFields } from '../../types';
 import { Breadcrumbs } from '../../components/Breadcrumbs';
 import { Button } from '../../components/Button';
 import { Loader } from '../../components/Loader';
 import { validateContactForm } from '../../utils/validateContactForm';
+import { useTheme } from '../../app/hooks';
+import { contactsStartData } from '../../constants/fields';
+import { Alert, Snackbar } from '@mui/material';
 import cn from 'classnames';
 
 import style from '../../styles/helpers/container.module.scss';
 import './ContactsPage.scss';
-import { useTheme } from '../../app/hooks';
 
 export const ContactsPage = () => {
-  const startData = {
-    [ContactFormFields.NAME]: '',
-    [ContactFormFields.EMAIL]: '',
-    [ContactFormFields.PHONE]: '',
-    [ContactFormFields.MESSAGE]: '',
-  };
-
   const { isDark } = useTheme();
 
-  const [buttonText, setButtonText] = useState(ButtonName.SEND);
   const [isLoading, setIsLoading] = useState(false);
+  const [formData, setFormData] = useState(contactsStartData);
+  const [formErrors, setFormErrors] = useState(contactsStartData);
+  const [isError, setIsError] = useState(false);
+  const [errorType, setErrorType] = useState('');
 
-  const [formData, setFormData] = useState(startData);
-  const [formErrors, setFormErrors] = useState(startData);
+  function handleSubmit(e: React.FormEvent<HTMLFormElement>) {
+    e.preventDefault();
 
-  const handleChange = (
+    if (Object.values(formErrors).some(value => value !== Error.DEFAULT)) {
+      setErrorType(
+        Object.values(formErrors).find(value => value !== Error.DEFAULT)!,
+      );
+      setIsError(true);
+
+      return;
+    }
+
+    if (Object.values(formData).some(value => !value)) {
+      setErrorType(Error.EMPTY_FIELDS);
+      setIsError(true);
+
+      return;
+    }
+
+    setIsLoading(true);
+    setTimeout(() => setIsLoading(false), 900);
+    setTimeout(() => setFormData(contactsStartData), 800);
+  }
+
+  function handleChange(
     e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>,
-  ) => {
+  ) {
     const { id, value } = e.target;
-
-    setButtonText(ButtonName.SEND);
+    const error = validateContactForm(id as FormFields, value);
 
     setFormData(prevData => ({
       ...prevData,
       [id]: value,
     }));
 
-    const error = validateContactForm(id as ContactFormFields, value);
-
     setFormErrors(prevErrors => ({
       ...prevErrors,
       [id]: error,
     }));
-  };
-
-  const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
-    e.preventDefault();
-
-    const formValid =
-      Object.values(formErrors).every(error => error === '') &&
-      Object.values(formData).every(value => value.trim() !== '');
-
-    if (!formValid) {
-      setButtonText(ButtonName.ERROR);
-
-      return;
-    }
-
-    setIsLoading(true);
-    setTimeout(() => setIsLoading(false), 800);
-    setTimeout(() => setFormData(startData), 900);
-    setFormErrors(startData);
-    setButtonText(ButtonName.SUCCESS);
-  };
+  }
 
   return (
     <div className={style.container}>
       <Breadcrumbs className="my-24" />
+
       <div className="flex justify-center flex-col gap-8">
+        {isError && (
+          <Snackbar
+            open={isError}
+            autoHideDuration={3000}
+            onClose={() => setIsError(false)}
+            anchorOrigin={{ vertical: 'top', horizontal: 'center' }}
+          >
+            <Alert
+              onClose={() => setIsError(false)}
+              severity="error"
+              sx={{ width: '100%' }}
+            >
+              {errorType}
+            </Alert>
+          </Snackbar>
+        )}
+
+        {isError && (
+          <Snackbar
+            open={isError}
+            autoHideDuration={3000}
+            onClose={() => setIsError(false)}
+            anchorOrigin={{ vertical: 'top', horizontal: 'center' }}
+          >
+            <Alert
+              onClose={() => setIsError(false)}
+              severity="error"
+              sx={{ width: '100%' }}
+            >
+              {errorType}
+            </Alert>
+          </Snackbar>
+        )}
         <h1 className="text-4xl font-bold">Contacts</h1>
 
         <p className="p-text tracking-wide">
@@ -200,9 +230,9 @@ export const ContactsPage = () => {
             </label>
 
             <input
-              id={ContactFormFields.NAME}
+              id={FormFields.NAME}
               type="text"
-              value={formData[ContactFormFields.NAME]}
+              value={formData[FormFields.NAME]}
               onChange={handleChange}
               className={cn(
                 'border p-2 rounded py-16 px-16 hover:border-icons',
@@ -210,13 +240,9 @@ export const ContactsPage = () => {
                 {
                   'focus:border-primary': !isDark,
                   'bg-surface2 border-surface2 focus:border-accent': isDark,
-                  '!border-red-500': formErrors[ContactFormFields.NAME],
                 },
               )}
             />
-            {formErrors[ContactFormFields.NAME] && (
-              <p className="text-red">{formErrors[ContactFormFields.NAME]}</p>
-            )}
 
             <label
               className="font-semibold uppercase label-text"
@@ -226,9 +252,9 @@ export const ContactsPage = () => {
             </label>
 
             <input
-              id={ContactFormFields.EMAIL}
+              id={FormFields.EMAIL}
               type="email"
-              value={formData[ContactFormFields.EMAIL]}
+              value={formData[FormFields.EMAIL]}
               onChange={handleChange}
               className={cn(
                 'border p-2 rounded py-16 px-16 hover:border-icons',
@@ -236,13 +262,9 @@ export const ContactsPage = () => {
                 {
                   'focus:border-primary': !isDark,
                   'bg-surface2 border-surface2 focus:border-accent': isDark,
-                  '!border-red-500': formErrors[ContactFormFields.EMAIL],
                 },
               )}
             />
-            {formErrors[ContactFormFields.EMAIL] && (
-              <p className="text-red">{formErrors[ContactFormFields.EMAIL]}</p>
-            )}
 
             <label
               className="font-semibold uppercase label-text"
@@ -252,9 +274,9 @@ export const ContactsPage = () => {
             </label>
 
             <input
-              id={ContactFormFields.PHONE}
+              id={FormFields.PHONE}
               type="text"
-              value={formData[ContactFormFields.PHONE]}
+              value={formData[FormFields.PHONE]}
               onChange={handleChange}
               className={cn(
                 'border p-2 rounded py-16 px-16 hover:border-icons',
@@ -262,13 +284,9 @@ export const ContactsPage = () => {
                 {
                   'focus:border-primary': !isDark,
                   'bg-surface2 border-surface2 focus:border-accent': isDark,
-                  '!border-red-500': formErrors[ContactFormFields.PHONE],
                 },
               )}
             />
-            {formErrors[ContactFormFields.PHONE] && (
-              <p className="text-red">{formErrors[ContactFormFields.PHONE]}</p>
-            )}
 
             <label
               className="font-semibold uppercase label-text"
@@ -278,8 +296,8 @@ export const ContactsPage = () => {
             </label>
 
             <textarea
-              id={ContactFormFields.MESSAGE}
-              value={formData[ContactFormFields.MESSAGE]}
+              id={FormFields.MESSAGE}
+              value={formData[FormFields.MESSAGE]}
               onChange={handleChange}
               className={cn(
                 'p-16 h-[176px] border rounded hover:border-icons',
@@ -287,22 +305,15 @@ export const ContactsPage = () => {
                 {
                   'focus:border-primary': !isDark,
                   'bg-surface2 border-surface2 focus:border-accent': isDark,
-                  '!border-red-500': formErrors[ContactFormFields.MESSAGE],
                 },
               )}
             />
-
-            {formErrors[ContactFormFields.MESSAGE] && (
-              <p className="text-red">
-                {formErrors[ContactFormFields.MESSAGE]}
-              </p>
-            )}
 
             {isLoading ? (
               <Loader />
             ) : (
               <Button className="m-8" type="submit">
-                {buttonText}
+                {ButtonName.SEND}
               </Button>
             )}
           </form>

@@ -1,39 +1,41 @@
-import { ContactFormFields, Error } from '../types';
+import { FormFields, Error } from '../types';
 
 const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
 const phoneRegex = /^\+?\d{10,15}$/;
 
-export const validateContactForm = (
-  field: ContactFormFields,
-  value: string,
-) => {
+export const validateContactForm = (field: FormFields, value: string) => {
   let error = '';
 
   switch (field) {
-    case ContactFormFields.NAME:
+    case FormFields.NAME:
       if (value.trim() === '') {
         error = Error.EMPTY_NAME;
-      } else if (value.length < 2) {
-        error = Error.SHORT_NAME;
       }
 
       break;
-    case ContactFormFields.EMAIL:
+    case FormFields.EMAIL:
       if (!emailRegex.test(value)) {
         error = Error.INVALID_EMAIL;
       }
 
       break;
 
-    case ContactFormFields.PHONE:
+    case FormFields.PHONE:
       if (!phoneRegex.test(value)) {
         error = Error.INVALID_PHONE_NUMBER;
       }
 
       break;
-    case ContactFormFields.MESSAGE:
+    case FormFields.MESSAGE:
       if (value.trim() === '') {
         error = Error.EMPTY_MESSAGE;
+      }
+
+      break;
+
+    case FormFields.PASSWORD:
+      if (value.trim() === '') {
+        error = Error.EMPTY_PASSWORD;
       }
 
       break;
