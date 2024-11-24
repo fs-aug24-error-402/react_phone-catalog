@@ -1,5 +1,6 @@
 export enum Error {
-  DEFAULT = '',
+  NONE = '',
+  DEFAULT = 'Something went wrong. Please try again',
   EMPTY_NAME = 'Name is required',
   EMPTY_FIELDS = 'Fill up the fields',
   EMPTY_PASSWORD = 'Password is required',
@@ -17,4 +18,8 @@ export enum Error {
   INVALID_CARD_NUMBER = 'Invalid card number',
   INVALID_EXPIRY_DATE = 'Invalid expiry date',
   INVALID_CVV = 'Invalid CVV',
+  SUCCESS_LOGIN = "You've successfully logged in",
+  SUCCESS_SIGN_UP = "You've successfully signed up",
+  SUCCESS_FORM_MESSAGE = 'Message sent',
+  SUCCESS_SUBSCRIPTION = "You've successfully subscribed",
 }

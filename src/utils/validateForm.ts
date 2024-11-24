@@ -22,28 +22,28 @@ export const validateForm = (
   let validationError: Error;
 
   validationError = validateFirstName(firstName);
-  if (validationError !== Error.DEFAULT) return validationError;
+  if (validationError !== Error.NONE) return validationError;
 
   if (!city) return Error.EMPTY_CITY;
 
   if (!warehouse) return Error.EMPTY_WAREHOUSE;
 
   validationError = validateLastName(lastName);
-  if (validationError !== Error.DEFAULT) return validationError;
+  if (validationError !== Error.NONE) return validationError;
 
   validationError = validatePhone(phone);
-  if (validationError !== Error.DEFAULT) return validationError;
+  if (validationError !== Error.NONE) return validationError;
 
   if (paymentMethod === 'card') {
     validationError = validateCardNumber(cardNumber);
-    if (validationError !== Error.DEFAULT) return validationError;
+    if (validationError !== Error.NONE) return validationError;
 
     validationError = validateValidityPeriod(validityPeriod);
-    if (validationError !== Error.DEFAULT) return validationError;
+    if (validationError !== Error.NONE) return validationError;
 
     validationError = validateCVV(CVV);
-    if (validationError !== Error.DEFAULT) return validationError;
+    if (validationError !== Error.NONE) return validationError;
   }
 
-  return Error.DEFAULT;
+  return Error.NONE;
 };

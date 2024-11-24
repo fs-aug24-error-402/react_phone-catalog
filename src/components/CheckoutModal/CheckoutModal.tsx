@@ -14,8 +14,8 @@ import { NP } from '../../types/NovaPoshta';
 import { FormInput } from '../FormInput/FormInput';
 import { validateForm } from '../../utils/validateForm';
 import { FormDropdown } from '../FormDropdown/FormDropdown';
-import { FormError } from '../FormError/FormError';
 import { useTheme } from '../../app/hooks';
+import { Snackbar, Alert } from '@mui/material';
 
 interface Props {
   onClose: () => void;
@@ -40,7 +40,8 @@ export const CheckoutModal: React.FC<Props> = ({ onClose, onAccept }) => {
   const [warehouses, setWarehouses] = useState<NP[]>([]);
   const [selectedWarehouse, setSelectedWarehouse] = useState<string>('');
 
-  const [hasError, setHasError] = useState<Error>(Error.DEFAULT);
+  const [isError, setIsError] = useState(false);
+  const [hasError, setHasError] = useState<Error>(Error.NONE);
   const [isSuccessful, setIsSuccessful] = useState(false);
   const [isLoading, setIsLoading] = useState(false);
   const [isInput, setIsInput] = useState({ city: false, warehouse: false });
@@ -136,6 +137,7 @@ export const CheckoutModal: React.FC<Props> = ({ onClose, onAccept }) => {
 
     if (validationError !== Error.DEFAULT) {
       setHasError(validationError);
+      setIsError(true);
 
       return;
     }
@@ -151,10 +153,6 @@ export const CheckoutModal: React.FC<Props> = ({ onClose, onAccept }) => {
     }, 2000);
   };
 
-  const handleCloseError = () => {
-    setHasError(Error.DEFAULT);
-  };
-
   const handleClose = () => {
     setPaymentMethod('cash');
     onClose();
@@ -168,8 +166,21 @@ export const CheckoutModal: React.FC<Props> = ({ onClose, onAccept }) => {
       aria-modal="true"
     >
       <div className="fixed inset-0 bg-gray-900 bg-opacity-75 transition-opacity">
-        {hasError !== Error.DEFAULT && (
-          <FormError message={hasError} onClose={handleCloseError} />
+        {isError && (
+          <Snackbar
+            open={isError}
+            autoHideDuration={3000}
+            onClose={() => setIsError(false)}
+            anchorOrigin={{ vertical: 'top', horizontal: 'center' }}
+          >
+            <Alert
+              onClose={() => setIsError(false)}
+              severity="error"
+              sx={{ width: '100%' }}
+            >
+              {hasError}
+            </Alert>
+          </Snackbar>
         )}
         <div className="fixed inset-0 z-10 w-screen h-max overflow-auto top-1/2 -translate-y-1/2">
           <div

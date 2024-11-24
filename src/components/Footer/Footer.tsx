@@ -68,17 +68,6 @@ export const Footer = () => {
             Rights
           </Link>
         </li>
-
-        <li
-          className={cn('transition-colors duration-300', {
-            'hover:text-primary': !isDark,
-            'hover:text-accent': isDark,
-          })}
-        >
-          <Link to="/registration" onClick={handleScrollToTop}>
-            Log In
-          </Link>
-        </li>
       </ul>
 
       <div

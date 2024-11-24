@@ -4,6 +4,7 @@ import {
   signInWithEmailAndPassword,
   GoogleAuthProvider,
   signInWithPopup,
+  GithubAuthProvider,
 } from 'firebase/auth';
 
 export const doCreateUserWithEmailAndPassword = async (
@@ -22,6 +23,13 @@ export const doSignInWithEmailAndPassword = async (
 
 export const doSignInWithGoogle = async () => {
   const provider = new GoogleAuthProvider();
+  const result = await signInWithPopup(auth, provider);
+
+  return result;
+};
+
+export const doSignInWithGithub = async () => {
+  const provider = new GithubAuthProvider();
   const result = await signInWithPopup(auth, provider);
 
   return result;

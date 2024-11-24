@@ -3,46 +3,62 @@ import { FormFields, Error } from '../types';
 const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
 const phoneRegex = /^\+?\d{10,15}$/;
 
-export const validateContactForm = (field: FormFields, value: string) => {
-  let error = '';
+interface FormDataFields {
+  name?: string;
+  email: string;
+  password?: string;
+  message?: string;
+  phone?: string;
+}
 
-  switch (field) {
-    case FormFields.NAME:
-      if (value.trim() === '') {
-        error = Error.EMPTY_NAME;
-      }
-
-      break;
-    case FormFields.EMAIL:
-      if (!emailRegex.test(value)) {
-        error = Error.INVALID_EMAIL;
-      }
-
-      break;
-
-    case FormFields.PHONE:
-      if (!phoneRegex.test(value)) {
-        error = Error.INVALID_PHONE_NUMBER;
-      }
-
-      break;
-    case FormFields.MESSAGE:
-      if (value.trim() === '') {
-        error = Error.EMPTY_MESSAGE;
-      }
-
-      break;
-
-    case FormFields.PASSWORD:
-      if (value.trim() === '') {
-        error = Error.EMPTY_PASSWORD;
-      }
-
-      break;
-
-    default:
-      break;
+export const validateContactForm = (formData: FormDataFields) => {
+  if (Object.values(formData).some(value => !value?.trim())) {
+    return Error.EMPTY_FIELDS;
   }
 
-  return error;
+  for (const [field, value] of Object.entries(formData)) {
+    const trimmedValue = value?.trim() || '';
+
+    switch (field) {
+      case FormFields.NAME:
+        if (!trimmedValue) {
+          return Error.EMPTY_NAME;
+        }
+
+        break;
+
+      case FormFields.EMAIL:
+        if (!emailRegex.test(trimmedValue)) {
+          return Error.INVALID_EMAIL;
+        }
+
+        break;
+
+      case FormFields.PHONE:
+        if (trimmedValue && !phoneRegex.test(trimmedValue)) {
+          return Error.INVALID_PHONE_NUMBER;
+        }
+
+        break;
+
+      case FormFields.MESSAGE:
+        if (!trimmedValue) {
+          return Error.EMPTY_MESSAGE;
+        }
+
+        break;
+
+      case FormFields.PASSWORD:
+        if (!trimmedValue) {
+          return Error.EMPTY_PASSWORD;
+        }
+
+        break;
+
+      default:
+        break;
+    }
+  }
+
+  return Error.NONE;
 };

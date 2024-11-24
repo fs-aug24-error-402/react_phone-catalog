@@ -12,4 +12,9 @@ const loginStartData = {
   [FormFields.PASSWORD]: '',
 };
 
-export { contactsStartData, loginStartData };
+const subscribeStartData = {
+  [FormFields.NAME]: '',
+  [FormFields.EMAIL]: '',
+};
+
+export { contactsStartData, loginStartData, subscribeStartData };

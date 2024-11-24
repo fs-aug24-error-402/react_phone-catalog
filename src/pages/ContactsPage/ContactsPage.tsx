@@ -18,24 +18,17 @@ export const ContactsPage = () => {
 
   const [isLoading, setIsLoading] = useState(false);
   const [formData, setFormData] = useState(contactsStartData);
-  const [formErrors, setFormErrors] = useState(contactsStartData);
   const [isError, setIsError] = useState(false);
-  const [errorType, setErrorType] = useState('');
+  const [isSuccess, setIsSuccess] = useState(false);
+  const [errorType, setErrorType] = useState<Error>(Error.NONE);
 
   function handleSubmit(e: React.FormEvent<HTMLFormElement>) {
     e.preventDefault();
 
-    if (Object.values(formErrors).some(value => value !== Error.DEFAULT)) {
-      setErrorType(
-        Object.values(formErrors).find(value => value !== Error.DEFAULT)!,
-      );
-      setIsError(true);
+    const validationError = validateContactForm(formData);
 
-      return;
-    }
-
-    if (Object.values(formData).some(value => !value)) {
-      setErrorType(Error.EMPTY_FIELDS);
+    if (validationError !== Error.NONE) {
+      setErrorType(validationError);
       setIsError(true);
 
       return;
@@ -43,23 +36,18 @@ export const ContactsPage = () => {
 
     setIsLoading(true);
     setTimeout(() => setIsLoading(false), 900);
-    setTimeout(() => setFormData(contactsStartData), 800);
+    setTimeout(() => setFormData(contactsStartData), 900);
+    setTimeout(() => setIsSuccess(true), 900);
   }
 
   function handleChange(
     e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>,
   ) {
     const { id, value } = e.target;
-    const error = validateContactForm(id as FormFields, value);
 
     setFormData(prevData => ({
       ...prevData,
       [id]: value,
-    }));
-
-    setFormErrors(prevErrors => ({
-      ...prevErrors,
-      [id]: error,
     }));
   }
 
@@ -85,19 +73,19 @@ export const ContactsPage = () => {
           </Snackbar>
         )}
 
-        {isError && (
+        {isSuccess && (
           <Snackbar
-            open={isError}
+            open={isSuccess}
             autoHideDuration={3000}
-            onClose={() => setIsError(false)}
+            onClose={() => setIsSuccess(false)}
             anchorOrigin={{ vertical: 'top', horizontal: 'center' }}
           >
             <Alert
-              onClose={() => setIsError(false)}
-              severity="error"
+              onClose={() => setIsSuccess(false)}
+              severity="success"
               sx={{ width: '100%' }}
             >
-              {errorType}
+              {Error.SUCCESS_FORM_MESSAGE}
             </Alert>
           </Snackbar>
         )}

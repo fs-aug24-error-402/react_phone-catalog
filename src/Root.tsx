@@ -14,41 +14,44 @@ import { ProductPage } from './pages/ProductPage';
 import { ContactsPage } from './pages/ContactsPage';
 import { RightsPage } from './pages/RightsPage';
 import { LogInPage } from './pages/LogInPage';
+import { AuthProvider } from './contexts/authContext';
 
 export const Root = () => {
   return (
-    <Provider store={store}>
-      <Router>
-        <Routes>
-          <Route path="registration" element={<LogInPage />} />
-          <Route path="/" element={<App />}>
-            <Route index element={<HomePage />} />
+    <AuthProvider>
+      <Provider store={store}>
+        <Router>
+          <Routes>
+            <Route path="registration" element={<LogInPage />} />
+            <Route path="/" element={<App />}>
+              <Route index element={<HomePage />} />
 
-            <Route path="phones">
-              <Route index element={<PhonesPage />} />
-              <Route path=":phoneId" element={<ProductPage />} />
+              <Route path="phones">
+                <Route index element={<PhonesPage />} />
+                <Route path=":phoneId" element={<ProductPage />} />
+              </Route>
+
+              <Route path="tablets">
+                <Route index element={<TabletsPage />} />
+                <Route path=":tabletId" element={<ProductPage />} />
+              </Route>
+
+              <Route path="accessories">
+                <Route index element={<AccessoriesPage />} />
+                <Route path=":accessoryId" element={<ProductPage />} />
+              </Route>
+
+              <Route path="favourites" element={<FavouritesPage />} />
+              <Route path="cart" element={<CartPage />} />
+
+              <Route path="contacts" element={<ContactsPage />} />
+              <Route path="rights" element={<RightsPage />} />
+
+              <Route path="*" element={<NotFoundPage />} />
             </Route>
-
-            <Route path="tablets">
-              <Route index element={<TabletsPage />} />
-              <Route path=":tabletId" element={<ProductPage />} />
-            </Route>
-
-            <Route path="accessories">
-              <Route index element={<AccessoriesPage />} />
-              <Route path=":accessoryId" element={<ProductPage />} />
-            </Route>
-
-            <Route path="favourites" element={<FavouritesPage />} />
-            <Route path="cart" element={<CartPage />} />
-
-            <Route path="contacts" element={<ContactsPage />} />
-            <Route path="rights" element={<RightsPage />} />
-
-            <Route path="*" element={<NotFoundPage />} />
-          </Route>
-        </Routes>
-      </Router>
-    </Provider>
+          </Routes>
+        </Router>
+      </Provider>
+    </AuthProvider>
   );
 };
