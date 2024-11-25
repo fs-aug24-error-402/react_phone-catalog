@@ -135,14 +135,14 @@ export const CheckoutModal: React.FC<Props> = ({ onClose, onAccept }) => {
       CVV,
     );
 
-    if (validationError !== Error.DEFAULT) {
+    if (validationError !== Error.NONE) {
       setHasError(validationError);
       setIsError(true);
 
       return;
     }
 
-    setHasError(Error.DEFAULT);
+    setHasError(Error.NONE);
     setIsSuccessful(true);
     setIsLoading(true);
 

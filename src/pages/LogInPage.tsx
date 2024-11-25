@@ -6,6 +6,7 @@ import { FormFields } from '../types';
 import { loginStartData } from '../constants/fields';
 import { Snackbar, Alert } from '@mui/material';
 import { validateContactForm } from '../utils/validateContactForm';
+import { FirebaseError } from '@firebase/util';
 
 import style from '../styles/helpers/container.module.scss';
 import {
@@ -42,18 +43,25 @@ export const LogInPage: React.FC = () => {
 
     if (!isSigningIn) {
       setIsSigningIn(true);
-      await doSignInWithEmailAndPassword(email, password)
-        .then(() => {
-          setIsSuccess(true);
-          setTimeout(() => {
-            navigate('/');
-          }, 2000);
-        })
-        .catch(() => {
+
+      try {
+        await doSignInWithEmailAndPassword(email, password);
+        setIsSuccess(true);
+
+        setTimeout(() => {
+          navigate('/');
+        }, 2000);
+      } catch (error: unknown) {
+        if (error instanceof FirebaseError) {
+          setIsError(true);
+          setErrorType(error.code as Error);
+        } else {
           setIsError(true);
           setErrorType(Error.DEFAULT);
-        })
-        .finally(() => setIsSigningIn(false));
+        }
+      } finally {
+        setIsSigningIn(false);
+      }
     }
   }
 
