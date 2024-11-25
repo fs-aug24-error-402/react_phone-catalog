@@ -1,70 +1,58 @@
-import { Error } from '../types';
+const nameRegex = /^[A-Za-zА-Яа-яЇїІіЄє]+$/;
+const validityPeriodRegex = /^(0[1-9]|1[0-2])\/\d{2}$/;
+const validateCardNumberRegex = /^\d{16}$/;
+const validateCvvRegex = /^\d{3}$/;
+const phoneRegex = /^\+?\d{10,15}$/;
+const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
 
-export const validateFirstName = (firstName: string): Error => {
-  if (!firstName.trim()) {
-    return Error.EMPTY_FIRST_NAME;
+export const validateName = (firstName: string) => {
+  if (!nameRegex.test(firstName)) {
+    return true;
   }
 
-  if (!/^[A-Za-zА-Яа-яЇїІіЄє]+$/.test(firstName)) {
-    return Error.INVALID_FIRST_NAME;
-  }
-
-  return Error.DEFAULT;
+  return false;
 };
 
-export const validateLastName = (lastName: string): Error => {
-  if (!lastName.trim()) {
-    return Error.EMPTY_LAST_NAME;
+export const validateEmail = (email: string) => {
+  if (!emailRegex.test(email)) {
+    return true;
   }
 
-  if (!/^[A-Za-zА-Яа-яЇїІіЄє]+$/.test(lastName)) {
-    return Error.INVALID_LAST_NAME;
-  }
-
-  return Error.DEFAULT;
+  return false;
 };
 
-export const validatePhone = (phone: string): Error => {
+export const validatePhone = (phone: string) => {
   const cleanedPhone = phone.replace(/\D/g, '');
 
-  if (!cleanedPhone) {
-    return Error.EMPTY_PHONE_NUMBER;
+  if (phoneRegex.test(cleanedPhone)) {
+    return true;
   }
 
-  if (!/^0\d{9}$/.test(cleanedPhone)) {
-    return Error.INVALID_PHONE_NUMBER;
-  }
-
-  return Error.DEFAULT;
+  return false;
 };
 
 export const validateCardNumber = (number: string) => {
   const cleanedCardNumber = number.replace(/\D/g, '');
-  const regex = /^\d{16}$/;
 
-  if (!regex.test(cleanedCardNumber)) {
-    return Error.INVALID_CARD_NUMBER;
+  if (!validateCardNumberRegex.test(cleanedCardNumber)) {
+    return true;
   }
 
-  return Error.DEFAULT;
+  return false;
 };
 
 export const validateValidityPeriod = (validity: string) => {
-  const regex = /^(0[1-9]|1[0-2])\/\d{2}$/;
-
-  if (!regex.test(validity)) {
-    return Error.INVALID_EXPIRY_DATE;
+  if (!validityPeriodRegex.test(validity)) {
+    return true;
   }
 
-  return Error.DEFAULT;
+  return false;
 };
 
 export const validateCVV = (cvv: string) => {
-  const regex = /^\d{3}$/;
-
-  if (!regex.test(cvv)) {
-    return Error.INVALID_CVV;
+  if (!validateCvvRegex.test(cvv)) {
+    return true;
   }
 
-  return Error.DEFAULT;
+  return false;
 };

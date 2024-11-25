@@ -2,8 +2,7 @@ import { Error, NP } from '../types';
 import {
   validateCardNumber,
   validateCVV,
-  validateFirstName,
-  validateLastName,
+  validateName,
   validatePhone,
   validateValidityPeriod,
 } from './validation';
@@ -19,31 +18,39 @@ export const validateForm = (
   validityPeriod: string,
   CVV: string,
 ): Error => {
-  let validationError: Error;
-
-  validationError = validateFirstName(firstName);
-  if (validationError !== Error.DEFAULT) return validationError;
-
-  if (!city) return Error.EMPTY_CITY;
-
-  if (!warehouse) return Error.EMPTY_WAREHOUSE;
-
-  validationError = validateLastName(lastName);
-  if (validationError !== Error.DEFAULT) return validationError;
-
-  validationError = validatePhone(phone);
-  if (validationError !== Error.DEFAULT) return validationError;
-
-  if (paymentMethod === 'card') {
-    validationError = validateCardNumber(cardNumber);
-    if (validationError !== Error.DEFAULT) return validationError;
-
-    validationError = validateValidityPeriod(validityPeriod);
-    if (validationError !== Error.DEFAULT) return validationError;
-
-    validationError = validateCVV(CVV);
-    if (validationError !== Error.DEFAULT) return validationError;
+  if (validateName(firstName)) {
+    return Error.EMPTY_FIRST_NAME;
   }
 
-  return Error.DEFAULT;
+  if (!city) {
+    return Error.EMPTY_CITY;
+  }
+
+  if (!warehouse) {
+    return Error.EMPTY_WAREHOUSE;
+  }
+
+  if (validateName(lastName)) {
+    return Error.EMPTY_LAST_NAME;
+  }
+
+  if (validatePhone(phone)) {
+    return Error.INVALID_PHONE_NUMBER;
+  }
+
+  if (paymentMethod === 'card') {
+    if (validateCardNumber(cardNumber)) {
+      return Error.INVALID_CARD_NUMBER;
+    }
+
+    if (validateValidityPeriod(validityPeriod)) {
+      return Error.INVALID_EXPIRY_DATE;
+    }
+
+    if (validateCVV(CVV)) {
+      return Error.INVALID_CVV;
+    }
+  }
+
+  return Error.NONE;
 };

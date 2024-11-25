@@ -1,46 +1,55 @@
-import { ContactFormFields, Error } from '../types';
+import { FormFields, Error } from '../types';
+import { validateName, validatePhone, validateEmail } from './validation';
+import { GenericDataForm } from '../interfaces/GenericDataForm';
 
-const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
-const phoneRegex = /^\+?\d{10,15}$/;
-
-export const validateContactForm = (
-  field: ContactFormFields,
-  value: string,
-) => {
-  let error = '';
-
-  switch (field) {
-    case ContactFormFields.NAME:
-      if (value.trim() === '') {
-        error = Error.EMPTY_NAME;
-      } else if (value.length < 2) {
-        error = Error.SHORT_NAME;
-      }
-
-      break;
-    case ContactFormFields.EMAIL:
-      if (!emailRegex.test(value)) {
-        error = Error.INVALID_EMAIL;
-      }
-
-      break;
-
-    case ContactFormFields.PHONE:
-      if (!phoneRegex.test(value)) {
-        error = Error.INVALID_PHONE_NUMBER;
-      }
-
-      break;
-    case ContactFormFields.MESSAGE:
-      if (value.trim() === '') {
-        error = Error.EMPTY_MESSAGE;
-      }
-
-      break;
-
-    default:
-      break;
+export const validateContactForm = (formData: GenericDataForm) => {
+  if (Object.values(formData).some(value => !value?.trim())) {
+    return Error.EMPTY_FIELDS;
   }
 
-  return error;
+  for (const [field, value] of Object.entries(formData)) {
+    const trimmedValue = value?.trim() || '';
+
+    switch (field) {
+      case FormFields.NAME:
+        if (validateName(trimmedValue)) {
+          return Error.EMPTY_NAME;
+        }
+
+        break;
+
+      case FormFields.EMAIL:
+        if (validateEmail(trimmedValue)) {
+          return Error.INVALID_EMAIL;
+        }
+
+        break;
+
+      case FormFields.PHONE:
+        if (validatePhone(trimmedValue)) {
+          return Error.INVALID_PHONE_NUMBER;
+        }
+
+        break;
+
+      case FormFields.MESSAGE:
+        if (!trimmedValue) {
+          return Error.EMPTY_MESSAGE;
+        }
+
+        break;
+
+      case FormFields.PASSWORD:
+        if (!trimmedValue) {
+          return Error.EMPTY_PASSWORD;
+        }
+
+        break;
+
+      default:
+        break;
+    }
+  }
+
+  return Error.NONE;
 };

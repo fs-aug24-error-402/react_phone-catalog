@@ -54,7 +54,7 @@ export const FormInput: React.FC<Props> = ({
             !isDark,
           'bg-surface2 border-surface2 hover:border-icons focus:border-accent':
             isDark,
-          'border-red-500': hasError !== Error.DEFAULT,
+          'border-red-500': hasError !== Error.NONE,
         },
       )}
       value={value}
