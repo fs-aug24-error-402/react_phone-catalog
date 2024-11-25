@@ -1,17 +1,8 @@
 import { FormFields, Error } from '../types';
+import { validateName, validatePhone, validateEmail } from './validation';
+import { GenericDataForm } from '../interfaces/GenericDataForm';
 
-const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
-const phoneRegex = /^\+?\d{10,15}$/;
-
-interface FormDataFields {
-  name?: string;
-  email: string;
-  password?: string;
-  message?: string;
-  phone?: string;
-}
-
-export const validateContactForm = (formData: FormDataFields) => {
+export const validateContactForm = (formData: GenericDataForm) => {
   if (Object.values(formData).some(value => !value?.trim())) {
     return Error.EMPTY_FIELDS;
   }
@@ -21,21 +12,21 @@ export const validateContactForm = (formData: FormDataFields) => {
 
     switch (field) {
       case FormFields.NAME:
-        if (!trimmedValue) {
+        if (validateName(trimmedValue)) {
           return Error.EMPTY_NAME;
         }
 
         break;
 
       case FormFields.EMAIL:
-        if (!emailRegex.test(trimmedValue)) {
+        if (validateEmail(trimmedValue)) {
           return Error.INVALID_EMAIL;
         }
 
         break;
 
       case FormFields.PHONE:
-        if (trimmedValue && !phoneRegex.test(trimmedValue)) {
+        if (validatePhone(trimmedValue)) {
           return Error.INVALID_PHONE_NUMBER;
         }
 

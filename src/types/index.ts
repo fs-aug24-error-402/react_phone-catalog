@@ -1,4 +1,4 @@
-export * from './Accessory';
+export * from './Accessory.ts';
 export * from './ButtonName';
 export * from './FormFields.ts';
 export * from './Description';

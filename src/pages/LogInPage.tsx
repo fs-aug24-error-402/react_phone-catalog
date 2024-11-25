@@ -2,6 +2,8 @@ import { useState } from 'react';
 import { Button } from '../components/Button';
 import { ButtonName, Error } from '../types';
 import { FaGoogle, FaGithub } from 'react-icons/fa';
+import { FirebaseError } from '@firebase/util';
+
 import { FormFields } from '../types';
 import { loginStartData } from '../constants/fields';
 import { Snackbar, Alert } from '@mui/material';
@@ -42,18 +44,24 @@ export const LogInPage: React.FC = () => {
 
     if (!isSigningIn) {
       setIsSigningIn(true);
-      await doSignInWithEmailAndPassword(email, password)
-        .then(() => {
-          setIsSuccess(true);
-          setTimeout(() => {
-            navigate('/');
-          }, 2000);
-        })
-        .catch(() => {
+
+      try {
+        await doSignInWithEmailAndPassword(email, password);
+        setIsSuccess(true);
+        setTimeout(() => {
+          navigate('/');
+        }, 2000);
+      } catch (signInError) {
+        if (signInError instanceof FirebaseError) {
+          setIsError(true);
+          setErrorType(signInError.code as Error);
+        } else {
           setIsError(true);
           setErrorType(Error.DEFAULT);
-        })
-        .finally(() => setIsSigningIn(false));
+        }
+      } finally {
+        setIsSigningIn(false);
+      }
     }
   }
 
