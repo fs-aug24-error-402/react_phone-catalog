@@ -165,7 +165,7 @@ export const Rights = () => {
         <a
           href="tearms\Tearms and Conditions.docx"
           download="Tearms and Conditions.docx"
-          className="hover:underline ml-1 tex"
+          className="hover:underline ml-1"
           onClick={handleVirus}
         >
           Download File

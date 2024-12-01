@@ -9,7 +9,7 @@ export const validateFirstName = (firstName: string): Error => {
     return Error.INVALID_FIRST_NAME;
   }
 
-  return Error.DEFAULT;
+  return Error.NONE;
 };
 
 export const validateLastName = (lastName: string): Error => {
@@ -21,7 +21,7 @@ export const validateLastName = (lastName: string): Error => {
     return Error.INVALID_LAST_NAME;
   }
 
-  return Error.DEFAULT;
+  return Error.NONE;
 };
 
 export const validatePhone = (phone: string): Error => {
@@ -35,7 +35,7 @@ export const validatePhone = (phone: string): Error => {
     return Error.INVALID_PHONE_NUMBER;
   }
 
-  return Error.DEFAULT;
+  return Error.NONE;
 };
 
 export const validateCardNumber = (number: string) => {
@@ -46,7 +46,7 @@ export const validateCardNumber = (number: string) => {
     return Error.INVALID_CARD_NUMBER;
   }
 
-  return Error.DEFAULT;
+  return Error.NONE;
 };
 
 export const validateValidityPeriod = (validity: string) => {
@@ -56,7 +56,7 @@ export const validateValidityPeriod = (validity: string) => {
     return Error.INVALID_EXPIRY_DATE;
   }
 
-  return Error.DEFAULT;
+  return Error.NONE;
 };
 
 export const validateCVV = (cvv: string) => {
@@ -66,5 +66,5 @@ export const validateCVV = (cvv: string) => {
     return Error.INVALID_CVV;
   }
 
-  return Error.DEFAULT;
+  return Error.NONE;
 };

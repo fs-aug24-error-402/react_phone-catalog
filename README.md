@@ -1,97 +1,35 @@
-# Project Title
-React Phone Catalog
+# Web application - "[**Nice Gadgets**](https://fs-aug24-error-402.github.io/react_phone-catalog/)"
 
-## Description
-A site designed to sell phones. The site has common features such as:
-- Filtering and the ability to share them via URL.
-- A list of favorites.
-- A cart.
-- The possibility to order with Nova Post delivery.
+- Look at [**Layout (Figma)**](<https://www.figma.com/design/lNMf2EaggsNRraiOeNzsUd/Phone-catalog-Light---Error-402?node-id=15875-34075&node-type=frame&t=EFs3FRCqRVh40JWb-0)
+- Look at [**Web application**](https://fs-aug24-error-402.github.io/react_phone-catalog/)
 
-## Installation
-1. Clone this repo
-2. Run ```npm i```
+## STACK - React, TypeScript, HTML/SCSS
 
-## Usage
-- To start the project run `npm start`
-- To check and fix some errors `npm run lint`
-- To check and fix code style `npm run format`
-- To run localhost properly add `#/` after `http://localhost:5173/react_phone-catalog/`
+### Through this work, I have learned
 
-## Styling
-### Basics
-- use [Tailwind](https://tailwindcss.com/docs/installation) classes to style one element
-- if element can be reused create `<Name>.module.scss` file and use it as [Module Stylesheet](https://create-react-app.dev/docs/adding-a-css-modules-stylesheet/)
-- don't forget about [BEM rools](https://en.bem.info/methodology/key-concepts/)
+> - React
+>   > virtual DOM, jsx, components/pure-components, propTypes, react-bootstrap <br/>
+>   > inline styles, css modules, state, events, forms, lifecycle, http-requests <br/>
+>   > hooks(useState, useEffect, useRef, useReducer) <br/>
+>   > routing, navigation history, redux, actions, reducer, dispatch , selectors, useSelector <br/>
+>   > redux-toolkit, configureStore, createAction, createReducer, createSlice <br/>
 
-### How to use Tailwind theme variables
-In `tailwind.config.js` you can see what values exist and add some if you need.
+> - TypeScript
+>   > variables, types, branching, arrays, function, object, <br/>
+>   > spread/rest, destructuring, callbacks, arrays methods, pure functions <br/>
+>   > method chaining, context(this), function methods, prototypes, classes <br/>
+>   > DOM events, event delegation, throttle/debounce, lazy loading <br/>
+>   > json, web storage, asynchrony, date and time <br/>
+>   > promises, HTTP/s, rest API, pagination <br/>
+>   > CRUD, async/await, fetch, handlerbars <br/>
 
-#### Spacing
-These values are for `padding`, `margin`, `width`, `minWidth`, `maxWidth`, `height`, `minHeight`, `maxHeight`, `gap`, `inset`, `space`, `translate`, `scrollMargin`, and `scrollPadding`.
-
-Inline styles:
-```tsx
-<div className={'p-18'}></div>
-```
-In `scss` file:
-```scss
-div {
-  padding: theme('spacing.18')
-}
-```
-Result:
-```css
-div {
-  padding: 18px;
-}
-```
-
-#### Colors
-You can use them for text color, border color, backgroud color and so on.
-
-Inline styles:
-```tsx
-<p className={'text-secondary-accent'}></p>
-```
-In `scss` file:
-```scss
-p {
-  color: theme('colors.secondary.accent')
-}
-```
-Result:
-```css
-p {
-  color: #F4BA47;
-}
-```
-
-#### Border radius
-For inline styles write class `rounded-sm` (8px) or `rounded-lg` (48px).
-
-#### Fonts
-Styles for `h1`, `h2`, `h3` and `h4` are already implemented.
-`Body text` properties (see in Figma) are using by default.
-`Small text`, `Buttons` and `Uppercase` properties are includes in theme.
-
-Inline styles:
-```tsx
-<p className={'text-small'}></p>
-```
-Result:
-```css
-p {
-  font-size: 12px;
-  line-height: 15px;
-  letter-spacing: 0;
-  font-weight: 600;
-}
-```
-
-### **_Before each push and pull your code will be checked by_ `Lint` _and_ `Prettier`.**
-### **_Also there is a remote_ `Lint` _test_**
-
-
-
-### [Link To Page On GH Pages](https://fs-aug24-error-402.github.io/react_phone-catalog/)
+> - HTML (tags, attributes, semantics, clean structure, code style) <br/><br/>
+> - CSS <br/>
+>   > selector specificity, pseudo-class, css variables, pseudo-elements, <br/>
+>   > font properties, box model, element geometry, element types, <br/>
+>   > image types, gradient, shadow, raster/vector graphics, svg sprites <br/>
+>   > positioned elements, animations, transitions, forms, link js <br/>
+> - BEM <br/>
+> - SASS <br/>
+> - Tailwind <br/>
+> - adaptive and responsive layout (markup, graphics) <br/><br/>
