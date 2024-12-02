@@ -1,6 +1,6 @@
 # Web application - "[**Nice Gadgets**](https://fs-aug24-error-402.github.io/react_phone-catalog/)"
 
-- Look at [**Layout (Figma)**](<https://www.figma.com/design/lNMf2EaggsNRraiOeNzsUd/Phone-catalog-Light---Error-402?node-id=15875-34075&node-type=frame&t=EFs3FRCqRVh40JWb-0)
+- Look at [**Layout (Figma)**](https://www.figma.com/design/lNMf2EaggsNRraiOeNzsUd/Phone-catalog-Light---Error-402?node-id=15875-34075&node-type=frame&t=EFs3FRCqRVh40JWb-0)
 - Look at [**Web application**](https://fs-aug24-error-402.github.io/react_phone-catalog/)
 
 ## STACK - React, TypeScript, HTML/SCSS
