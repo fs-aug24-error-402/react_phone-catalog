@@ -8,7 +8,7 @@ Welcome to the **Nice Gadgets** project! This is a modern online store developed
 - Look at [**Layout (Figma)**](https://www.figma.com/design/lNMf2EaggsNRraiOeNzsUd/Phone-catalog-Light---Error-402?node-id=15875-34075&node-type=frame&t=EFs3FRCqRVh40JWb-0)
 - Look at [**Web application**](https://fs-aug24-error-402.github.io/react_phone-catalog/)
 
-[](site-presentation.gif)
+[](https://github.com/fs-aug24-error-402/react_phone-catalog/blob/YuriiMykhailenko-patch-3/site-presentation.gif)
 
 ### Project Purpose
 
