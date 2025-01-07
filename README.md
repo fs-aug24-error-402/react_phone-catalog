@@ -1,9 +1,14 @@
 # Nice Gadgets - Online Store
 
 Welcome to the **Nice Gadgets** project! This is a modern online store developed using **React** , **TypeScript** and **TailWind**. The goal is to provide an intuitive and seamless shopping experience for customers looking for the best gadgets on the market.
+# Nice Gadgets - Online Store
+
+Welcome to the **Nice Gadgets** project! This is a modern online store developed using **React** , **TypeScript** and **TailWind**. The goal is to provide an intuitive and seamless shopping experience for customers looking for the best gadgets on the market.
 
 - Look at [**Layout (Figma)**](https://www.figma.com/design/lNMf2EaggsNRraiOeNzsUd/Phone-catalog-Light---Error-402?node-id=15875-34075&node-type=frame&t=EFs3FRCqRVh40JWb-0)
 - Look at [**Web application**](https://fs-aug24-error-402.github.io/react_phone-catalog/)
+
+[](site-presentation.gif)
 
 ### Project Purpose
 
@@ -14,7 +19,7 @@ Create a fast, responsive, user-friendly, and accessible online store that makes
 - **React**
 - **TypeScript**
 - **Vite**
-- **SCSS and TailWind**
+- **SCSS and Tailwind**
 - **Redux**
 
 ## Key Features
