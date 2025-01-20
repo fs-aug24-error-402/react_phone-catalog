@@ -2,6 +2,13 @@
 
 const defaultTheme = require('tailwindcss/defaultTheme');
 
+const generateSpacing = (max) => {
+  const spacing = {};
+  for (let i = 1; i <= max; i++) spacing[i] = `${i}px`;
+  return spacing;
+};
+
+
 export default {
   content: ['./index.html', './src/**/*.{js,ts,jsx,tsx}'],
   theme: {
@@ -12,27 +19,7 @@ export default {
       desktop: '1200px',
     },
 
-    spacing: {
-      0: '0px',
-      4: '4px',
-      8: '8px',
-      12: '12px',
-      13: '13px',
-      16: '16px',
-      18: '18px',
-      22: '22px',
-      24: '24px',
-      32: '32px',
-      40: '40px',
-      48: '48px',
-      56: '56px',
-      64: '64px',
-      66: '66px',
-      72: '72px',
-      80: '80px',
-      96: '96px',
-      152: '152px',
-    },
+    spacing: generateSpacing(200),
 
     extend: {
       colors: {

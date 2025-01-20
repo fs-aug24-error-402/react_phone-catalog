@@ -1,35 +1,37 @@
-# Web application - "[**Nice Gadgets**](https://fs-aug24-error-402.github.io/react_phone-catalog/)"
+# Nice Gadgets - Online Store
+
+Welcome to the **Nice Gadgets** project! This is a modern online store developed using **React** , **TypeScript** and **TailWind**. The goal is to provide an intuitive and seamless shopping experience for customers looking for the best gadgets on the market.
+# Nice Gadgets - Online Store
+
+Welcome to the **Nice Gadgets** project! This is a modern online store developed using **React** , **TypeScript** and **TailWind**. The goal is to provide an intuitive and seamless shopping experience for customers looking for the best gadgets on the market.
 
 - Look at [**Layout (Figma)**](https://www.figma.com/design/lNMf2EaggsNRraiOeNzsUd/Phone-catalog-Light---Error-402?node-id=15875-34075&node-type=frame&t=EFs3FRCqRVh40JWb-0)
 - Look at [**Web application**](https://fs-aug24-error-402.github.io/react_phone-catalog/)
 
-## STACK - React, TypeScript, HTML/SCSS
+![](https://github.com/fs-aug24-error-402/react_phone-catalog/blob/YuriiMykhailenko-patch-3/site-presentation.gif)
 
-### Through this work, I have learned
+### Project Purpose
 
-> - React
->   > virtual DOM, jsx, components/pure-components, propTypes, react-bootstrap <br/>
->   > inline styles, css modules, state, events, forms, lifecycle, http-requests <br/>
->   > hooks(useState, useEffect, useRef, useReducer) <br/>
->   > routing, navigation history, redux, actions, reducer, dispatch , selectors, useSelector <br/>
->   > redux-toolkit, configureStore, createAction, createReducer, createSlice <br/>
+Create a fast, responsive, user-friendly, and accessible online store that makes it easy to browse, sort, and purchase gadgets.
 
-> - TypeScript
->   > variables, types, branching, arrays, function, object, <br/>
->   > spread/rest, destructuring, callbacks, arrays methods, pure functions <br/>
->   > method chaining, context(this), function methods, prototypes, classes <br/>
->   > DOM events, event delegation, throttle/debounce, lazy loading <br/>
->   > json, web storage, asynchrony, date and time <br/>
->   > promises, HTTP/s, rest API, pagination <br/>
->   > CRUD, async/await, fetch, handlerbars <br/>
+## Technologies Used (node v20.17.0)
 
-> - HTML (tags, attributes, semantics, clean structure, code style) <br/><br/>
-> - CSS <br/>
->   > selector specificity, pseudo-class, css variables, pseudo-elements, <br/>
->   > font properties, box model, element geometry, element types, <br/>
->   > image types, gradient, shadow, raster/vector graphics, svg sprites <br/>
->   > positioned elements, animations, transitions, forms, link js <br/>
-> - BEM <br/>
-> - SASS <br/>
-> - Tailwind <br/>
-> - adaptive and responsive layout (markup, graphics) <br/><br/>
+- **React**
+- **TypeScript**
+- **Vite**
+- **SCSS and Tailwind**
+- **Redux**
+
+## Key Features
+
+- **Product Browsing**: A simple interface to view all available gadgets.
+- **Sorting and Filtering**: Convenient search options by categories, prices, ratings, and more.
+- **Product Details**: Each gadget has a dedicated page with detailed information.
+- **Cart and Checkout**: Users can add items to their cart and proceed to checkout.
+
+
+## How to install and use it localy
+
+1. Copy this repo: Clone or download the repository to your local machine.
+2. Install dependencies: Run `npm i` in your terminal to install all the necessary packages.
+3. Start the application: Run `npm start` to launch the application on localhost. The browser will open automatically.
